@@ -1,7 +1,7 @@
 @use "sass:math";
 
 :root {
-    --theme-color: #ff4136;
+    --theme-color: #FFC000;
     --theme-color2: #FE8900;
     --theme-color3: #FFC000;
     --title-color: #1A1A1A;
@@ -8983,8 +8983,8 @@ ol.wp-block-rss {
 }
 
 .header-layout1 .header-top .header-links a {
-    color: var(--body-color);
-    color: var(--title-color)
+    color: black;
+    color: black
 }
 
 .header-layout1 .header-top .header-links a:hover {
@@ -9148,11 +9148,11 @@ ol.wp-block-rss {
 }
 
 .header-default.header-layout1 .sticky-wrapper.sticky {
-    background: var(--gray-color)
+    background: white;
 }
 
 .header-default.header-layout1 {
-    background-color: transparent;
+    background-color: white;
     position: absolute;
     top: 0;
     left: 0;
@@ -9168,7 +9168,7 @@ ol.wp-block-rss {
 
 .header-default.header-layout1 .header-links a {
     font-size: 14px;
-    color: var(--white-color)
+    color: black
 }
 
 .header-default.header-layout1 .menu-area {
@@ -9178,11 +9178,11 @@ ol.wp-block-rss {
 
 .header-default.header-layout1 .main-menu>ul>li>a {
     padding: 34px 0;
-    color: var(--white-color)
+    color: black
 }
 
 .header-default.header-layout1 .main-menu ul li.menu-item-has-children a::after {
-    color: var(--white-color)
+    color: black
 }
 
 .header-default.header-layout1 .main-menu ul.sub-menu li.menu-item-has-children>a::after {
