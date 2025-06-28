@@ -25,9 +25,9 @@
     --icon-font: "Font Awesome 6 Pro";
     --main-container: 1620px;
     --container-gutters: 30px;
-    --section-space: 120px;
-    --section-space-mobile: 80px;
-    --section-title-space: 60px;
+    --section-space: 60px;
+    --section-space-mobile: 30px;
+    --section-title-space: 40px;
     --ripple-ani-duration: 5s
 }
 
@@ -3414,7 +3414,7 @@ textarea.is-invalid {
 }
 
 .box-title {
-    font-size: 24px;
+    font-size: 18px;
     line-height: 1.417;
     font-weight: 600;
     margin-top: -0.32em
@@ -4172,7 +4172,7 @@ hr.title-line {
     -webkit-transform: scale(8);
     -ms-transform: scale(8);
     transform: scale(8);
-    background: rgba(17, 61, 72, 0.7);
+    background: rgba(255, 238, 1, 0.7);
     -webkit-backdrop-filter: blur(6px);
     backdrop-filter: blur(6px);
     -webkit-transition: 0.5s cubic-bezier(0.75, -1.27, 0.3, 2.33) opacity, 0.5s cubic-bezier(0.75, -1.27, 0.3, 2.33) -webkit-transform;
@@ -12360,7 +12360,7 @@ ul.comment-list:has(>.th-comment-item ~ .th-comment-item):first-child>.th-post-c
 }
 
 .hero-title {
-    font-size: 80px;
+    font-size: 70px;
     font-weight: 800;
     margin-bottom: 45px;
     margin-top: -0.2em;
@@ -12370,13 +12370,13 @@ ul.comment-list:has(>.th-comment-item ~ .th-comment-item):first-child>.th-post-c
 
 @media (max-width: 1399px) {
     .hero-title {
-        font-size: 77px
+        font-size: 67px
     }
 }
 
 @media (max-width: 575px) {
     .hero-title {
-        font-size: 55px
+        font-size: 45px
     }
 }
 
@@ -12486,37 +12486,37 @@ ul.comment-list:has(>.th-comment-item ~ .th-comment-item):first-child>.th-post-c
 
 @media (max-width: 1680px) {
     .hero-style1 .hero-title {
-        font-size: 77px
+        font-size: 67px
     }
 }
 
 @media (max-width: 1600px) {
     .hero-style1 .hero-title {
-        font-size: 70px
+        font-size: 60px
     }
 }
 
 @media (max-width: 1500px) {
     .hero-style1 .hero-title {
-        font-size: 67px
+        font-size: 57px
     }
 }
 
 @media (max-width: 1450px) {
     .hero-style1 .hero-title {
-        font-size: 64px
+        font-size: 54px
     }
 }
 
 @media (max-width: 1299px) {
     .hero-style1 .hero-title {
-        font-size: 60px
+        font-size: 50px
     }
 }
 
 @media (max-width: 1199px) {
     .hero-style1 .hero-title {
-        font-size: 52px
+        font-size: 42px
     }
 
     .hero-inner.hero-style1 {
@@ -12526,14 +12526,14 @@ ul.comment-list:has(>.th-comment-item ~ .th-comment-item):first-child>.th-post-c
 
 @media (max-width: 991px) {
     .hero-style1 .hero-title {
-        font-size: 55px;
+        font-size: 45px;
         line-height: 1.15
     }
 }
 
 @media (max-width: 767px) {
     .hero-style1 .hero-title {
-        font-size: 45px;
+        font-size: 35px;
         margin-bottom: 35px
     }
 
@@ -12559,7 +12559,7 @@ ul.comment-list:has(>.th-comment-item ~ .th-comment-item):first-child>.th-post-c
 
 @media (max-width: 575px) {
     .hero-style1 .hero-title {
-        font-size: 45px;
+        font-size: 35px;
         line-height: 1.2
     }
 
@@ -12574,7 +12574,7 @@ ul.comment-list:has(>.th-comment-item ~ .th-comment-item):first-child>.th-post-c
 
 @media (max-width: 480px) {
     .hero-style1 .hero-title {
-        font-size: 35px
+        font-size: 25px
     }
 }
 
@@ -12600,7 +12600,7 @@ ul.comment-list:has(>.th-comment-item ~ .th-comment-item):first-child>.th-post-c
 
 @media (max-width: 375px) {
     .hero-style1 .hero-title {
-        font-size: 32px;
+        font-size: 22px;
         line-height: 1.27
     }
 }
@@ -19350,9 +19350,9 @@ input {
 
 .about-logo-wrap-2 {
     position: absolute;
-    right: 198px;
+    right: 100px;
     z-index: 2;
-    top: 50px;
+    top: 15px;
     height: 150px;
     width: 150px;
     background: var(--white-color);

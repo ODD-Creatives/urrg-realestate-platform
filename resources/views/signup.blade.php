@@ -3,9 +3,9 @@
 @section('title', 'Sign Up - Unique Radiance Realtors Group')
 
 @section('content')
-<div class="container ">
+<div class="container pt-5 ">
     <div class="row justify-content-center">
-        <div class="col-lg-6 col-md-6">
+        <div class="col-lg-6 col-md-6 mt-5">
             <div class="th-card shadow p-4 p-md-5">
                 <h4 class="text-center mb-4">Create Your Account</h2>
                 <form action="{{ route('register') }}" method="POST">
