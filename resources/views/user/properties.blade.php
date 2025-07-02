@@ -19,7 +19,7 @@
                             <div class="card-body px-3 text-dark">
                             <h5 class="fw-semibold">Elite Estates</h5>
                             <p class="text-muted font-13 mb-0">Luxury Condos</p>
-                            <a href="property-details.html" class="text-primary font-13">View Properties</a>
+                            <a href="{{route('user.propertyDetails')}}" class="text-primary font-13">View Properties</a>
                             </div>
                         </div>
                         </div>

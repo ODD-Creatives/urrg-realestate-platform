@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 Route::get('/signup', function () {
     return view('signup');
 })->name('signup');
@@ -33,6 +33,9 @@ Route::get('/user/referral', function () {
 Route::get('/user/properties', function () {
     return view('user.properties');
 })->name('user.properties');
+Route::get('/user/propertyDetails', function () {
+    return view('user.propertyDetails');
+})->name('user.propertyDetails');
 
 Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
@@ -44,6 +47,21 @@ Route::get('/admin/login', function () {
 Route::get('/about', function () {
     return view('page.about');
 })->name('about');
+Route::get('/contact', function () {
+    return view('page.contact');
+})->name('contact');
+Route::get('/property', function () {
+    return view('page.property');
+})->name('property');
+Route::get('/propertydetails', function () {
+    return view('page.propertydetails');
+})->name('propertydetails');
+Route::get('/event', function () {
+    return view('page.event');
+})->name('event');
+Route::get('/eventdetails', function () {
+    return view('page.eventDetails');
+})->name('eventdetails');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -33,7 +33,7 @@ var lightColor = getComputedStyle(document.body).getPropertyValue('--light');
       } else {
         //for other url
         if (element.attr('href').indexOf(current) !== -1) {
-          element.parents('.nav-item').last().addClass('active');
+          element.parents('.nav-item').last().addClass('active1');
           if (element.parents('.sub-menu').length) {
             element.closest('.collapse').addClass('show');
             element.addClass('active');

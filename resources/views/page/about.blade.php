@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="breadcumb-wrapper" data-bg-src="assets/img/bg/breadcrumb-bg.jpg">
-        <div class="container">
+    <div class="breadcumb-wrapper " data-bg-src="assets/img/bg/breadcrumb-bg.jpg">
+        <div class="container pt-5">
             <div class="breadcumb-content">
                 <h1 class="breadcumb-title">About Us</h1>
                 <ul class="breadcumb-menu">
@@ -49,12 +49,12 @@
                             <span class="double-line"></span> About Us</p>
                         
                         <p class="sec-text fadeinup wow" data-wow-duration="1.5s" data-wow-delay="0.5s">
-                            URRG is Africa’s greatest real estate empire, dedicated to shaping global leaders and impacting the world 
+                            Unique Radiance Realtor Group (URRG) is Africa’s greatest real estate empire, dedicated to shaping global leaders and impacting the world 
                             through real estate excellence. Our platform empowers ambitious individuals to create wealth and 
                             transform lives by providing world-class training, mentorship, and a supportive community.
                         </p>
                         <p class="sec-text fadeinup wow" data-wow-duration="2.0s" data-wow-delay="1.0s">
-                            Joining URRG means stepping into a movement focused on leadership, growth, and lasting 
+                            Joining Unique Radiance Realtor Group (URRG) means stepping into a movement focused on leadership, growth, and lasting 
                             success — where you’re equipped to build not just a career, but a legacy.
                         </p>
                         
@@ -112,7 +112,7 @@
                             <span class="double-line"></span> Our Goals
                         </p>
                         <h2 class="sec-title fadeinup wow" data-wow-duration="1.5s" data-wow-delay="0.3s">
-                            URRG Plans Onboard
+                            Unique Radiance Realtor Group (URRG) Plans.
                         </h2>
                     </div>
                 </div>
@@ -331,8 +331,9 @@
                     <div class="title-area text-center mt-1">
                         <p class="sub-title fadeinup wow" data-wow-duration="1.5s" data-wow-delay="0.1s"><span
                                 class="double-line"></span>Team Members</p>
-                        <h2 class="sec-title fadeinup wow" data-wow-duration="1.5s" data-wow-delay="0.3s">Meet Our
-                            Pillar Agents</h2>
+                        <h2 class="sec-title fadeinup wow" data-wow-duration="1.5s" data-wow-delay="0.3s">
+                            Meet Our Team Leaders
+                        </h2>
                     </div>
                 </div>
             </div>
@@ -340,461 +341,131 @@
                 <div class="swiper th-slider has-shadow" id="teamSlider1"
                     data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"1"},"768":{"slidesPerView":"2"},"992":{"slidesPerView":"2"},"1200":{"slidesPerView":"3"},"1400":{"slidesPerView":"4"}}, "autoHeight": "true"}'>
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="team-card style-2" data-bg-src="assets/img/shape/team-2-bg-shape.png">
-                                <div class="team-img"><img src="assets/img/team/team_2_1.png" alt="Team"></div>
-                                <div class="team-content">
-                                    <div class="left-contet">
-                                        <h3 class="box-title"><a href="team-details.html">Vickie Wisozk</a></h3><span
-                                            class="team-desig">Real Estate Manager</span>
-                                    </div>
-                                    <div class="team-social">
-                                        <div class="th-social"><a target="_blank" href="https://instagram.com/"><i
-                                                    class="fab fa-linkedin-in"></i></a> <a target="_blank"
-                                                href="https://linkedin.com/"><i class="fa-solid fa-envelope"></i></a>
-                                        </div>
+                    
+                    <!-- Member 1 -->
+                    <div class="swiper-slide">
+                        <div class="team-card style-2 d-flex flex-column justify-content-between" data-bg-src="assets/img/shape/team-2-bg-shape.png">
+                            <div class="team-img"><img src="assets/img/team/mike.png" alt="Team"></div>
+                            <div class="team-content d-flex justify-content-between align-items-start">
+                                <div class="left-contet">
+                                    <h3 class="box-title">
+                                        <a href="team-details.html"> Amb. Adejare Micheal Adetomiwa</a>
+                                    </h3>
+                                    <span class="team-desig">President</span>
+                                </div>
+                                <div class="team-social">
+                                    <div class="th-social">
+                                        <a target="_blank" href="https://instagram.com/"><i class="fab fa-linkedin-in"></i></a> 
+                                        <a target="_blank" href="https://linkedin.com/"><i class="fa-solid fa-envelope"></i></a>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="team-card style-2" data-bg-src="assets/img/shape/team-2-bg-shape.png">
-                                <div class="team-img"><img src="assets/img/team/team_2_2.png" alt="Team"></div>
-                                <div class="team-content">
-                                    <div class="left-contet">
-                                        <h3 class="box-title"><a href="team-details.html">Renee Strosin</a></h3><span
-                                            class="team-desig">Property Developer</span>
-                                    </div>
-                                    <div class="team-social">
-                                        <div class="th-social"><a target="_blank" href="https://instagram.com/"><i
-                                                    class="fab fa-linkedin-in"></i></a> <a target="_blank"
-                                                href="https://linkedin.com/"><i class="fa-solid fa-envelope"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="team-card style-2" data-bg-src="assets/img/shape/team-2-bg-shape.png">
-                                <div class="team-img"><img src="assets/img/team/team_2_3.png" alt="Team"></div>
-                                <div class="team-content">
-                                    <div class="left-contet">
-                                        <h3 class="box-title"><a href="team-details.html">Zulia Era</a></h3><span
-                                            class="team-desig">Listing Coordinator</span>
-                                    </div>
-                                    <div class="team-social">
-                                        <div class="th-social"><a target="_blank" href="https://instagram.com/"><i
-                                                    class="fab fa-linkedin-in"></i></a> <a target="_blank"
-                                                href="https://linkedin.com/"><i class="fa-solid fa-envelope"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="team-card style-2" data-bg-src="assets/img/shape/team-2-bg-shape.png">
-                                <div class="team-img"><img src="assets/img/team/team_2_4.png" alt="Team"></div>
-                                <div class="team-content">
-                                    <div class="left-contet">
-                                        <h3 class="box-title"><a href="team-details.html">Bernice Roberts</a></h3><span
-                                            class="team-desig">Leasing Consultant</span>
-                                    </div>
-                                    <div class="team-social">
-                                        <div class="th-social"><a target="_blank" href="https://instagram.com/"><i
-                                                    class="fab fa-linkedin-in"></i></a> <a target="_blank"
-                                                href="https://linkedin.com/"><i class="fa-solid fa-envelope"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="team-card style-2" data-bg-src="assets/img/shape/team-2-bg-shape.png">
-                                <div class="team-img"><img src="assets/img/team/team_2_5.png" alt="Team"></div>
-                                <div class="team-content">
-                                    <div class="left-contet">
-                                        <h3 class="box-title"><a href="team-details.html">Martha Leffler</a></h3><span
-                                            class="team-desig">Real Estate Manager</span>
-                                    </div>
-                                    <div class="team-social">
-                                        <div class="th-social"><a target="_blank" href="https://instagram.com/"><i
-                                                    class="fab fa-linkedin-in"></i></a> <a target="_blank"
-                                                href="https://linkedin.com/"><i class="fa-solid fa-envelope"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="team-card style-2" data-bg-src="assets/img/shape/team-2-bg-shape.png">
-                                <div class="team-img"><img src="assets/img/team/team_2_6.png" alt="Team"></div>
-                                <div class="team-content">
-                                    <div class="left-contet">
-                                        <h3 class="box-title"><a href="team-details.html">Thomas Kirlin</a></h3><span
-                                            class="team-desig">Listing Coordinator</span>
-                                    </div>
-                                    <div class="team-social">
-                                        <div class="th-social"><a target="_blank" href="https://instagram.com/"><i
-                                                    class="fab fa-linkedin-in"></i></a> <a target="_blank"
-                                                href="https://linkedin.com/"><i class="fa-solid fa-envelope"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
+                                <button class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#modalMike">View Profile</button>
+
                             </div>
                         </div>
                     </div>
-                </div><button data-slider-prev="#teamSlider1" class="slider-arrow slider-prev"><i
-                        class="far fa-arrow-left"></i></button> <button data-slider-next="#teamSlider1"
-                    class="slider-arrow slider-next"><i class="far fa-arrow-right"></i></button>
-            </div>
-            <div class="row gy-40 justify-content-center">
-                <div class="col-xl-8">
-                    <p class="chat-text-wrap text-center pe-xl-5 ps-xl-5 mb-0">Explore Property agents are here to help
-                        with all your buying, renting and selling goals. Find the home of your dreams with an expert you
-                        can trust. <a class="text-theme" href="contact.html"> Let’s chat</a></p>
+                    <!-- Member 2 -->
+                    <div class="swiper-slide">
+                        <div class="team-card style-2 d-flex flex-column justify-content-between" data-bg-src="assets/img/shape/team-2-bg-shape.png">
+                            <div class="team-img">
+                                <img src="assets/img/team/ade.png" alt="Team">
+                            </div>
+                            <div class="team-content d-flex justify-content-between align-items-start">
+                                <div class="left-contet">
+                                    <h3 class="box-title"><a href="team-details.html">Mr. Adega Adeleye Isaac</a></h3>
+                                    <span class="team-desig">Head of Administration</span>
+                                </div>
+                                <div class="team-social">
+                                    <div class="th-social">
+                                        <a target="_blank" href="https://instagram.com/"><i class="fab fa-linkedin-in"></i></a>
+                                        <a target="_blank" href="https://linkedin.com/"><i class="fa-solid fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#modalAde">View Profile</button>
+
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <!-- Member 3 -->
+                    <div class="swiper-slide">
+                        <div class="team-card style-2 d-flex flex-column justify-content-between" data-bg-src="assets/img/shape/team-2-bg-shape.png">
+                            <div class="team-img">
+                                <img src="assets/img/team/peter.png" alt="Team">
+                            </div>
+                            <div class="team-content d-flex justify-content-between align-items-start">
+                                <div class="left-contet">
+                                    <h3 class="box-title"><a href="team-details.html">Mr. Babalola Olaniyi Peter</a></h3>
+                                    <span class="team-desig">COO</span>
+                                </div>
+                                <div class="team-social">
+                                    <div class="th-social">
+                                        <a target="_blank" href="https://instagram.com/"><i class="fab fa-linkedin-in"></i></a>
+                                        <a target="_blank" href="https://linkedin.com/"><i class="fa-solid fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#modalPeter">View Profile</button>
+                            </div>
+                            
+                        </div>
+                    </div>
                 </div>
+
+                
             </div>
+            
         </div>
     </section>
-    <div class="counter-sec1 space overflow-hidden" data-bg-src="assets/img/bg/counter-1-bg.jpg">
-        <div class="container">
-            <div class="counter-card-wrap">
-                <div class="counter-card fadeinup wow">
-                    <div class="box-icon"><img src="assets/img/icon/counter_1_1.svg" alt="Icon"></div>
-                    <div class="media-body">
-                        <h4 class="box-number"><span class="counter-number">1950 </span><span
-                                class="plus-simple">+</span></h4>
-                        <p class="box-text">Project Handover</p>
-                    </div>
-                </div>
-                <div class="divider"></div>
-                <div class="counter-card fadeinup wow">
-                    <div class="box-icon"><img src="assets/img/icon/counter_1_1.svg" alt="Icon"></div>
-                    <div class="media-body">
-                        <h4 class="box-number"><span class="counter-number">2 </span><span class="plus-simple">m</span>
-                        </h4>
-                        <p class="box-text">Monthly Visitors</p>
-                    </div>
-                </div>
-                <div class="divider"></div>
-                <div class="counter-card fadeinup wow">
-                    <div class="box-icon"><img src="assets/img/icon/counter_1_1.svg" alt="Icon"></div>
-                    <div class="media-body">
-                        <h4 class="box-number"><span class="counter-number">850 </span><span
-                                class="plus-simple">+</span></h4>
-                        <p class="box-text">Property Ready</p>
-                    </div>
-                </div>
-                <div class="divider"></div>
-                <div class="counter-card fadeinup wow">
-                    <div class="box-icon"><img src="assets/img/icon/counter_1_1.svg" alt="Icon"></div>
-                    <div class="media-body">
-                        <h4 class="box-number"><span class="counter-number">98 </span><span class="plus-simple">%</span>
-                        </h4>
-                        <p class="box-text">Happy Customers</p>
-                    </div>
-                </div>
-                <div class="divider"></div>
+    <!-- Modal: Mike -->
+    <div class="modal fade" id="modalMike" tabindex="-1" aria-labelledby="modalMikeLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content p-4">
+            <h5 class="modal-title" id="modalMikeLabel">Amb. Adejare Micheal Adetomiwa</h5>
+            <p>
+
+                AdeJare Michael Adetomiwa is a visionary entrepreneur and real estate strategist, dedicated to transforming Africa’s property landscape. <br>
+                As CEO of Mikeland Homes and founder of Unique Radiance Realtors Group (URRG), he leads with purpose—mentoring leaders, driving innovation, and creating generational wealth through real estate. <br>
+                A graduate of Lagos State Polytechnic and a student at Lagos State University of Science and Technology, he balances academic growth with hands-on experience.<br> 
+                He also advances food sustainability through Amagreen Farms. Purpose-driven and resilient, AdeJare is not just building a brand—he’s building a legacy.<br>           
+            </p>
             </div>
         </div>
     </div>
-    <section class="testi-card-area-2 space-top overflow-hidden">
-        <div class="shape-mockup spin d-none d-xxl-block" data-left="7%" data-top="14%"><img
-                src="assets/img/shape/hero-3-left-shape.png" alt="img"></div>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-7">
-                    <div class="title-area text-center">
-                        <p class="sub-title fadeinup wow" data-wow-duration="1.5s" data-wow-delay="0.1s"><span
-                                class="double-line"></span>Testimonials</p>
-                        <h2 class="sec-title fadeinup wow" data-wow-duration="1.5s" data-wow-delay="0.3s">What Clients
-                            Say About Pillar</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row gy-4 justify-content-center">
-                <div class="testi-card-slide">
-                    <div class="swiper has-shadow th-slider" id="testiSlide1"
-                        data-slider-options='{"centeredSlides":true,"paginationType": "progressbar","loop":true,"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"1"},"768":{"slidesPerView":"1"},"992":{"slidesPerView":"1"},"1200":{"slidesPerView":"1"}}}'>
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="testi-block style-2" dir="ltr">
-                                    <div class="top-wrap">
-                                        <div class="quote"><img src="assets/img/icon/testi-2quote.svg" alt="quote">
-                                        </div>
-                                    </div>
-                                    <div class="testi-content pe-xl-5 px-xl-5">
-                                        <p class="box-text">“Adinventitias sequi cerno cedo vapulus adhaero decretum
-                                            suppono iure voluptate. Trans triumphus toties sed cogito carbo valetudo
-                                            aequus ciminatio conventus. Voluptates decimus vorago suadeo. Culpo carmen
-                                            adnuo. Verecundia capio denego. Tracto caterva cavus denique culpa vigor
-                                            tergum possimus. Aer arceo umerus asperiores templum desidero caritas. Velum
-                                            adipisci verumtamen comparo ascisco ceno vitiosus aeneus tenetur bibo.”</p>
-                                    </div>
-                                    <div class="bottom-wrap">
-                                        <div class="box-review"><i class="fa-sharp fa-solid fa-star"></i> <i
-                                                class="fa-sharp fa-solid fa-star"></i> <i
-                                                class="fa-sharp fa-solid fa-star"></i> <i
-                                                class="fa-sharp fa-solid fa-star"></i> <i
-                                                class="fa-sharp fa-solid fa-star"></i></div>
-                                        <div class="team-img"><img src="assets/img/testimonial/testi-2-1.jpg"
-                                                alt="Team"></div>
-                                        <div class="content">
-                                            <h3 class="box-title">Georgia Schaden</h3>
-                                            <p class="text">Property owner</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="testi-block style-2" dir="ltr">
-                                    <div class="top-wrap">
-                                        <div class="quote"><img src="assets/img/icon/testi-2quote.svg" alt="quote">
-                                        </div>
-                                    </div>
-                                    <div class="testi-content pe-xl-5 px-xl-5">
-                                        <p class="box-text">“Tenax comitatus ambulo regnum eligo, conturbo vis caelum
-                                            cohors. Infit ustulo adoptio collum, speciosus lumen soluta. Condico
-                                            spiculum ratio, sopor conventus adversus fiducia. Arma arcesso altaria
-                                            impleo pax laboriosus. Tracto caterva cavus denique culpa vigor tergum
-                                            possimus. Aer arceo umerus asperiores templum desidero caritas. Trepide
-                                            asporto momentum, Tracto caterva cavus denique culpa vigor. virgo sollemne
-                                            aurora amo”</p>
-                                    </div>
-                                    <div class="bottom-wrap">
-                                        <div class="box-review"><i class="fa-sharp fa-solid fa-star"></i> <i
-                                                class="fa-sharp fa-solid fa-star"></i> <i
-                                                class="fa-sharp fa-solid fa-star"></i> <i
-                                                class="fa-sharp fa-solid fa-star"></i> <i
-                                                class="fa-sharp fa-solid fa-star"></i></div>
-                                        <div class="team-img"><img src="assets/img/testimonial/testi-2-2.jpg"
-                                                alt="Team"></div>
-                                        <div class="content">
-                                            <h3 class="box-title">Walter Deckow</h3>
-                                            <p class="text">Property owner</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="testi-block style-2" dir="ltr">
-                                    <div class="top-wrap">
-                                        <div class="quote"><img src="assets/img/icon/testi-2quote.svg" alt="quote">
-                                        </div>
-                                    </div>
-                                    <div class="testi-content pe-xl-5 px-xl-5">
-                                        <p class="box-text">“Contendo votum traho clamo statim suffragium numquam teneo.
-                                            Altus iudicium versor, perpetuus velum pax vestigium carpo. Candidus
-                                            firmamentum celo, voluptas optio demitto sonitus. Obduro casus adinventio
-                                            vestigium amplitudo sumo.vestigium carpo. Candidus firmamentum celo,
-                                            voluptas Concido laboriosam varietas amplector, aureus stella sursum
-                                            approbo. Gravitas turbo decet, hhe adulescens perpetuus auxilium comes
-                                            virga.”</p>
-                                    </div>
-                                    <div class="bottom-wrap">
-                                        <div class="box-review"><i class="fa-sharp fa-solid fa-star"></i> <i
-                                                class="fa-sharp fa-solid fa-star"></i> <i
-                                                class="fa-sharp fa-solid fa-star"></i> <i
-                                                class="fa-sharp fa-solid fa-star"></i> <i
-                                                class="fa-sharp fa-solid fa-star"></i></div>
-                                        <div class="team-img"><img src="assets/img/testimonial/testi-2-1.jpg"
-                                                alt="Team"></div>
-                                        <div class="content">
-                                            <h3 class="box-title">Carlos Bauch</h3>
-                                            <p class="text">Property owner</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="testi-block style-2" dir="ltr">
-                                    <div class="top-wrap">
-                                        <div class="quote"><img src="assets/img/icon/testi-2quote.svg" alt="quote">
-                                        </div>
-                                    </div>
-                                    <div class="testi-content pe-xl-5 px-xl-5">
-                                        <p class="box-text">“Tenax comitatus ambulo regnum eligo, conturbo vis caelum
-                                            cohors. Infit ustulo adoptio collum, speciosus lumen soluta. Condico
-                                            spiculum ratio, sopor conventus adversus fiducia. Arma arcesso altaria
-                                            impleo pax laboriosus. Trepide asporto momentum, virgo sollemne aurora amo.
-                                            Cedo umquam cedo summisse damnum reiciendis veritas flamma. Tempus appono
-                                            validus translatio, Exemplum adnuo sponte voluntas radius caecus exsisto.”
-                                        </p>
-                                    </div>
-                                    <div class="bottom-wrap">
-                                        <div class="box-review"><i class="fa-sharp fa-solid fa-star"></i> <i
-                                                class="fa-sharp fa-solid fa-star"></i> <i
-                                                class="fa-sharp fa-solid fa-star"></i> <i
-                                                class="fa-sharp fa-solid fa-star"></i> <i
-                                                class="fa-sharp fa-solid fa-star"></i></div>
-                                        <div class="team-img"><img src="assets/img/testimonial/testi-2-2.jpg"
-                                                alt="Team"></div>
-                                        <div class="content">
-                                            <h3 class="box-title">Julia Era</h3>
-                                            <p class="text">Property owner</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="slider-controller container-width"><button data-slider-prev="#testiSlide1"
-                                class="slider-arrow default slider-prev"><i class="far fa-arrow-left"></i></button>
-                            <div class="slider-pagination style-2" data-slider-id="#testiSlider1"></div><button
-                                data-slider-next="#testiSlide1" class="slider-arrow default slider-next"><i
-                                    class="far fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="testi-bottom-review-wrap">
-                        <div class="testi-bottom-item">
-                            <div class="trust-content">
-                                <div class="icon"><img src="assets/img/icon/star-icon.svg" alt="img"></div>
-                                <h4 class="box-title">Trustipilot</h4>
-                            </div>
-                            <div class="bottom">
-                                <div class="avatar"><img src="assets/img/hero/heror-1-avator-group.png" alt="img"></div>
-                                <div class="content">
-                                    <div class="th-social"><i class="fa-solid fa-star"></i> <i
-                                            class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i
-                                            class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i></div>
-                                    <h4 class="review-title"><span class="number"><span
-                                                class="counter-number">19</span>k+</span> clients</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="testi-bottom-item">
-                            <div class="trust-content">
-                                <div class="icon"><img src="assets/img/icon/google-icon.svg" alt="img"></div>
-                                <h4 class="box-title">Google</h4>
-                            </div>
-                            <div class="bottom">
-                                <div class="avatar"><img src="assets/img/hero/heror-1-avator-group-2.png" alt="img">
-                                </div>
-                                <div class="content">
-                                    <div class="th-social"><i class="fa-solid fa-star"></i> <i
-                                            class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i
-                                            class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i></div>
-                                    <h4 class="review-title"><span class="number"><span
-                                                class="counter-number">25</span>k+</span> clients</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <div class="download-sec-3 space-top">
-        <div class="download-3-bg-inner" data-bg-src="assets/img/bg/download-bg-3.jpg">
-            <div class="container">
-                <div class="row gy-4 align-items-center">
-                    <div class="col-lg-5 col-xl-5 col-xxl-6">
-                        <div class="download-3-left">
-                            <div class="map-icon-box"><a href="property.html"><img
-                                        src="assets/img/download/download-3-map.png" alt="img"></a></div>
-                            <div class="content-box"><img src="assets/img/download/download-3-icon.png" alt="img">
-                                <h4 class="box-title">Find Fast Our Latest Properties</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-7 col-xl-7 col-xxl-6">
-                        <div class="download-get-in-touch">
-                            <form action="https://html.themeholy.com/piller/demo/mail.php" method="POST"
-                                class="ajax-contact">
-                                <div class="title-area text-left mb-70">
-                                    <p class="sub-title fadeinup wow" data-wow-duration="1.5s" data-wow-delay="0.1s">
-                                        <span class="double-line"></span> Get In Touch</p>
-                                    <h2 class="sec-title fadeinup wow" data-wow-duration="1.5s" data-wow-delay="0.3s">
-                                        Let’s Talk Your Property Goal</h2>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-lg-6 col-md-6"><label for="name">Name*</label> <input
-                                            type="text" class="form-control" name="name" id="name"
-                                            placeholder="Your Name"></div>
-                                    <div class="form-group col-lg-6 col-md-6"><label for="email">Email*</label> <input
-                                            type="email" class="form-control" name="email" id="email"
-                                            placeholder="Email Address"></div>
-                                    <div class="form-group col-lg-6 col-md-6"><label for="date">Desired Date*</label>
-                                        <input type="date" class="form-control" name="date" id="date"></div>
-                                    <div class="form-group col-lg-6 col-md-6"><label for="desired_time">Desired
-                                            Date*</label> <input type="text" class="form-control" name="desired_time"
-                                            id="desired_time" placeholder="Desired Time"></div>
-                                    <div class="form-group col-lg-12"><label>Additional Message</label> <textarea
-                                            name="message" id="message" cols="30" rows="3" class="form-control"
-                                            placeholder="Please write any note here..."></textarea></div>
-                                    <div class="form-btn col-12 text-end"><button class="th-btn bg-theme radius">Submit
-                                            Now</button></div>
-                                </div>
-                                <p class="form-messages mb-0 mt-3"></p>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+
+    <!-- Modal: Ade -->
+    <div class="modal fade" id="modalAde" tabindex="-1" aria-labelledby="modalAdeLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content p-4">
+            <h5 class="modal-title" id="modalAdeLabel">Mr. Adega Adeleye Isaac</h5>
+            <p>
+                Adega Adeleye Isaac is the MD/CEO of Adeh Homes and Head of Administration at Unique Radiance Realtors Group (URRG). <br>
+                Since beginning his real estate career in June 2022, he has earned recognition as an award-winning realtor, celebrated for his consistency, professionalism, and personalized service. <br>
+                A proud graduate of Lagos State Polytechnic (now LASUSTECH), Isaac is passionate about more than just property—he is committed to leaving a lasting legacy, creating meaningful impact, and empowering the next generation to aim higher. <br> 
+                His leadership reflects a deep sense of vision, purpose, and excellence in the real estate industry. <br>
+            </p>
             </div>
         </div>
     </div>
-    <div class="marquee-section-3 overflow-hidden">
-        <div class="shape-mockup movingX d-none d-xl-block" style="bottom: 36%; left: 6%;"><img
-                src="assets/img/shape/faq-2-right.png" alt="img"></div>
-        <div class="marquee-wrapper">
-            <div class="marquee">
-                <div class="marquee-group">
-                    <div class="text"><a href="service.html"><img src="assets/img/icon/marquee-icon-1-1.svg"
-                                alt="img">Luxury Home Available - Explore Now!</a></div>
-                    <div class="text"><a href="service.html"><img src="assets/img/icon/marquee-icon-1-1.svg"
-                                alt="img">Deluxe Cottage - Explore Now!</a></div>
-                    <div class="text"><a href="service.html"><img src="assets/img/icon/marquee-icon-1-1.svg"
-                                alt="img">Pet-friendly Rental Houses</a></div>
-                    <div class="text"><a href="service.html"><img src="assets/img/icon/marquee-icon-1-1.svg"
-                                alt="img">Luxury Home Available - Explore Now!</a></div>
-                    <div class="text"><a href="service.html"><img src="assets/img/icon/marquee-icon-1-1.svg"
-                                alt="img">Deluxe Cottage - Explore Now!</a></div>
-                    <div class="text"><a href="service.html"><img src="assets/img/icon/marquee-icon-1-1.svg"
-                                alt="img">Pet-friendly Rental Houses</a></div>
-                    <div class="text"><a href="service.html"><img src="assets/img/icon/marquee-icon-1-1.svg"
-                                alt="img">Luxury Home Available - Explore Now!</a></div>
-                    <div class="text"><a href="service.html"><img src="assets/img/icon/marquee-icon-1-1.svg"
-                                alt="img">Deluxe Cottage - Explore Now!</a></div>
-                    <div class="text"><a href="service.html"><img src="assets/img/icon/marquee-icon-1-1.svg"
-                                alt="img">Luxury Home Available - Explore Now!</a></div>
-                    <div class="text"><a href="service.html"><img src="assets/img/icon/marquee-icon-1-1.svg"
-                                alt="img">Pet-friendly Rental Houses</a></div>
-                    <div class="text"><a href="service.html"><img src="assets/img/icon/marquee-icon-1-1.svg"
-                                alt="img">Deluxe Cottage - Explore Now!</a></div>
-                    <div class="text"><a href="service.html"><img src="assets/img/icon/marquee-icon-1-1.svg"
-                                alt="img">Luxury Home Available - Explore Now!</a></div>
-                </div>
-                <div class="marquee-group">
-                    <div class="text"><a href="service.html"><img src="assets/img/icon/marquee-icon-1-1.svg"
-                                alt="img">Luxury Home Available - Explore Now!</a></div>
-                    <div class="text"><a href="service.html"><img src="assets/img/icon/marquee-icon-1-1.svg"
-                                alt="img">Deluxe Cottage - Explore Now!</a></div>
-                    <div class="text"><a href="service.html"><img src="assets/img/icon/marquee-icon-1-1.svg"
-                                alt="img">Pet-friendly Rental Houses</a></div>
-                    <div class="text"><a href="service.html"><img src="assets/img/icon/marquee-icon-1-1.svg"
-                                alt="img">Luxury Home Available - Explore Now!</a></div>
-                    <div class="text"><a href="service.html"><img src="assets/img/icon/marquee-icon-1-1.svg"
-                                alt="img">Deluxe Cottage - Explore Now!</a></div>
-                    <div class="text"><a href="service.html"><img src="assets/img/icon/marquee-icon-1-1.svg"
-                                alt="img">Pet-friendly Rental Houses</a></div>
-                    <div class="text"><a href="service.html"><img src="assets/img/icon/marquee-icon-1-1.svg"
-                                alt="img">Luxury Home Available - Explore Now!</a></div>
-                    <div class="text"><a href="service.html"><img src="assets/img/icon/marquee-icon-1-1.svg"
-                                alt="img">Deluxe Cottage - Explore Now!</a></div>
-                    <div class="text"><a href="service.html"><img src="assets/img/icon/marquee-icon-1-1.svg"
-                                alt="img">Luxury Home Available - Explore Now!</a></div>
-                    <div class="text"><a href="service.html"><img src="assets/img/icon/marquee-icon-1-1.svg"
-                                alt="img">Pet-friendly Rental Houses</a></div>
-                    <div class="text"><a href="service.html"><img src="assets/img/icon/marquee-icon-1-1.svg"
-                                alt="img">Deluxe Cottage - Explore Now!</a></div>
-                    <div class="text"><a href="service.html"><img src="assets/img/icon/marquee-icon-1-1.svg"
-                                alt="img">Luxury Home Available - Explore Now!</a></div>
-                </div>
+
+    <!-- Modal: Peter -->
+    <div class="modal fade" id="modalPeter" tabindex="-1" aria-labelledby="modalPeterLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content p-4">
+            <h5 class="modal-title" id="modalPeterLabel">Mr. Babalola Olaniyi Peter</h5>
+            <p>
+                    
+                Babalola Olaniyi Peter is a visionary entrepreneur, real estate expert, and creative professional. 
+                He is the CEO of P-Rock Homes, a real estate brand helping individuals secure genuine and profitable properties across Nigeria. <br> 
+                A graduate of Lagos State University of Science and Technology, he blends academic knowledge with hands-on experience. 
+                As a skilled graphic designer and real estate consultant, he has assisted over 50 investors in acquiring valuable assets. <br> 
+                Olaniyi also serves as COO of Unique Radial Realtor Group, driving leadership and team development. 
+                Beyond business, he mentors young people and contributes as a church sound engineer, embodying integrity, excellence, and a passion for impact.
             </div>
         </div>
     </div>
+
+    
+    
+    
 @endsection
