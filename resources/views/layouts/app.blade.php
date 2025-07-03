@@ -99,8 +99,8 @@
                         
                     </li>
                     <li><a href="{{ route('about') }}">About Us</a></li>
-                    <li><a href="#">Realtors</a></li>
-                    <li><a href="#">Developers</a></li>
+                    <li><a href="{{ route('realtors') }}">Realtors</a></li>
+                    <li><a href="{{ route('developers') }}">Developers</a></li>
                     <li class="menu-item-has-children">
                         <a href="#">Services</a>
                         <ul class="sub-menu">
@@ -167,8 +167,8 @@
                                 <ul>
                                     <li class="active"><a href="{{ route('home') }}">Home</a></li>
                                     <li><a href="{{ route('about') }}">About Us</a></li>
-                                    <li><a href="#">Realtors</a></li>
-                                    <li><a href="#">Developers</a></li>
+                                    <li><a href="{{ route('realtors') }}">Realtors</a></li>
+                                    <li><a href="{{ route('developers') }}">Developers</a></li>
                                     <li class="menu-item-has-children">
                                         <a href="#">Services</a>
                                         <ul class="sub-menu">
@@ -183,8 +183,8 @@
                             
                             <div class="d-flex justify-content-center my-2">
                                 <div class="btn-group capsule-buttons" role="group">
-                                    <button type="button" class="btn btn-sm btn-signin" style="margin-right: -27px;">Sign In</button>
-                                    <button type="button" class="btn btn-sm btn-signup">Sign Up</button>
+                                    <button type="button" class="btn btn-sm btn-signin" style="margin-right: -27px;"><a href="{{ route('realtors') }}" class="text-white">Join Us</a></button>
+                                    <button type="button" class="btn btn-sm btn-signup"><a href="{{ route('signin') }}" class="text-white">Sign In</a></button>
                                 </div>
                             </div>
 
@@ -220,7 +220,7 @@
                                         </a>
                                     </div>
                                     <p class="about-text">
-                                        Unique Radiance Realtor Group (URRG) is Africa’s greatest real estate empire, dedicated to shaping global 
+                                        Unique Radiance Realtors Group (URRG) is Africa’s greatest real estate empire, dedicated to shaping global 
                                         leaders and impacting the world through real estate excellence. 
                                         
 
@@ -239,9 +239,9 @@
                                             <h3 class="widget_title">Quick Links</h3>
                                             <div class="menu-all-pages-container">
                                                 <ul class="menu">
-                                                    <li><a href="service.html">Realtor Signin</a></li>
-                                                    <li><a href="service.html">Academy Event</a></li>
-                                                    <li><a href="service.html">Developer Project</a></li>
+                                                    <li><a href="#">Realtor Signin</a></li>
+                                                    <li><a href="#">Academy Event</a></li>
+                                                    <li><a href="#">Developer Project</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -253,9 +253,9 @@
                                             <h3 class="widget_title">Support</h3>
                                             <div class="menu-all-pages-container">
                                                 <ul class="menu">
-                                                    <li><a href="contact.html">Contact Us</a></li>
-                                                    <li><a href="service.html">FAQs</a></li>
-                                                    <li><a href="service.html">About Us</a></li>
+                                                    <li><a href="#">Contact Us</a></li>
+                                                    <li><a href="#">FAQs</a></li>
+                                                    <li><a href="#">About Us</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -282,7 +282,7 @@
                 <div class="col-lg-7">
                     <p class="copyright-text">
                         Copyright <i class="fal fa-copyright"></i> 2025 
-                        <a href="index.html">Unique Reliance Realtor </a>. All Rights Reserved.
+                        <a href="index.html">Unique Radiance Realtors Group </a>. All Rights Reserved.
                     </p>
                 </div>
                 <div class="col-auto">

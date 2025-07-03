@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="breadcumb-wrapper" data-bg-src="assets/img/bg/breadcrumb-bg.jpg">
+    <div class="breadcumb-wrapper" data-bg-src="{{asset('assets/img/bg/breadcrumb-bg1.jpg')}}">
         <div class="container pt-5">
             <div class="breadcumb-content">
                 <h1 class="breadcumb-title">Contact</h1>
@@ -19,7 +19,7 @@
                 <div class="col-xl-12">
                     <div class="contact-all-wrapper">
                         <div class="contact-form-wrap">
-                            <form action="https://html.themeholy.com/piller/demo/mail.php" method="POST"
+                            <form action="#" method="POST"
                                 class="contact-form ajax-contact">
                                 <h3 class="form-title">Get In Touch </h3>
                                 <div class="row">
@@ -44,7 +44,7 @@
                             </form>
                         </div>
                         <div class="contact-form-thumb overflow-hidden">
-                            <img src="assets/img/contact/contact-page-thumb2.jpg" alt="img"></div>
+                            <img src="{{asset('assets/img/contact/contact-page-thumb2.jpg')}}" alt="img"></div>
                     </div>
                 </div>
             </div>
@@ -93,7 +93,7 @@
         <div class="container-fluid p-0">
             <div class="contact-map">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.998207725692!2d3.512199673975619!3d6.6471419217162655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103beeb42f4c7c49%3A0xc64264fa4a378607!2sFirst%20Gate!5e0!3m2!1sen!2sng!4v1751425110804!5m2!1sen!2sng" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                <div class="contact-icon"><img src="assets/img/icon/con-location-dot.svg" alt="img"></div>
+                <div class="contact-icon"><img src="{{asset('assets/img/icon/con-location-dot.svg')}}" alt="img"></div>
             </div>
         </div>
     </div>

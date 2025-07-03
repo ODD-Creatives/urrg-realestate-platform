@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="breadcumb-wrapper" data-bg-src="assets/img/blog/breadcrumb-bg.jpg">
+    <div class="breadcumb-wrapper" data-bg-src="{{asset('assets/img/blog/breadcrumb-bg.jpg')}}">
         <div class="container pt-5">
             <div class="breadcumb-content">
                 <h1 class="breadcumb-title">Properties</h1>
@@ -46,11 +46,11 @@
                                         data-slider-options='{"loop":false, "autoplay": false,"autoHeight": true, "effect":"fade"}'>
                                         <div class="swiper-wrapper">
                                             <div class="swiper-slide"><a class="popular-popup-image"
-                                                    href="assets/img/popular/popular-1-1.jpg"><img
-                                                        src="assets/img/popular/popular-1-1.jpg" alt="Image"></a></div>
+                                                    href="{{asset('assets/img/popular/popular-1-1.jpg')}}"><img
+                                                        src="{{asset('assets/img/popular/popular-1-1.jpg')}}" alt="Image"></a></div>
                                             <div class="swiper-slide"><a class="popular-popup-image"
-                                                    href="assets/img/popular/popular-1-2.jpg"><img
-                                                        src="assets/img/popular/popular-1-2.jpg" alt="Image"></a></div>
+                                                    href="{{asset('assets/img/popular/popular-1-2.jpg')}}"><img
+                                                        src="{{asset('assets/img/popular/popular-1-2.jpg')}}" alt="Image"></a></div>
                                         </div>
                                         <div class="icon-wrap"><button class="slider-arrow slider-prev"><i
                                                     class="far fa-arrow-left"></i></button> <button
@@ -63,11 +63,11 @@
                                         <div class="actions style-2"><a href="#" class="icon-btn"><span
                                                     class="action-text">Add To Favorite</span> <i
                                                     class="fa-solid fa-bookmark"></i> </a><a
-                                                href="assets/img/popular/popular-1-1.jpg"
+                                                href="{{asset('assets/img/popular/popular-1-1.jpg')}}"
                                                 class="icon-btn popular-popup-image"><span class="action-text">View all
                                                     img</span> <i class="fa-solid fa-camera"></i></a></div>
                                     </div>
-                                    <div class="popular-badge"><img src="assets/img/icon/sell_rent_icon.svg" alt="icon">
+                                    <div class="popular-badge"><img src="{{asset('assets/img/icon/sell_rent_icon.svg')}}" alt="icon">
                                         <p>For Sale</p>
                                     </div>
                                 </div>
@@ -76,20 +76,20 @@
                                         <h3 class="box-title"><a href="{{ route('propertydetails') }}">Charming Beach House</a>
                                         </h3>
                                         <div class="box-text">
-                                            <div class="icon"><img src="assets/img/icon/popular-location.svg"
-                                                    alt="icon"></div>39581 Rohan Estates, New York
+                                            <div class="icon"><img src="{{asset('assets/img/icon/popular-location.svg')}}"
+                                                    alt="icon"></div>39A, Rohan Estates, Lekki Phase1, lagos Nigeria.
                                         </div>
                                     </div>
                                     <ul class="property-featured">
                                         <li>
-                                            <div class="icon"><img src="assets/img/icon/bed.svg" alt="icon"></div>Bed 4
+                                            <div class="icon"><img src="{{asset('assets/img/icon/bed.svg')}}" alt="icon"></div>Bed 4
                                         </li>
                                         <li>
-                                            <div class="icon"><img src="assets/img/icon/bath.svg" alt="icon"></div>Bath
+                                            <div class="icon"><img src="{{asset('assets/img/icon/bath.svg')}}" alt="icon"></div>Bath
                                             2
                                         </li>
                                         <li>
-                                            <div class="icon"><img src="assets/img/icon/sqft.svg" alt="icon"></div>1500
+                                            <div class="icon"><img src="{{asset('assets/img/icon/sqft.svg')}}" alt="icon"></div>1500
                                             sqft
                                         </li>
                                     </ul>
@@ -107,11 +107,11 @@
                                         data-slider-options='{"loop":false, "autoplay": false,"autoHeight": true, "effect":"fade"}'>
                                         <div class="swiper-wrapper">
                                             <div class="swiper-slide"><a class="popular-popup-image"
-                                                    href="assets/img/popular/popular-1-2.jpg"><img
-                                                        src="assets/img/popular/popular-1-2.jpg" alt="Image"></a></div>
+                                                    href="{{asset('assets/img/popular/popular-1-2.jpg')}}"><img
+                                                        src="{{asset('assets/img/popular/popular-1-2.jpg')}}" alt="Image"></a></div>
                                             <div class="swiper-slide"><a class="popular-popup-image"
-                                                    href="assets/img/popular/popular-1-3.jpg"><img
-                                                        src="assets/img/popular/popular-1-3.jpg" alt="Image"></a></div>
+                                                    href="{{asset('assets/img/popular/popular-1-3.jpg')}}"><img
+                                                        src="{{asset('assets/img/popular/popular-1-3.jpg')}}" alt="Image"></a></div>
                                         </div>
                                         <div class="icon-wrap"><button class="slider-arrow slider-prev"><i
                                                     class="far fa-arrow-left"></i></button> <button
@@ -124,11 +124,11 @@
                                         <div class="actions style-2"><a href="#" class="icon-btn"><span
                                                     class="action-text">Add To Favorite</span> <i
                                                     class="fa-solid fa-bookmark"></i> </a><a
-                                                href="assets/img/popular/popular-1-1.jpg"
+                                                href="{{asset('assets/img/popular/popular-1-1.jpg')}}"
                                                 class="icon-btn popular-popup-image"><span class="action-text">View all
                                                     img</span> <i class="fa-solid fa-camera"></i></a></div>
                                     </div>
-                                    <div class="popular-badge"><img src="assets/img/icon/sell_rent_icon.svg" alt="icon">
+                                    <div class="popular-badge"><img src="{{asset('assets/img/icon/sell_rent_icon.svg')}}" alt="icon">
                                         <p>For Sale</p>
                                     </div>
                                 </div>
@@ -136,20 +136,20 @@
                                     <div class="media-body">
                                         <h3 class="box-title"><a href="{{ route('propertydetails') }}">Contemporary Loft</a></h3>
                                         <div class="box-text">
-                                            <div class="icon"><img src="assets/img/icon/popular-location.svg"
-                                                    alt="icon"></div>39581 Rohan Estates, New York
+                                            <div class="icon"><img src="{{asset('assets/img/icon/popular-location.svg')}}"
+                                                    alt="icon"></div>39A, Rohan Estates, Lekki Phase1, lagos Nigeria.
                                         </div>
                                     </div>
                                     <ul class="property-featured">
                                         <li>
-                                            <div class="icon"><img src="assets/img/icon/bed.svg" alt="icon"></div>Bed 4
+                                            <div class="icon"><img src="{{asset('assets/img/icon/bed.svg')}}" alt="icon"></div>Bed 4
                                         </li>
                                         <li>
-                                            <div class="icon"><img src="assets/img/icon/bath.svg" alt="icon"></div>Bath
+                                            <div class="icon"><img src="{{asset('assets/img/icon/bath.svg')}}" alt="icon"></div>Bath
                                             2
                                         </li>
                                         <li>
-                                            <div class="icon"><img src="assets/img/icon/sqft.svg" alt="icon"></div>1500
+                                            <div class="icon"><img src="{{asset('assets/img/icon/sqft.svg')}}" alt="icon"></div>1500
                                             sqft
                                         </li>
                                     </ul>
@@ -167,11 +167,11 @@
                                         data-slider-options='{"loop":false, "autoplay": false,"autoHeight": true, "effect":"fade"}'>
                                         <div class="swiper-wrapper">
                                             <div class="swiper-slide"><a class="popular-popup-image"
-                                                    href="assets/img/popular/popular-1-3.jpg"><img
-                                                        src="assets/img/popular/popular-1-3.jpg" alt="Image"></a></div>
+                                                    href="{{asset('assets/img/popular/popular-1-3.jpg')}}"><img
+                                                        src="{{asset('assets/img/popular/popular-1-3.jpg')}}" alt="Image"></a></div>
                                             <div class="swiper-slide"><a class="popular-popup-image"
-                                                    href="assets/img/popular/popular-1-4.jpg"><img
-                                                        src="assets/img/popular/popular-1-4.jpg" alt="Image"></a></div>
+                                                    href="{{asset('assets/img/popular/popular-1-4.jpg')}}"><img
+                                                        src="{{asset('assets/img/popular/popular-1-4.jpg')}}" alt="Image"></a></div>
                                         </div>
                                         <div class="icon-wrap"><button class="slider-arrow slider-prev"><i
                                                     class="far fa-arrow-left"></i></button> <button
@@ -184,11 +184,11 @@
                                         <div class="actions style-2"><a href="#" class="icon-btn"><span
                                                     class="action-text">Add To Favorite</span> <i
                                                     class="fa-solid fa-bookmark"></i> </a><a
-                                                href="assets/img/popular/popular-1-1.jpg"
+                                                href="{{asset('assets/img/popular/popular-1-1.jpg')}}"
                                                 class="icon-btn popular-popup-image"><span class="action-text">View all
                                                     img</span> <i class="fa-solid fa-camera"></i></a></div>
                                     </div>
-                                    <div class="popular-badge"><img src="assets/img/icon/sell_rent_icon.svg" alt="icon">
+                                    <div class="popular-badge"><img src="{{asset('assets/img/icon/sell_rent_icon.svg')}}" alt="icon">
                                         <p>For Sale</p>
                                     </div>
                                 </div>
@@ -196,20 +196,20 @@
                                     <div class="media-body">
                                         <h3 class="box-title"><a href="{{ route('propertydetails') }}">Cozy Cottage</a></h3>
                                         <div class="box-text">
-                                            <div class="icon"><img src="assets/img/icon/popular-location.svg"
-                                                    alt="icon"></div>39581 Rohan Estates, New York
+                                            <div class="icon"><img src="{{asset('assets/img/icon/popular-location.svg')}}"
+                                                    alt="icon"></div>39A, Rohan Estates, Lekki Phase1, lagos Nigeria.
                                         </div>
                                     </div>
                                     <ul class="property-featured">
                                         <li>
-                                            <div class="icon"><img src="assets/img/icon/bed.svg" alt="icon"></div>Bed 4
+                                            <div class="icon"><img src="{{asset('assets/img/icon/bed.svg')}}" alt="icon"></div>Bed 4
                                         </li>
                                         <li>
-                                            <div class="icon"><img src="assets/img/icon/bath.svg" alt="icon"></div>Bath
+                                            <div class="icon"><img src="{{asset('assets/img/icon/bath.svg')}}" alt="icon"></div>Bath
                                             2
                                         </li>
                                         <li>
-                                            <div class="icon"><img src="assets/img/icon/sqft.svg" alt="icon"></div>1500
+                                            <div class="icon"><img src="{{asset('assets/img/icon/sqft.svg')}}" alt="icon"></div>1500
                                             sqft
                                         </li>
                                     </ul>
@@ -227,11 +227,11 @@
                                         data-slider-options='{"loop":false, "autoplay": false,"autoHeight": true, "effect":"fade"}'>
                                         <div class="swiper-wrapper">
                                             <div class="swiper-slide"><a class="popular-popup-image"
-                                                    href="assets/img/popular/popular-1-4.jpg"><img
-                                                        src="assets/img/popular/popular-1-4.jpg" alt="Image"></a></div>
+                                                    href="{{asset('assets/img/popular/popular-1-4.jpg')}}"><img
+                                                        src="{{asset('assets/img/popular/popular-1-4.jpg')}}" alt="Image"></a></div>
                                             <div class="swiper-slide"><a class="popular-popup-image"
-                                                    href="assets/img/popular/popular-1-5.jpg"><img
-                                                        src="assets/img/popular/popular-1-5.jpg" alt="Image"></a></div>
+                                                    href="{{asset('assets/img/popular/popular-1-5.jpg')}}"><img
+                                                        src="{{asset('assets/img/popular/popular-1-5.jpg')}}" alt="Image"></a></div>
                                         </div>
                                         <div class="icon-wrap"><button class="slider-arrow slider-prev"><i
                                                     class="far fa-arrow-left"></i></button> <button
@@ -244,11 +244,11 @@
                                         <div class="actions style-2"><a href="#" class="icon-btn"><span
                                                     class="action-text">Add To Favorite</span> <i
                                                     class="fa-solid fa-bookmark"></i> </a><a
-                                                href="assets/img/popular/popular-1-1.jpg"
+                                                href="{{asset('assets/img/popular/popular-1-1.jpg')}}"
                                                 class="icon-btn popular-popup-image"><span class="action-text">View all
                                                     img</span> <i class="fa-solid fa-camera"></i></a></div>
                                     </div>
-                                    <div class="popular-badge"><img src="assets/img/icon/sell_rent_icon.svg" alt="icon">
+                                    <div class="popular-badge"><img src="{{asset('assets/img/icon/sell_rent_icon.svg')}}" alt="icon">
                                         <p>For Sale</p>
                                     </div>
                                 </div>
@@ -257,20 +257,20 @@
                                         <h3 class="box-title"><a href="{{ route('propertydetails') }}">Modern Beach House</a>
                                         </h3>
                                         <div class="box-text">
-                                            <div class="icon"><img src="assets/img/icon/popular-location.svg"
-                                                    alt="icon"></div>39581 Rohan Estates, New York
+                                            <div class="icon"><img src="{{asset('assets/img/icon/popular-location.svg')}}"
+                                                    alt="icon"></div>39A, Rohan Estates, Lekki Phase1, lagos Nigeria.
                                         </div>
                                     </div>
                                     <ul class="property-featured">
                                         <li>
-                                            <div class="icon"><img src="assets/img/icon/bed.svg" alt="icon"></div>Bed 4
+                                            <div class="icon"><img src="{{asset('assets/img/icon/bed.svg')}}" alt="icon"></div>Bed 4
                                         </li>
                                         <li>
-                                            <div class="icon"><img src="assets/img/icon/bath.svg" alt="icon"></div>Bath
+                                            <div class="icon"><img src="{{asset('assets/img/icon/bath.svg')}}" alt="icon"></div>Bath
                                             2
                                         </li>
                                         <li>
-                                            <div class="icon"><img src="assets/img/icon/sqft.svg" alt="icon"></div>1500
+                                            <div class="icon"><img src="{{asset('assets/img/icon/sqft.svg')}}" alt="icon"></div>1500
                                             sqft
                                         </li>
                                     </ul>
@@ -288,11 +288,11 @@
                                         data-slider-options='{"loop":false, "autoplay": false,"autoHeight": true, "effect":"fade"}'>
                                         <div class="swiper-wrapper">
                                             <div class="swiper-slide"><a class="popular-popup-image"
-                                                    href="assets/img/popular/popular-1-5.jpg"><img
-                                                        src="assets/img/popular/popular-1-5.jpg" alt="Image"></a></div>
+                                                    href="{{asset('assets/img/popular/popular-1-5.jpg')}}"><img
+                                                        src="{{asset('assets/img/popular/popular-1-5.jpg')}}" alt="Image"></a></div>
                                             <div class="swiper-slide"><a class="popular-popup-image"
-                                                    href="assets/img/popular/popular-1-6.jpg"><img
-                                                        src="assets/img/popular/popular-1-6.jpg" alt="Image"></a></div>
+                                                    href="{{asset('assets/img/popular/popular-1-6.jpg')}}"><img
+                                                        src="{{asset('assets/img/popular/popular-1-6.jpg')}}" alt="Image"></a></div>
                                         </div>
                                         <div class="icon-wrap"><button class="slider-arrow slider-prev"><i
                                                     class="far fa-arrow-left"></i></button> <button
@@ -305,11 +305,11 @@
                                         <div class="actions style-2"><a href="#" class="icon-btn"><span
                                                     class="action-text">Add To Favorite</span> <i
                                                     class="fa-solid fa-bookmark"></i> </a><a
-                                                href="assets/img/popular/popular-1-1.jpg"
+                                                href="{{asset('assets/img/popular/popular-1-1.jpg')}}"
                                                 class="icon-btn popular-popup-image"><span class="action-text">View all
                                                     img</span> <i class="fa-solid fa-camera"></i></a></div>
                                     </div>
-                                    <div class="popular-badge"><img src="assets/img/icon/sell_rent_icon.svg" alt="icon">
+                                    <div class="popular-badge"><img src="{{asset('assets/img/icon/sell_rent_icon.svg')}}" alt="icon">
                                         <p>For Sale</p>
                                     </div>
                                 </div>
@@ -318,20 +318,20 @@
                                         <h3 class="box-title"><a href="{{ route('propertydetails') }}">Cozy Mountain Cabin</a>
                                         </h3>
                                         <div class="box-text">
-                                            <div class="icon"><img src="assets/img/icon/popular-location.svg"
-                                                    alt="icon"></div>39581 Rohan Estates, New York
+                                            <div class="icon"><img src="{{asset('assets/img/icon/popular-location.svg')}}"
+                                                    alt="icon"></div>39A, Rohan Estates, Lekki Phase1, lagos Nigeria.
                                         </div>
                                     </div>
                                     <ul class="property-featured">
                                         <li>
-                                            <div class="icon"><img src="assets/img/icon/bed.svg" alt="icon"></div>Bed 4
+                                            <div class="icon"><img src="{{asset('assets/img/icon/bed.svg')}}" alt="icon"></div>Bed 4
                                         </li>
                                         <li>
-                                            <div class="icon"><img src="assets/img/icon/bath.svg" alt="icon"></div>Bath
+                                            <div class="icon"><img src="{{asset('assets/img/icon/bath.svg')}}" alt="icon"></div>Bath
                                             2
                                         </li>
                                         <li>
-                                            <div class="icon"><img src="assets/img/icon/sqft.svg" alt="icon"></div>1500
+                                            <div class="icon"><img src="{{asset('assets/img/icon/sqft.svg')}}" alt="icon"></div>1500
                                             sqft
                                         </li>
                                     </ul>
@@ -349,11 +349,11 @@
                                         data-slider-options='{"loop":false, "autoplay": false,"autoHeight": true, "effect":"fade"}'>
                                         <div class="swiper-wrapper">
                                             <div class="swiper-slide"><a class="popular-popup-image"
-                                                    href="assets/img/popular/popular-1-6.jpg"><img
-                                                        src="assets/img/popular/popular-1-6.jpg" alt="Image"></a></div>
+                                                    href="{{asset('assets/img/popular/popular-1-6.jpg')}}"><img
+                                                        src="{{asset('assets/img/popular/popular-1-6.jpg')}}" alt="Image"></a></div>
                                             <div class="swiper-slide"><a class="popular-popup-image"
-                                                    href="assets/img/popular/popular-1-7.jpg"><img
-                                                        src="assets/img/popular/popular-1-7.jpg" alt="Image"></a></div>
+                                                    href="{{asset('assets/img/popular/popular-1-7.jpg')}}"><img
+                                                        src="{{asset('assets/img/popular/popular-1-7.jpg')}}" alt="Image"></a></div>
                                         </div>
                                         <div class="icon-wrap"><button class="slider-arrow slider-prev"><i
                                                     class="far fa-arrow-left"></i></button> <button
@@ -366,11 +366,11 @@
                                         <div class="actions style-2"><a href="#" class="icon-btn"><span
                                                     class="action-text">Add To Favorite</span> <i
                                                     class="fa-solid fa-bookmark"></i> </a><a
-                                                href="assets/img/popular/popular-1-1.jpg"
+                                                href="{{asset('assets/img/popular/popular-1-1.jpg')}}"
                                                 class="icon-btn popular-popup-image"><span class="action-text">View all
                                                     img</span> <i class="fa-solid fa-camera"></i></a></div>
                                     </div>
-                                    <div class="popular-badge"><img src="assets/img/icon/sell_rent_icon.svg" alt="icon">
+                                    <div class="popular-badge"><img src="{{asset('assets/img/icon/sell_rent_icon.svg')}}" alt="icon">
                                         <p>For Sale</p>
                                     </div>
                                 </div>
@@ -378,20 +378,20 @@
                                     <div class="media-body">
                                         <h3 class="box-title"><a href="{{ route('propertydetails') }}">Modern Apartment</a></h3>
                                         <div class="box-text">
-                                            <div class="icon"><img src="assets/img/icon/popular-location.svg"
-                                                    alt="icon"></div>39581 Rohan Estates, New York
+                                            <div class="icon"><img src="{{asset('assets/img/icon/popular-location.svg')}}"
+                                                    alt="icon"></div>39A, Rohan Estates, Lekki Phase1, lagos Nigeria.
                                         </div>
                                     </div>
                                     <ul class="property-featured">
                                         <li>
-                                            <div class="icon"><img src="assets/img/icon/bed.svg" alt="icon"></div>Bed 4
+                                            <div class="icon"><img src="{{asset('assets/img/icon/bed.svg')}}" alt="icon"></div>Bed 4
                                         </li>
                                         <li>
-                                            <div class="icon"><img src="assets/img/icon/bath.svg" alt="icon"></div>Bath
+                                            <div class="icon"><img src="{{asset('assets/img/icon/bath.svg')}}" alt="icon"></div>Bath
                                             2
                                         </li>
                                         <li>
-                                            <div class="icon"><img src="assets/img/icon/sqft.svg" alt="icon"></div>1500
+                                            <div class="icon"><img src="{{asset('assets/img/icon/sqft.svg')}}" alt="icon"></div>1500
                                             sqft
                                         </li>
                                     </ul>

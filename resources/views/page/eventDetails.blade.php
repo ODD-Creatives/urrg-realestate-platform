@@ -2,7 +2,7 @@
 
 @section('content')
     
-    <div class="breadcumb-wrapper" data-bg-src="assets/img/blog/breadcrumb-bg.jpg">
+    <div class="breadcumb-wrapper" data-bg-src="{{asset('assets/img/blog/breadcrumb-bg.jpg1')}}">
         <div class="container">
             <div class="breadcumb-content">
                 <h1 class="breadcumb-title">Academy Event Details</h1>
@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-xxl-6 col-lg-6">
                     <div class="th-blog blog-single">
-                        <div class="blog-img"><img src="assets/img/blog/blog-s-1-5.jpg" alt="Image"></div>
+                        <div class="blog-img"><img src="{{asset('assets/img/blog/blog-s-1-5.jpg')}}" alt="Image"></div>
                         <div class="blog-content">
                             <div class="blog-meta"><a href="blog.html"><i class="fa-light fa-user"></i> Adeleye Isaac</a>
                                 <a href="blog.html"><i class="fa-regular fa-calendar"></i> 24/06/2025</a> <a
@@ -96,11 +96,11 @@
                                 help, you can supercharge your online marketing skills and transform businesses.</p>
                             <div class="row gx-30 mt-30 mb-34">
                                 <div class="col-md-6 mb-30">
-                                    <div><img class="w-100 rounded-10" src="assets/img/blog/blog-s-1-6.jpg"
+                                    <div><img class="w-100 rounded-10" src="{{asset('assets/img/blog/blog-s-1-6.jpg')}}"
                                             alt="Image"></div>
                                 </div>
                                 <div class="col-md-6 mb-30">
-                                    <div><img class="w-100 rounded-10" src="assets/img/blog/blog-s-1-7.jpg"
+                                    <div><img class="w-100 rounded-10" src="{{asset('assets/img/blog/blog-s-1-7.jpg')}}"
                                             alt="Image"></div>
                                 </div>
                             </div>

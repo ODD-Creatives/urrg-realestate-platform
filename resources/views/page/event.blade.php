@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="breadcumb-wrapper" data-bg-src="assets/img/blog/breadcrumb-bg.jpg">
+    <div class="breadcumb-wrapper" data-bg-src="{{asset('assets/img/blog/breadcrumb-bg.jpg1')}}">
         <div class="container">
             <div class="breadcumb-content">
                 <h1 class="breadcumb-title">Academy Event</h1>
@@ -17,7 +17,7 @@
             <div class="row gy-30 justify-content-center">
                 <div class="col-lg-4 col-md-6">
                     <div class="blog-card">
-                        <div class="blog-img"><a href="{{route('eventdetails')}}"><img src="assets/img/blog/blog-s-1-1.jpg"
+                        <div class="blog-img"><a href="{{route('eventdetails')}}"><img src="{{asset('assets/img/blog/blog-s-1-1.jpg')}}"
                                     alt="Image"></a>
                             <div class="date"><a href="blog.html">22 Feb</a></div>
                         </div>
@@ -31,7 +31,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="blog-card">
-                        <div class="blog-img"><a href="{{route('eventdetails')}}"><img src="assets/img/blog/blog-s-1-2.jpg"
+                        <div class="blog-img"><a href="{{route('eventdetails')}}"><img src="{{asset('assets/img/blog/blog-s-1-2.jpg')}}"
                                     alt="Image"></a>
                             <div class="date"><a href="blog.html">23 Feb</a></div>
                         </div>
@@ -44,7 +44,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="blog-card">
-                        <div class="blog-img"><a href="{{route('eventdetails')}}"><img src="assets/img/blog/blog-s-1-3.jpeg"
+                        <div class="blog-img"><a href="{{route('eventdetails')}}"><img src="{{asset('assets/img/blog/blog-s-1-3.jpeg')}}"
                                     alt="Image"></a>
                             <div class="date"><a href="blog.html">24 Feb</a></div>
                         </div>
@@ -57,7 +57,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="blog-card">
-                        <div class="blog-img"><a href="{{route('eventdetails')}}"><img src="assets/img/blog/blog-s-1-4.jpg"
+                        <div class="blog-img"><a href="{{route('eventdetails')}}"><img src="{{asset('assets/img/blog/blog-s-1-4.jpg')}}"
                                     alt="Image"></a>
                             <div class="date"><a href="blog.html">26 Feb</a></div>
                         </div>
@@ -70,7 +70,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="blog-card">
-                        <div class="blog-img"><a href="{{route('eventdetails')}}"><img src="assets/img/blog/blog-s-1-7.jpg"
+                        <div class="blog-img"><a href="{{route('eventdetails')}}"><img src="{{asset('assets/img/blog/blog-s-1-7.jpg')}}"
                                     alt="Image"></a>
                             <div class="date"><a href="blog.html">27 Feb</a></div>
                         </div>
@@ -83,7 +83,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="blog-card">
-                        <div class="blog-img"><a href="{{route('eventdetails')}}"><img src="assets/img/blog/blog-s-1-6.jpg"
+                        <div class="blog-img"><a href="{{route('eventdetails')}}"><img src="{{asset('assets/img/blog/blog-s-1-6.jpg')}}"
                                     alt="Image"></a>
                             <div class="date"><a href="blog.html">16 Mar</a></div>
                         </div>

@@ -62,6 +62,13 @@ Route::get('/event', function () {
 Route::get('/eventdetails', function () {
     return view('page.eventDetails');
 })->name('eventdetails');
+Route::get('/realtors', function () {
+    return view('page.realtor');
+})->name('realtors');
+Route::get('/developers', function () {
+    return view('page.developer');
+})->name('developers');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
