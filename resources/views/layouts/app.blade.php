@@ -266,8 +266,7 @@
                                         <div class="widget widget_banner footer-widget">
                                             <h3 class="widget_title">Location</h3>
                                             <div class="widget-map">
-                                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.998207725692!2d3.512199673975619!3d6.6471419217162655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103beeb42f4c7c49%3A0xc64264fa4a378607!2sFirst%20Gate!5e0!3m2!1sen!2sng!4v1751425110804!5m2!1sen!2sng"></iframe>
-                                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.4076154548557!2d3.3409031739752444!3d6.59615612231685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b922427ed08df%3A0x2781d4bd158fc9c2!2s51%20Olowu%20St%2C%20Opebi%2C%20Ikeja%20101233%2C%20Lagos!5e0!3m2!1sen!2sng!4v1751706741481!5m2!1sen!2sng" ></iframe>
+                                                   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.4076154548557!2d3.3409031739752444!3d6.59615612231685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b922427ed08df%3A0x2781d4bd158fc9c2!2s51%20Olowu%20St%2C%20Opebi%2C%20Ikeja%20101233%2C%20Lagos!5e0!3m2!1sen!2sng!4v1751706741481!5m2!1sen!2sng" ></iframe>
                                             </div>
                                         </div>
                                     </div>
