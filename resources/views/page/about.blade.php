@@ -415,7 +415,7 @@
                                 </div>
                                 <div class="team-social">
                                     <div class="th-social">
-                                        <a target="_blank" href="https://instagram.com/"><i class="fab fa-linkedin-in"></i></a> 
+                                        <a target="_blank" href="https://www.instagram.com/adejaremichael_adetomiwa?igsh=dml0MnB0MDQ3bzBm"><i class="fab fa-instagram"></i></a> 
                                         <a target="_blank" href="https://linkedin.com/"><i class="fa-solid fa-envelope"></i></a>
                                     </div>
                                 </div>
@@ -437,7 +437,7 @@
                                 </div>
                                 <div class="team-social">
                                     <div class="th-social">
-                                        <a target="_blank" href="https://instagram.com/"><i class="fab fa-linkedin-in"></i></a>
+                                        <a target="_blank" href="https://www.instagram.com/adehhhomes?igsh=MWUxZmJ6NWoyZWY2bg%3D%3D&utm_source=qr "><i class="fab fa-instagram"></i></a>
                                         <a target="_blank" href="https://linkedin.com/"><i class="fa-solid fa-envelope"></i></a>
                                     </div>
                                 </div>
@@ -457,11 +457,11 @@
                             <div class="team-content d-flex justify-content-between align-items-start">
                                 <div class="left-contet">
                                     <h3 class="box-title"><a href="team-details.html">Mr. Babalola Olaniyi Peter</a></h3>
-                                    <span class="team-desig">COO</span>
+                                    <span class="team-desig">Chief Operating Officer</span>
                                 </div>
                                 <div class="team-social">
                                     <div class="th-social">
-                                        <a target="_blank" href="https://instagram.com/"><i class="fab fa-linkedin-in"></i></a>
+                                        <a target="_blank" href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
                                         <a target="_blank" href="https://linkedin.com/"><i class="fa-solid fa-envelope"></i></a>
                                     </div>
                                 </div>

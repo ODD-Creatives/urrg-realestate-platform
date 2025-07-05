@@ -183,7 +183,7 @@
                             
                             <div class="d-flex justify-content-center my-2">
                                 <div class="btn-group capsule-buttons" role="group">
-                                    <button type="button" class="btn btn-sm btn-signin" style="margin-right: -27px;"><a href="{{ route('realtors') }}" class="text-white">Join Us</a></button>
+                                    <button type="button" class="btn btn-sm btn-signin" style="margin-right: -27px;"><a href="{{ route('signup') }}" class="text-white">Join Us</a></button>
                                     <button type="button" class="btn btn-sm btn-signup"><a href="{{ route('signin') }}" class="text-white">Sign In</a></button>
                                 </div>
                             </div>
@@ -267,6 +267,7 @@
                                             <h3 class="widget_title">Location</h3>
                                             <div class="widget-map">
                                                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.998207725692!2d3.512199673975619!3d6.6471419217162655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103beeb42f4c7c49%3A0xc64264fa4a378607!2sFirst%20Gate!5e0!3m2!1sen!2sng!4v1751425110804!5m2!1sen!2sng"></iframe>
+                                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.4076154548557!2d3.3409031739752444!3d6.59615612231685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b922427ed08df%3A0x2781d4bd158fc9c2!2s51%20Olowu%20St%2C%20Opebi%2C%20Ikeja%20101233%2C%20Lagos!5e0!3m2!1sen!2sng!4v1751706741481!5m2!1sen!2sng" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                                             </div>
                                         </div>
                                     </div>
@@ -289,10 +290,10 @@
                     <div class="footer-default-copy-right">
                         <p>Social Media:</p>
                         <div class="th-social">
-                            <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a> 
-                            <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a> 
-                            <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a> 
-                            <a href="https://www.whatsapp.com/"><i class="fab fa-whatsapp"></i></a>
+                            <a href="https://www.facebook.com/share/15mDCMedN9/?mibextid=wwXIfr"><i class="fab fa-facebook-f"></i></a> 
+                            <a href="https://www.facebook.com/share/15mDCMedN9/?mibextid=wwXIfr"><i class="fab fa-twitter"></i></a> 
+                            <a href="https://www.linkedin.com/in/unique-radiance-realtors-group-35b17a362?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app "><i class="fab fa-linkedin-in"></i></a> 
+                            <a href="https://www.instagram.com/urrg_realtorsgroup?igsh=MWxzZzgxZ2pqemtmcQ%3D%3D&utm_source=qr"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>

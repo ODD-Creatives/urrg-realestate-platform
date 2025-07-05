@@ -24,6 +24,11 @@
             <p class="text-center fw-bold">
                 There are many rewarding benefits for realtors who Join and receive training at URRG .
             </p>
+            <div class="text-center mt-3 mb-5">
+                <a href="#realtor-form" class="btn btn-warning text-dark fw-bold">
+                    Register Now and Become One of Our Realtors
+                </a>
+            </div>
 
             <script>
                 const realtorPhrases = [
@@ -218,8 +223,8 @@
                             </div>
                         </div>
                         <div class="contact-form-wrap">
-                            <form action="#" method="POST" class="contact-form ajax-contact" enctype="multipart/form-data">
-                                <h3 class="form-title">Join URRG as a Realtor</h3>
+                            <form id="realtor-form" action="#" method="POST" class="contact-form ajax-contact" enctype="multipart/form-data">
+                                <h3 class="form-title">Join Us as a Realtor</h3>
                                 <div class="row">
                                     <!-- First Name -->
                                     <div class="form-group col-md-6">
@@ -250,7 +255,7 @@
                                         <div class="form-group col-md-12">
                                             <input type="text" class="form-control" name="referral_code" id="referral_code" placeholder="Referral Code *" required>
                                             <small class="form-text text-muted mt-1">
-                                                Don't have a referral code? <a href="https://wa.me/23490339742526" target="_blank" style="color: #25D366; font-weight: 500;">Click here to message the admin on WhatsApp</a>.
+                                                Don't have a referral code? <a href="https://wa.me/2347075620563" target="_blank" style="color: #25D366; font-weight: 500;">Click here to message the admin on WhatsApp</a>.
                                             </small>
                                         </div>
 
@@ -269,11 +274,18 @@
                                             <option value="Above 7 years">Above 7 years</option>
                                         </select>
                                     </div>
+                                    
 
-                                    <!-- Resume or Document Upload (Optional) -->
-                                    <div class="form-group col-12">
-                                        <label for="document" class="form-label">Upload Resume or Supporting Document (Optional)</label>
-                                        <input type="file" class="form-control" name="document" id="document">
+                                    <!-- Password -->
+                                    <div class="form-group col-md-6">
+                                        <label for="password" class="form-label">Password *</label>
+                                        <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password" required>
+                                    </div>
+
+                                    <!-- Confirm Password -->
+                                    <div class="form-group col-md-6">
+                                        <label for="confirm_password" class="form-label">Confirm Password *</label>
+                                        <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required>
                                     </div>
 
                                     <!-- Submit -->
