@@ -1,0 +1,18 @@
+{
+    "sourceFile": "routes/web.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1751915595474,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1751915595474,
+            "name": "Commit-0",
+            "content": "<?php\n\nuse App\\Http\\Controllers\\ProfileController;\nuse App\\Http\\Controllers\\FrontendController;\nuse App\\Http\\Controllers\\PagesController;\nuse Illuminate\\Support\\Facades\\Route;\n \n\nAuth::routes();\n\n\nRoute::get('/', [FrontendController::class, 'index'])->name('home');\n\n\n\nRoute::get('/{page}', [PagesController::class, 'index'])->name('home.pages');\n\nRoute::get('/property/show', [PagesController::class, 'propertyDetails'])->name('property.details');\n \nRoute::get('/event/show', [PagesController::class, 'eventDetails'])->name('event.details');\n\n\n\n\nRoute::middleware('auth')->group(function () {\n    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');\n    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');\n    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');\n\n    Route::get('/user/dashboard', function () {\n        return view('user.dashboard');\n    })->name('user.dashboard');\n\n\n    Route::get('/user/profile', function () {\n        return view('user.profile');\n    })->name('user.profile');\n    Route::get('/user/bank', function () {\n        return view('user.bank');\n    })->name('user.bank');\n    Route::get('/user/changepassword', function () {\n        return view('user.changepassword');\n    })->name('user.changepassword');\n    Route::get('/user/commission', function () {\n        return view('user.commission');\n    })->name('user.commission');   \n    Route::get('/user/referral', function () {\n        return view('user.referral');\n    })->name('user.referral');\n    Route::get('/user/properties', function () {\n        return view('user.properties');\n    })->name('user.properties');\n    Route::get('/user/propertyDetails', function () {\n        return view('user.propertyDetails');\n    })->name('user.propertyDetails');\n\n});\n\nrequire __DIR__.'/auth.php';\nrequire __DIR__.'/admin.php';\n"
+        }
+    ]
+}
