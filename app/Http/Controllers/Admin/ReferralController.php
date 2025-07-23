@@ -21,7 +21,7 @@ class ReferralController extends Controller
     }
 
     public function index()
-    {
+    { 
         $realtors = Realtor::latest()->paginate(10);
         return view('admin.pages.referral.index', compact('realtors'));
     }
@@ -55,7 +55,7 @@ class ReferralController extends Controller
         return redirect()
             ->route('admin.referrals.code.index') 
             ->with('success', "Referral code {$referral->code} created successfully");
-    }
+    } 
 
     public function generateReferralShow(ReferralCode $referral)
     {

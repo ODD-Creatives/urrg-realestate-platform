@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class ProperiesController extends Controller
 {
     public function index()
-    {
+    { 
         $properties = Property::latest()->get();
         return view('admin.pages.properties.index', compact('properties'));
     }

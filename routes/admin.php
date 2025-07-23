@@ -1,10 +1,14 @@
 <?php
 
 use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Admin\DevelopersController;
+use App\Http\Controllers\Admin\CommissionController;
 use App\Http\Controllers\Admin\ReferralController;
+use App\Http\Controllers\Admin\ProperiesController;
 use App\Http\Controllers\Admin\RealtorController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\SettingController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,20 +29,50 @@ Route::middleware(['admin.auth'])->prefix('admin')->name('admin.')->group(functi
         Route::get('/edit/{id}', 'edit')->name('edit');
         Route::put('/update/{id}', 'update')->name('update');
         Route::delete('/destroy/{id}', 'destroy')->name('destroy');
-    }); 
+    });   
 
-    // Route::prefix('properties')->name('menu.')->controller(ProperiesController::class)->group(function () {
-    //     Route::get('/', 'index')->name('index');
-    //     Route::get('/create', 'create')->name('create');
-    //     Route::post('/store', 'store')->name('store');
-    //     Route::get('/edit/{id}', 'edit')->name('edit');
-    //     Route::put('/update/{id}', 'update')->name('update');
-    //     Route::delete('/destroy/{id}', 'destroy')->name('destroy');
-    // });
+    Route::prefix('properties')->name('property.')->controller(ProperiesController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::put('/update/{id}', 'update')->name('update');
+        Route::delete('/destroy/{id}', 'destroy')->name('destroy');
+    });
     
-    // Route::prefix('realtors')->name('menu.')->controller(RealtorController::class)->group(function () {
-    //     Route::get('/', 'index')->name('index');
-    // });
+    Route::prefix('realtors')->name('realtors.')->controller(RealtorController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+    });
+
+    Route::prefix('realtor')->name('realtors.')->controller(RealtorController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/realtors-view','show')->name('view');
+        Route::get('/realtors-referral','realtor_referral')->name('referral');
+        Route::get('/realtors-commission','realtor_commission')->name('commission');
+
+    });
+
+    Route::prefix('developer')->name('developers.')->controller(DevelopersController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/view','developer_view')->name('view');
+        Route::get('/developer-listings','developer_listing')->name('listings');
+        Route::get('/developer-listings-add','developer_listing_add')->name('listings_add');
+        Route::get('/developer-listings-view','developer_listing_view')->name('listings_view');
+        Route::get('/developer-projects','developer_project')->name('projects');
+        Route::get('/developer-projects-add','developer_project_add')->name('projects_add');
+        Route::get('/developer-projects-view','developer_project_view')->name('projects_view');
+    });
+
+    Route::prefix('commissions')->name('commissions.')->controller(CommissionController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/commission-pay','commission_pay')->name('pay');
+    });
+
+    Route::prefix('events')->name('events.')->controller(EventController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create','create')->name('create');
+        Route::get('/show','show')->name('show');
+    });
 
     Route::prefix('referral')->name('referrals.')->controller(ReferralController::class)->group(function () {
         Route::get('/', 'index')->name('index');
@@ -46,6 +80,8 @@ Route::middleware(['admin.auth'])->prefix('admin')->name('admin.')->group(functi
         Route::post('/generate-referral-store', 'generateReferralStore')->name('code.store');
         Route::get('/generate-referral-index', 'generateReferralIndex')->name('code.index');
         Route::delete('/destroy/{id}', 'generateReferralDestroy')->name('code.delete');
+        Route::get('/referral-chain', 'referral_chain')->name('referral-chain');
+       
     });
 
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');

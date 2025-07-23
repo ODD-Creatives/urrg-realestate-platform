@@ -3,11 +3,31 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 5,
             "patches": [
                 {
                     "date": 1751914654748,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1751985486536,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -451,9 +451,9 @@\n                     <!-- Member 3 -->\n                     <div class=\"swiper-slide\">\n                         <div class=\"team-card style-2 d-flex flex-column justify-content-between\" data-bg-src=\"{{asset('assets/img/shape/team-2-bg-shape.png')}}\">\n                             <div class=\"team-img\">\n-                                <img src=\"{{asset('assets/img/team/peter.png')}}\" alt=\"Team\">\n+                                <img src=\"{{ asset('assets/img/team/peter.png')}}\" alt=\"Team\">\n                             </div>\n                             <div class=\"team-content d-flex justify-content-between align-items-start\">\n                                 <div class=\"left-contet\">\n                                     <h3 class=\"box-title\"><a href=\"team-details.html\">Mr. Babalola Olaniyi Peter</a></h3>\n"
+                },
+                {
+                    "date": 1751985746596,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -427,9 +427,9 @@\n                     <!-- Member 2 -->\n                     <div class=\"swiper-slide\">\n                         <div class=\"team-card style-2 d-flex flex-column justify-content-between\" data-bg-src=\"{{asset('assets/img/shape/team-2-bg-shape.png')}}\">\n                             <div class=\"team-img\">\n-                                <img src=\"{{asset('assets/img/team/ade.png')}}\" alt=\"Team\">\n+                                <img src=\"{{ asset('assets/img/team/ade.png')}}\" alt=\"Team\">\n                             </div>\n                             <div class=\"team-content d-flex justify-content-between align-items-start\">\n                                 <div class=\"left-contet\">\n                                     <h3 class=\"box-title\"><a href=\"team-details.html\">Mr. Adega Adeleye Isaac</a></h3>\n"
+                },
+                {
+                    "date": 1751986176053,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -404,9 +404,9 @@\n                     \n                     <!-- Member 1 -->\n                     <div class=\"swiper-slide\">\n                         <div class=\"team-card style-2 d-flex flex-column justify-content-between\" data-bg-src=\"{{asset('assets/img/shape/team-2-bg-shape.png')}}\">\n-                            <div class=\"team-img\"><img src=\"{{asset('assets/img/team/mike.png')}}\" alt=\"Team\"></div>\n+                            <div class=\"team-img\"><img src=\"{{ asset('assets/img/team/mike.png')}}\" alt=\"Team\"></div>\n                             <div class=\"team-content d-flex justify-content-between align-items-start\">\n                                 <div class=\"left-contet\">\n                                     <h3 class=\"box-title\">\n                                         <a href=\"team-details.html\"> Amb. Adejare Micheal Adetomiwa</a>\n"
+                },
+                {
+                    "date": 1751986312037,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -404,9 +404,9 @@\n                     \n                     <!-- Member 1 -->\n                     <div class=\"swiper-slide\">\n                         <div class=\"team-card style-2 d-flex flex-column justify-content-between\" data-bg-src=\"{{asset('assets/img/shape/team-2-bg-shape.png')}}\">\n-                            <div class=\"team-img\"><img src=\"{{ asset('assets/img/team/mike.png')}}\" alt=\"Team\"></div>\n+                            <div class=\"team-img\"><img src=\"{{ asset('assets/img/team/Mike.png')}}\" alt=\"Team\"></div>\n                             <div class=\"team-content d-flex justify-content-between align-items-start\">\n                                 <div class=\"left-contet\">\n                                     <h3 class=\"box-title\">\n                                         <a href=\"team-details.html\"> Amb. Adejare Micheal Adetomiwa</a>\n"
+                },
+                {
+                    "date": 1751986331596,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -451,9 +451,9 @@\n                     <!-- Member 3 -->\n                     <div class=\"swiper-slide\">\n                         <div class=\"team-card style-2 d-flex flex-column justify-content-between\" data-bg-src=\"{{asset('assets/img/shape/team-2-bg-shape.png')}}\">\n                             <div class=\"team-img\">\n-                                <img src=\"{{ asset('assets/img/team/peter.png')}}\" alt=\"Team\">\n+                                <img src=\"{{ asset('assets/img/team/Peter.png')}}\" alt=\"Team\">\n                             </div>\n                             <div class=\"team-content d-flex justify-content-between align-items-start\">\n                                 <div class=\"left-contet\">\n                                     <h3 class=\"box-title\"><a href=\"team-details.html\">Mr. Babalola Olaniyi Peter</a></h3>\n"
                 }
             ],
             "date": 1751914654748,

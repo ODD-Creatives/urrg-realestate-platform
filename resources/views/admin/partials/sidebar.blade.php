@@ -14,26 +14,26 @@
         </a>
         <div class="collapse" id="error">
         <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="">Properties</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('admin.property.index') }}">Properties</a></li>
             <li class="nav-item"> <a class="nav-link" href="#">Lands </a></li>
         </ul>
         </div>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="" aria-expanded="false" aria-controls="auth">
+        <a class="nav-link" href="{{ route('admin.realtors.index') }}" >
         <i class="icon-head menu-icon"></i>
         <span class="menu-title">Realtors</span>
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-        <i class="icon-head menu-icon"></i>
+        <a class="nav-link" href="{{ route('admin.developers.index') }}">
+        <i class="mdi mdi-domain menu-icon"></i>
         <span class="menu-title">Developers</span>
         </a>
     
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#" aria-expanded="false" aria-controls="auth">
+        <a class="nav-link" href="{{ route('admin.commissions.index') }}">
         <i class="mdi mdi-wallet menu-icon"></i>
         <span class="menu-title">Comission</span>
         </a>
@@ -45,9 +45,15 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#" aria-expanded="false" aria-controls="auth">
+        <a class="nav-link" href="{{ route('admin.referrals.index') }}">
         <i class="mdi mdi-account-multiple menu-icon"></i>
         <span class="menu-title">Referrals</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.events.index') }}">
+            <i class="mdi mdi-newspaper menu-icon"></i>
+            <span class="menu-title">Events</span>
         </a>
     </li>
    
