@@ -39,9 +39,9 @@
                                     <td><strong>{{ $loop->iteration }}</strong></td> 
                                     <td>
                                     <div class="input-group">
-                                        <input type="text" 
+                                        <input type="text"   
                                             class="form-control form-control-sm" 
-                                            value="{{ url('/') }}/ref/{{ $referral->code }}" 
+                                            value="{{ url('/') }}/referral/{{ $referral->code }}" 
                                             id="referral-link-{{ $referral->id }}"
                                             readonly>
                                         <div class="input-group-append">

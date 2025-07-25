@@ -20,16 +20,21 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $fillable = [
         'firstname',
-        'lastname',
+        'lastname', 
         'name',
         'email',
         'phone',
         'state_of_residence',
         'referral_code',
         'experience',
-        'password',
+        'password', 
+        'status',
+        'dob', 'address', 
+        'bank_name', 'account_name', 'account_number', 'payment_method',
+        'photo',
+        'upline_referral',
     ];
-
+ 
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -56,5 +61,55 @@ class User extends Authenticatable implements MustVerifyEmail
     public function hasVerifiedEmail()
     {
         return !is_null($this->email_verified_at);
+    }
+
+    public function getFullNameAttribute()
+    {
+        return "{$this->firstname} {$this->lastname}";
+    }
+
+    public function getFormattedCreatedAtAttribute()
+    {
+        if (!$this->created_at) {
+            return null;
+        }
+        
+        return $this->created_at->format('jS \o\f F, Y');
+    }
+
+   public function wallet()
+    {
+        return $this->hasOne(Wallet::class);
+    }
+
+    public function commissions()
+    {
+        return $this->hasMany(Commission::class, 'referral_id');
+    }
+    public function activate()
+    {
+        $this->update(['status' => 'active']);
+    }
+
+    public function deactivate()
+    {
+        $this->update(['status' => 'inactive']);
+    }
+
+    public function isActive()
+    {
+        return $this->status === 'active';
+    }
+
+    // Relationship to get all realtors referred by this realtor (downline)
+    public function referrals()
+    {
+        return $this->hasMany(User::class, 'upline_referral', 'referral_code');
+    }
+
+    // Relationship to get the upline realtor who referred this realtor
+    public function upline()
+    {
+        return $this->belongsTo(User::class, 'upline_referral', 'referral_code');
     }
 }

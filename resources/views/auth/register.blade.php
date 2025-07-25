@@ -56,7 +56,8 @@
                 <form action="{{ route('register')}}" method="POST" class="contact-form form-contact" enctype="multipart/form-data">
                     @csrf
                     <h3 class="form-title">Join URRG as a Realtor</h3>
-                    <div class="row">
+                    <div class="row"> 
+          
                         <!-- First Name -->
                         <div class="form-group col-md-6">
                             <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Firstname *" required>
@@ -83,8 +84,11 @@
                         </div>
 
                         <!-- Referral Code -->
+                        {{-- {{$referralDetails->referral_code}} --}}
                         <div class="form-group col-md-12">
-                            <input type="text" class="form-control" name="referral_code" id="referral_code" placeholder="Referral Code *" required >
+                            <input readonly type="text" class="form-control" name="referral_code" id="referral_code" 
+                            value="{{ isset($referralDetails) ? ($referralDetails->code ?? $referralDetails->referral_code) : '' }}" 
+                            placeholder="Referral Code *" required >
                             <small class="form-text text-muted mt-1">
                                 Don't have a referral code? <a href="https://wa.me/23490339742526" target="_blank" style="color: #25D366; font-weight: 500;">Click here to message the admin on WhatsApp</a>.
                             </small>

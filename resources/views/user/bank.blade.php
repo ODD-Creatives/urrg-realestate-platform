@@ -26,31 +26,31 @@
         <!-- Personal Information -->
         <div class="container my-5" id="bank-info">
             <h2 class="mb-4"><i class="bi bi-bank"></i> Payment Information</h2>
-
+ 
             <div class="card">
                 <div class="card-body">
                     <div class="row mb-3">
                         <div class="col-md-12">
-                        <table class="table table-borderless mb-0">
+                          <table class="table table-borderless mb-0">
                             <tbody>
-                            <tr>
-                                <th scope="row">Bank Name</th>
-                                <td>First Bank</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Account Name</th>
-                                <td>John Doe</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Account Number</th>
-                                <td>****5678</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Payment Method</th>
-                                <td>Bank Transfer</td>
-                            </tr>
+                                <tr>
+                                    <th scope="row">Bank Name</th>
+                                    <td>{{ auth()->user()->bank_name ?? 'Not provided' }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Account Name</th>
+                                    <td>{{ auth()->user()->account_name ?? 'Not provided' }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Account Number</th>
+                                    <td>{{ auth()->user()->account_number ? '****' . substr(auth()->user()->account_number, -4) : 'Not provided' }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Payment Method</th>
+                                    <td>{{ auth()->user()->payment_method ?? 'Not provided' }}</td>
+                                </tr>
                             </tbody>
-                        </table>
+                          </table>
                         </div>
                     </div>
                     <div">
@@ -63,48 +63,49 @@
         </div>
 
         <div class="modal fade" id="editBankModal" tabindex="-1" aria-labelledby="editBankModalLabel" aria-hidden="true">
-            <div class="modal-dialog moda">
+            <div class="modal-dialog">
                 <div class="modal-content">
-                <form>
-                    <div class="modal-header">
-                    <h5 class="modal-title" id="editBankModalLabel">
-                        <i class="bi bi-pencil"></i> Edit Bank / Payment Information
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
+                    <form method="POST" action="{{ route('profile.update.payment') }}">
+                        @csrf
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editBankModalLabel">
+                                <i class="bi bi-pencil"></i> Edit Bank / Payment Information
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
 
-                    <div class="modal-body">
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                        <label class="form-label">Bank Name</label>
-                        <input type="text" class="form-control" value="First Bank">
+                        <div class="modal-body">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Bank Name</label>
+                                    <input type="text" name="bank_name" class="form-control" value="{{ auth()->user()->bank_name ?? '' }}" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Account Name</label>
+                                    <input type="text" name="account_name" class="form-control" value="{{ auth()->user()->account_name ?? '' }}" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Account Number</label>
+                                    <input type="text" name="account_number" class="form-control" value="{{ auth()->user()->account_number ?? '' }}" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Preferred Payment Method</label>
+                                    <select class="form-select" name="payment_method" required>
+                                        <option value="Bank Transfer" {{ (auth()->user()->payment_method ?? '') == 'Bank Transfer' ? 'selected' : '' }}>Bank Transfer</option>
+                                        <option value="PayPal" {{ (auth()->user()->payment_method ?? '') == 'PayPal' ? 'selected' : '' }}>PayPal</option>
+                                        <option value="Cheque" {{ (auth()->user()->payment_method ?? '') == 'Cheque' ? 'selected' : '' }}>Cheque</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                        <label class="form-label">Account Name</label>
-                        <input type="text" class="form-control" value="John Doe">
-                        </div>
-                        <div class="col-md-6">
-                        <label class="form-label">Account Number</label>
-                        <input type="text" class="form-control" value="0123456789">
-                        </div>
-                        <div class="col-md-6">
-                        <label class="form-label">Preferred Payment Method</label>
-                        <select class="form-select">
-                            <option selected>Bank Transfer</option>
-                            <option>PayPal</option>
-                            <option>Cheque</option>
-                        </select>
-                        </div>
-                    </div>
-                    </div>
 
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-success">
-                        <i class="bi bi-save"></i> Save Changes
-                    </button>
-                    </div>
-                </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-success">
+                                <i class="bi bi-save"></i> Save Changes
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -112,41 +113,43 @@
     </div>
     <!-- Edit Personal Information Modal -->
     <div class="modal fade" id="editPersonalModal" tabindex="-1" aria-labelledby="editPersonalModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="editPersonalModalLabel">Edit Personal Information</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="mb-3">
-                <label for="fullName" class="form-label">Full Name</label>
-                <input type="text" class="form-control" id="fullName" value="Antonio Olson">
-              </div>
-              <div class="mb-3">
-                <label for="email" class="form-label">Email Address</label>
-                <input type="email" class="form-control" id="email" value="antonio.olson@example.com">
-              </div>
-              <div class="mb-3">
-                <label for="phone" class="form-label">Phone Number</label>
-                <input type="tel" class="form-control" id="phone" value="+1234567890">
-              </div>
-              <div class="mb-3">
-                <label for="dob" class="form-label">Date of Birth</label>
-                <input type="date" class="form-control" id="dob" value="1990-01-01">
-              </div>
-              <div class="mb-3">
-                <label for="address" class="form-label">Address</label>
-                <input type="text" class="form-control" id="address" value="123 Main Street, City">
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="POST" action="{{ route('profile.update.personal') }}">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editPersonalModalLabel">Edit Personal Information</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="fullName" class="form-label">Full Name</label>
+                            <input type="text" name="fullName" class="form-control" id="fullName" value="{{ auth()->user()->name }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" name="email" class="form-control" id="email" value="{{ auth()->user()->email }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="tel" name="phone" class="form-control" id="phone" value="{{ auth()->user()->phone }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="dob" class="form-label">Date of Birth</label>
+                            <input type="date" name="dob" class="form-control" id="dob" value="{{ auth()->user()->dob }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Address</label>
+                            <input type="text" name="address" class="form-control" id="address" value="{{ auth()->user()->address }}">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
         </div>
-      </div>
     </div>
+
 @endsection

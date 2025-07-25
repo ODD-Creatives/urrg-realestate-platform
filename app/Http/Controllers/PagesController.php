@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use App\Models\ReferralCode;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
@@ -36,10 +38,21 @@ class PagesController extends Controller
         abort(404);
     }
 
+    public function referral($code)
+    {
+        $referralDetails = ReferralCode::where('code', $code)->first();
+        if (!$referralDetails) {
+             $referralDetails = User::where('referral_code', $code)->first();
+            // return redirect()->route('home')->with('error', 'Invalid referral code.');
+        } 
+        // dd($referralDetails);
+        return view('auth.register', ['referralDetails' => $referralDetails]);
+    }
+
     public function propertyDetails(){
         return view('frontend.properties.show');
     }
-
+ 
     public function eventDetails(){
         return view('frontend.event.show');
     }

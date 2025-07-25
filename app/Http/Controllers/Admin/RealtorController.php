@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Realtor;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -14,14 +14,23 @@ class RealtorController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $realtors = Realtor::latest()->paginate(10);
-        return view('admin.pages.realtors.index', compact('realtors'));
+    { 
+        $users = User::latest()->paginate(10);
+        return view('admin.pages.realtors.index', compact('users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function activate(User $user)
+    {
+        $user->activate();
+        return back()->with('success', 'User activated successfully');
+    }
+
+    public function deactivate(User $user)
+    {
+        $user->deactivate();
+        return back()->with('success', 'User deactivated successfully');
+    }
+    
     public function create()
     {
         return view('admin.pages.realtors.create');
@@ -67,14 +76,37 @@ class RealtorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Realtor $realtor)
+    public function show( $realtor)
     {
-        return view('admin.pages.realtors.show', compact('realtor'));
+        $user = User::where('id', $realtor)->firstOrFail();
+        // dd($realtor);
+        return view('admin.pages.realtors.show', [
+            'user' => $user,
+            // 'referrals' => $realtor->referrals()->latest()->paginate(5),
+            // 'commissions' => $realtor->commissions()->latest()->paginate(5)
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    public function referral(Realtor $realtor)
+    {
+        return view('admin.realtors.referrals', [
+            'realtor' => $realtor,
+            'referrals' => $realtor->referrals()->latest()->paginate(10)
+        ]);
+    }
+
+    public function commission(Realtor $realtor)
+    {
+        return view('admin.realtors.commissions', [
+            'realtor' => $realtor,
+            'commissions' => $realtor->commissions()
+                                    ->with('property') // Eager load property relationship
+                                    ->latest()
+                                    ->paginate(10)
+        ]);
+    }
+
+    
     public function edit(Realtor $realtor)
     {
         return view('admin.realtors.edit', compact('realtor'));

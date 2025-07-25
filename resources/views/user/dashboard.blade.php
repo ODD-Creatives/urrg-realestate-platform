@@ -40,13 +40,24 @@
       }
     </style>
     <div class="content-wrapper pb-0">
-        <div class="page-header flex-wrap">
-            <div class="header-right d-flex flex-wrap mt-2 mt-sm-0">
-                <div class="d-flex align-items-center">
-                    <a href="#">
-                        <p class="m-0 pe-3">It's Great to have Daniel!</p>
-                    </a>
-                    
+        <div class="row page-header flex-wrap">
+            <div class="col-md-6 d-flex align-items-center mb-2 mb-md-0">
+                <p class="m-0 pe-4">It's Great to have {{ auth()->user()->firstname }}!</p>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input type="text"
+                        class="form-control form-control-sm"
+                        value="{{ url('/') }}/referral/user/{{ auth()->user()->referral_code }}"
+                        id="referral-link-{{ auth()->user()->id }}"
+                        readonly>
+                    <div class="input-group-append">
+                        <button class="btn btn-sm btn-outline-primary copy-btn"
+                                data-clipboard-target="#referral-link-{{ auth()->user()->id }}"
+                                title="Copy referral link">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -60,7 +71,7 @@
                         <div class="d-flex justify-content-between">
                         <div>
                             <h4 class="card-title mb-0">Total Earnings</h4>
-                            <h3 class="fw-bold mb-0">₦125,000</h3>
+                            <h3 class="fw-bold mb-0">₦{{ number_format(auth()->user()->wallet->balance ?? 0) }}</h3>
                         </div>
                         <i class="mdi mdi-currency-ngn text-success icon-lg"></i>
                         </div>
@@ -74,11 +85,14 @@
                     <div class="d-flex justify-content-between">
                         <div>
                         <h4 class="card-title mb-0">Referral Count</h4>
-                        <h3 class="fw-bold mb-0">42</h3>
+                        <h3 class="fw-bold mb-0">{{ auth()->user()->referrals->count() }}</h3>
                         </div>
                         <i class="mdi mdi-account-multiple text-warning icon-lg"></i>
                     </div>
-                    <p class="text-muted font-13 mt-2">Total: 42 | Active: 28</p>
+                    <p class="text-muted font-13 mt-2">
+                        Total: {{ auth()->user()->referrals->count() }} | 
+                        Active: {{ auth()->user()->referrals()->where('status', 'active')->count() }}
+                    </p>
                     </div>
                 </div>
                 </div>
@@ -96,52 +110,46 @@
                     </div>
                     </div>
                     <div class="card-body table-responsive">
-                    <table class="table table-striped align-middle">
-                        <thead class="table-light">
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Status</th>
-                            <th>Level</th>
-                            <th>Earnings (₦)</th>
-                            <th>Joined</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>John Doe</td>
-                            <td>john@example.com</td>
-                            <td><span class="badge bg-success">Active</span></td>
-                            <td>Direct</td>
-                            <td>₦25,000</td>
-                            <td>2024-06-15</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Jane Smith</td>
-                            <td>jane@example.com</td>
-                            <td><span class="badge bg-secondary">Inactive</span></td>
-                            <td>Indirect</td>
-                            <td>₦0</td>
-                            <td>2024-06-18</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Bob Wilson</td>
-                            <td>bob@example.com</td>
-                            <td><span class="badge bg-success">Active</span></td>
-                            <td>Indirect</td>
-                            <td>₦0</td>
-                            <td>2024-06-20</td>
-                        </tr>
-                        <!-- Add more rows as needed -->
-                        </tbody>
-                    </table>
+                        <table class="table table-striped align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Status</th>
+                                    <th>Level</th>
+                                    <th>Earnings (₦)</th>
+                                    <th>Joined</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach(auth()->user()->referrals as $index => $referral)
+                                <tr>
+                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{ $referral->firstname }} {{ $referral->lastname }}</td>
+                                    <td>{{ $referral->email }}</td>
+                                    <td>
+                                        <span class="badge bg-{{ $referral->status === 'active' ? 'success' : 'secondary' }}">
+                                            {{ ucfirst($referral->status) }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        @if($referral->upline_referral === auth()->user()->referral_code)
+                                            Direct
+                                        @else
+                                            Indirect
+                                        @endif
+                                    </td>
+                                    <td>
+                                        ₦{{ number_format($referral->commissions->sum('amount')) }}
+                                    </td>
+                                    <td>{{ $referral->created_at->format('Y-m-d') }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-
                 </div>
             </div>
             </div>

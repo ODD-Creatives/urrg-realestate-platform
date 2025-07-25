@@ -24,5 +24,21 @@ class Realtor extends Model
         'referral_link',
         'upline_referral',
         'commission',
+        'status',
     ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+    // Accessor for full name
+    public function getFullNameAttribute()
+    {
+        return "{$this->firstname} {$this->lastname}";
+    }
 }

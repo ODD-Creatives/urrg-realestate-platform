@@ -46,9 +46,11 @@ Route::middleware(['admin.auth'])->prefix('admin')->name('admin.')->group(functi
 
     Route::prefix('realtor')->name('realtors.')->controller(RealtorController::class)->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::get('/realtors-view','show')->name('view');
-        Route::get('/realtors-referral','realtor_referral')->name('referral');
-        Route::get('/realtors-commission','realtor_commission')->name('commission');
+        Route::get('/{user}','show')->name('view');
+        Route::get('/{user}/referral','referral')->name('referral');
+        Route::get('/{user}/commission','commission')->name('commission');
+        Route::patch('/{user}/activate', 'activate')->name('activate');
+        Route::patch('/{user}/deactivate', 'deactivate')->name('deactivate');
 
     });
 

@@ -24,20 +24,37 @@
                     <div class="row">
                         <!-- Profile Photo -->
                         <div class="col-md-4 text-center2 mb-3">
-                            <img src="{{ asset('assets/admin/assets/images/faces/face28.jpg') }}" alt="Realtor Photo" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover;">
-                            <p class="mt-2 fw-bold"> Grace Johnson </p>
+                            <img src="{{ $user->photo ? asset('storage/'.$user->photo) : asset('assets/admin/assets/images/faces/face28.jpg') }}" 
+                                 alt="Realtor Photo" 
+                                 class="img-fluid rounded-circle" 
+                                 style="width: 150px; height: 150px; object-fit: cover;">
+                            <p class="mt-2 fw-bold"> {{ $user->full_name }}</p>
                         
-                            <p><strong>Email:</strong> grace@example.com</p>
-                            <p><strong>Phone:</strong> +234 801 234 5678</p>
-                            <p><strong>Status:</strong> 
-                                <span class="badge bg-success">Active</span>
-                            
-                            </p>
+                            <p><strong>Email:</strong> {{ $user->email }}</p>
+                            <p><strong>Phone:</strong> {{ $user->phone }}</p>
                             <p>
-                                <strong>Joined:</strong> 
-                                    3rd of June, 2025.
+                                <strong>Status:</strong> 
+                                <span class="badge bg-{{ $user->status === 'active' ? 'success' : 'danger' }}">
+                                    {{ ucfirst($user->status) }}
+                                </span>
                             </p>
-                            <a href="#" class="btn btn-sm btn-outline-danger">Suspend</a>
+                             <p>
+                                <strong>Joined:</strong> 
+                                {{ $user->created_at->format('jS \o\f F, Y') }}
+                            </p>
+                            @if($user->status === 'active')
+                                <form action="{{ route('admin.realtors.suspend', $user->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('PATCH')
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Suspend</button>
+                                </form>
+                            @else
+                                <form action="{{ route('admin.realtors.activate', $user->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('PATCH')
+                                    <button type="submit" class="btn btn-sm btn-outline-success">Activate</button>
+                                </form>
+                            @endif
                         </div>
                         <!-- Basic Info -->
                         <div class="col-md-6">
@@ -65,8 +82,8 @@
                                 </p>
                             </div>
                             <div class="mt-4">
-                                <a href="{{ route('admin.realtors.referral') }}" class="btn btn-outline-primary">View Referral Chain</a>
-                                <a href="{{ route('admin.realtors.commission') }}" class="btn btn-outline-success">View Commissions</a>
+                                <a href="" class="btn btn-outline-primary">View Referral Chain</a>
+                                <a href="" class="btn btn-outline-success">View Commissions</a>
                             </div>
                         </div>
                         
