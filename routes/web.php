@@ -33,9 +33,9 @@ Route::middleware('auth')->group(function () {
    
     Route::delete('/user/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
 
-    Route::get('/user/dashboard', function () {
-        return view('user.dashboard');
-    })->name('user.dashboard');
+    // Route::get('/user/dashboard', function () {
+    //     return view('user.dashboard');
+    // })->name('user.dashboard');
 
 
     Route::get('/user/profile', function () {
