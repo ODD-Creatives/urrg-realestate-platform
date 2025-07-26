@@ -68,7 +68,7 @@
                         <div id="referral-tree">
                             <ul>
                                 <li>
-                                    <span class="caret caret-down">{{ $user->full_name }} (You)</span>
+                                    <span class="caret caret-down">{{ $user->full_name }} (Admin)</span>
                                     <ul class="nested active">
                                         @foreach($referralTree[1] ?? [] as $level1)
                                         <li>
