@@ -120,7 +120,7 @@
     <div class="modal fade" id="editPersonalModal" tabindex="-1" aria-labelledby="editPersonalModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="POST" action="{{ route('user.profile.update.personal') }}">
+                <form method="POST" action="{{ route('profile.update.personal') }}">
                     @csrf
                     <div class="modal-header">
                         <h5 class="modal-title" id="editPersonalModalLabel">Edit Personal Information</h5>
