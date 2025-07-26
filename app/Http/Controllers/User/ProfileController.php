@@ -69,7 +69,6 @@ class ProfileController extends Controller
         $user->update([
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,
-            'email' => $request->email,
             'phone' => $request->phone,
             'dob' => $request->dob,
             'address' => $request->address,
