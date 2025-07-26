@@ -21,7 +21,7 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ asset('assets/admin/assets/css/style.css') }}">
     <!-- endinject -->
-    <link rel="shortcut icon" href="{{ asset('assets/admin/assets/images/favicon.png') }}" />
+    <link rel="shortcut icon" href="{{ asset('assets/img/icon.png') }}" />
   </head>
   <body>
     <div class="container-scroller">

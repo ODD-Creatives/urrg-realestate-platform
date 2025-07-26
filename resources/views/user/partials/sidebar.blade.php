@@ -8,7 +8,7 @@
               </div>
               <div class="nav-profile-text d-flex ms-0 mb-3 flex-column">
                 <span class="fw-semibold mb-1 mt-2 text-center"> {{ auth()->user()->full_name }}</span>
-                <span class="text-secondary icon-sm text-center">₦35,499.00</span>
+                
               </div>
             </a>
           </li> 

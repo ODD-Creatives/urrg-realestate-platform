@@ -59,7 +59,7 @@
                                     <div class="widget widget_banner footer-widget">
                                         <h3 class="widget_title">Location</h3>
                                         <div class="widget-map">
-                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.998207725692!2d3.512199673975619!3d6.6471419217162655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103beeb42f4c7c49%3A0xc64264fa4a378607!2sFirst%20Gate!5e0!3m2!1sen!2sng!4v1751425110804!5m2!1sen!2sng"></iframe>
+                                            <iframe src="https://www.google.com/maps/embed?pb=!1m19!1m12!1m3!1d126838.30628938336!2d3.2505855999999995!3d6.5598705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m4!3e6!4m0!4m1!2s51%20Oluwu%20Street%20off%20Awolowo%20Way%2C%20Ikeja%C2%A0Lagos!5e0!3m2!1sen!2sng!4v1753528590971!5m2!1sen!2sng"></iframe>
                                         </div>
                                     </div>
                                 </div>
@@ -82,10 +82,10 @@
                 <div class="footer-default-copy-right">
                     <p>Social Media:</p>
                     <div class="th-social">
-                        <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a> 
-                        <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a> 
-                        <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a> 
-                        <a href="https://www.whatsapp.com/"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.facebook.com/share/15mDCMedN9/?mibextid=wwXIfr"><i class="fab fa-facebook-f"></i></a> 
+                        <a href="https://x.com/urrg_realtors?s=21"><i class="fab fa-twitter"></i></a> 
+                        <a href="https://www.linkedin.com/in/unique-radiance-realtors-group-35b17a362?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app "><i class="fab fa-linkedin-in"></i></a> 
+                        <a href="https://www.instagram.com/urrg_realtorsgroup?igsh=MWxzZzgxZ2pqemtmcQ%3D%3D&utm_source=qr"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>

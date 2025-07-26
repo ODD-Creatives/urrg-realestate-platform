@@ -39,12 +39,12 @@
                         <div class="col-4">
                             <h5>Level 1</h5>
                             <p class="mb-1">₦{{ number_format($commissionBreakdown['level1']['amount']) }}</p>
-                            <small>{{ $commissionBreakdown['level1']['count'] }} </small>
+                           {{-- <small>{{ $commissionBreakdown['level1']['count'] }} </small>--}}
                         </div>
                         <div class="col-4">
                             <h5>Level 2</h5>
                             <p class="mb-1">₦{{ number_format($commissionBreakdown['level2']['amount']) }}</p>
-                            <small>{{ $commissionBreakdown['level2']['count'] }} </small>
+                           {{-- <small>{{ $commissionBreakdown['level2']['count'] }} </small>--}}
                         </div>
                         {{-- <div class="col-4">
                             <h5>Level 3</h5>
