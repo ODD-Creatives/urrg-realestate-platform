@@ -10,74 +10,64 @@
             
             <div class="card-body">
                 <!-- Earnings Summary -->
-                <div class="row mb-4">
-                    <div class="col-md-4">
-                        <div class="card bg-light">
-                            <div class="card-body">
-                                <h6 class="card-title"> 💰 Total Earned</h6>
-                                <h3 class="text-dark">₦150,000</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card bg-light">
-                        <div class="card-body">
-                            <h6 class="card-title text-dark ">Referral Count</h6>
-                            <h3 class="text-dark"> <i class="mdi mdi-account-multiple text-dark icon-sm"></i> 42</h3>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card bg-light">
-                        <div class="card-body">
-                            <h6 class="card-title text-dark">Last Payout</h6>
-                            <h3 class="text-dark"> <i class="fa fa-briefcase text-dark icon-sm"></i> 2025-06-01</h3>
-                        </div>
-                        </div>
-                    </div>
-                </div>
+                @includeIf('user.partials.dashboardHeader')
 
                 <!-- Transactions Table -->
                 <div class="table-responsive">
-                <table class="table table-striped align-middle">
-                    <thead class="table-light">
-                    <tr>
-                        <th>#</th>
-                        <th>Date</th>
-                        <th>Referral</th>
-                        <th>Level</th>
-                        <th>Amount (₦)</th>
-                        <th>Status</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>2024-06-10</td>
-                        <td>John Doe</td>
-                        <td>Direct</td>
-                        <td>₦10,000</td>
-                        <td><span class="badge bg-warning">Pending</span></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>2024-06-08</td>
-                        <td>Jane Smith</td>
-                        <td>Indirect</td>
-                        <td>₦5,000</td>
-                        <td><span class="badge bg-success">Paid</span></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>2024-06-05</td>
-                        <td>Bob Wilson</td>
-                        <td>Direct</td>
-                        <td>₦15,000</td>
-                        <td><span class="badge bg-success">Paid</span></td>
-                    </tr>
-                    <!-- Add more rows as needed -->
-                    </tbody>
-                </table>
+                    <table class="table table-striped align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Date</th>
+                                <th>Referral</th>
+                                <th>Level</th>
+                                <th>Amount (₦)</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(auth()->user()->earnedCommissions()->latest()->get() as $index => $commission)
+                            <tr>
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $commission->created_at->format('Y-m-d') }}</td>
+                                <td>
+                                    @if($commission->referral)
+                                        {{ $commission->referral->firstname }} {{ $commission->referral->lastname }}
+                                    @else
+                                        N/A
+                                    @endif
+                                </td>
+                                <td>
+                                    @switch($commission->level)
+                                        @case(1) Direct @break
+                                        @case(2) Level 2 @break
+                                        @case(3) Level 3 @break
+                                        @default Level {{ $commission->level }}
+                                    @endswitch
+                                </td>
+                                <td>₦{{ number_format($commission->amount) }}</td>
+                                <td>
+                                    @php
+                                        $badgeClass = [
+                                            'pending' => 'bg-warning',
+                                            'paid' => 'bg-success',
+                                            'cancelled' => 'bg-danger'
+                                        ][$commission->status] ?? 'bg-secondary';
+                                    @endphp
+                                    <span class="badge {{ $badgeClass }}">
+                                        {{ ucfirst($commission->status) }}
+                                    </span>
+                                </td>
+                            </tr>
+                            @endforeach
+                            
+                            @if(auth()->user()->earnedCommissions()->count() === 0)
+                            <tr>
+                                <td colspan="6" class="text-center py-4">No commission records found</td>
+                            </tr>
+                            @endif
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

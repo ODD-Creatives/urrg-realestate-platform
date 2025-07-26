@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Commission;
 use App\Models\Wallet;
+use App\Models\ReferralLog;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 use App\Models\Admin;
 use App\Models\ReferralCode;
 use Illuminate\Auth\Events\Registered;
@@ -28,132 +31,103 @@ class RegisteredUserController extends Controller
         return view('auth.register');
     }
 
-    /**
-     * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
+    
     public function store(Request $request): RedirectResponse
     {
-        // dd($request->all());
         $validator = Validator::make($request->all(), [
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'phone' => 'required|string|max:20',
             'state_of_residence' => 'required|string|max:255',
-            'referral_code' => 'required|string|max:255',
+            'referral_code' => [
+                'required',
+                'string',
+                'max:255',
+                function ($attribute, $value, $fail) {
+                    // Check in users table
+                    $userExists = User::where('referral_code', $value)->exists();
+                    
+                    // Check in referral_codes table if it exists
+                    $codeExists = ReferralCode::with('admin')->where('code', $value)->exists();
+                    
+                    if (!$userExists && !$codeExists) {
+                        $fail('The referral code is invalid.');
+                    }
+                }
+            ],
             'experience' => 'required|string|max:255',
             'password' => 'required|string|min:8|confirmed',
         ]);
-
 
         if ($validator->fails()) {
             return redirect()->back()
                 ->withErrors($validator)
                 ->withInput();
         }
-        // Find the referrer
-        $referrer = ReferralCode::where('code', $request->referral_code)->first();
-        if (!$referrer) {
-            $referrer = User::where('referral_code', $request->referral_code)->first();
-        }
 
-        $user = User::create([
-            'firstname' => $request->firstname,
-            'lastname' => $request->lastname,
-            'email' => $request->email,
-            'phone' => $request->phone, 
-            'state_of_residence' => $request->state_of_residence,
-            'referral_code' => $this->generateUniqueReferralCode(),
-            'experience' => $request->experience,
-            'password' => Hash::make($request->password),
-            'upline_referral' => $request->referral_code,
-            'status' => 'active',
-        ]);
-
-        // Process referral commissions if referrer exists
-        if ($referrer) {
-            // Check if the referrer is an admin or a user
-            if ($referrer instanceof ReferralCode && $referrer->admin) {
-            // ReferralCode with admin relationship means admin referrer
-            $this->processReferralCommissionsAdmin($user, $referrer);
-            } elseif ($referrer instanceof User) {
-            // User model means user referrer
-            $this->processReferralCommissionsUser($user, $referrer);
+        // Find referrer with transaction for data consistency
+        return DB::transaction(function () use ($request) {
+            $referrer = ReferralCode::with('admin')->where('code', $request->referral_code)->first();
+            
+            if (!$referrer) {
+                $referrer = User::where('referral_code', $request->referral_code)->firstOrFail();
             }
-        }
 
-        // Send email verification notification
-        // event(new Registered($user));
+            $user = User::create([
+                'firstname' => $request->firstname,
+                'lastname' => $request->lastname,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'state_of_residence' => $request->state_of_residence,
+                'referral_code' => $this->generateUniqueReferralCode(),
+                'experience' => $request->experience,
+                'password' => Hash::make($request->password),
+                'upline_referral' => $request->referral_code,
+                'status' => 'active',
+            ]);
 
-        // Auth::login($user);
-        // Send verification email and referral link
-        $referralLink = "https://uniqueradiancerealtorsgroup.com/register/referral/{$user->referral_code}";
-        try {
-            Mail::to($user->email)->send(new VerificationEmail($user, $referralLink));
-            \Log::info('VerificationEmail sent successfully');
-        } catch (\Exception $e) {
-            \Log::error('VerificationEmail sending failed: ' . $e->getMessage());
-        }
-        
-        return redirect()->route('signin')
-        ->with('success', 'Registration successful! Please check your email to verify your account.');
+            // Process referral commissions
+            if ($referrer instanceof ReferralCode && $referrer->admin) {
+                $this->processReferralCommissionsAdmin($user, $referrer);
+            } elseif ($referrer instanceof User) {
+                $this->processReferralCommissionsUser($user, $referrer);
+            }
+
+            // Send verification email
+            $this->sendVerificationEmail($user);
+
+            return redirect()->route('signin')
+                ->with('success', 'Registration successful! Please check your email to verify your account.');
+        });
     }
 
 
     protected function processReferralCommissionsAdmin(User $newUser, ReferralCode $referrer)
     {
-        $commissionAmount = 50; // Commission amount
-        $levelsToPay = 3; // Pay up to 3 levels
-        
+        $commissionAmount = 50;
+        $levelsToPay = 3;
         $currentUpline = $referrer;
         $level = 1;
         
         while ($currentUpline && $level <= $levelsToPay) {
             try {
-                // Get the admin user - ensure this returns a valid user
-                $uplineUser = Admin::find($currentUpline->admin->id);
+                $uplineAdmin = $currentUpline->admin;
                 
-                if (!$uplineUser) {
-                    \Log::error("Admin user not found for upline ID: {$currentUpline->id}");
+                if (!$uplineAdmin) {
+                    \Log::error("Admin not found for referral code: {$currentUpline->code}");
                     break;
                 }
 
-                // Verify the user exists in the users table (if user_id references users table)
-                $userExists = Admin::where('id', $uplineUser->id)->exists();
+                $this->createCommissionRecord($newUser, $uplineAdmin, $level, $commissionAmount);
+                $this->createReferralLog($newUser, $uplineAdmin, $level);
+                $this->updateWallet($uplineAdmin, $commissionAmount);
                 
-                if (!$userExists) {
-                    \Log::error("User ID {$uplineUser->id} not found in users table");
-                    break;
-                }
-
-                // Create commission record
-                Commission::create([
-                    'user_id' => $uplineUser->id,
-                    'user_email' => $uplineUser->email,
-                    'referral_id' => $newUser->id,
-                    'amount' => $commissionAmount,
-                    'level' => $level,
-                    'status' => 'pending',
-                ]);
-                
-                // Update upline's wallet - ensure this uses the same ID as commission
-                $wallet = Wallet::firstOrCreate([
-                    'user_id' => $uplineUser->id,
-                    'user_email' => $uplineUser->email,
-                ]);
-                $wallet->balance += $commissionAmount;
-                $wallet->save();
-                
-                \Log::info("Commission paid to {$uplineUser->email} at level {$level}");
-
-                // Move to next upline level
                 $currentUpline = $currentUpline->upline;
                 $level++;
                 
             } catch (\Exception $e) {
-                \Log::error("Commission processing failed at level {$level}: " . $e->getMessage());
+                \Log::error("Commission processing failed: " . $e->getMessage());
                 break;
             }
         }
@@ -161,58 +135,71 @@ class RegisteredUserController extends Controller
 
     protected function processReferralCommissionsUser(User $newUser, User $referrer)
     {
-        $commissionAmount = 50; // Commission amount
-        $levelsToPay = 3; // Pay up to 3 levels
-        
+        $commissionAmount = 50;
+        $levelsToPay = 3;
         $currentUpline = $referrer;
         $level = 1;
         
         while ($currentUpline && $level <= $levelsToPay) {
             try {
-                // Get the admin user - ensure this returns a valid user
-                $uplineUser = User::find($currentUpline->id);
+                $this->createCommissionRecord($newUser, $currentUpline, $level, $commissionAmount);
+                $this->createReferralLog($newUser, $currentUpline, $level);
+                $this->updateWallet($currentUpline, $commissionAmount);
                 
-                if (!$uplineUser) {
-                    \Log::error("Admin user not found for upline ID: {$currentUpline->id}");
-                    break;
-                }
-
-                // Verify the user exists in the users table (if user_id references users table)
-                $userExists = User::where('id', $uplineUser->id)->exists();
-                
-                if (!$userExists) {
-                    \Log::error("User ID {$uplineUser->id} not found in users table");
-                    break;
-                }
-
-                // Create commission record
-                Commission::create([
-                    'user_id' => $uplineUser->id,
-                    'user_email' => $uplineUser->email,
-                    'referral_id' => $newUser->id,
-                    'amount' => $commissionAmount,
-                    'level' => $level,
-                    'status' => 'pending',
-                ]);
-                
-                // Update upline's wallet - ensure this uses the same ID as commission
-                $wallet = Wallet::firstOrCreate([
-                    'user_id' => $uplineUser->id,
-                    'user_email' => $uplineUser->email,
-                ]);
-                $wallet->balance += $commissionAmount;
-                $wallet->save();
-                
-                \Log::info("Commission paid to {$uplineUser->email} at level {$level}");
-
-                // Move to next upline level
                 $currentUpline = $currentUpline->upline;
                 $level++;
                 
             } catch (\Exception $e) {
-                \Log::error("Commission processing failed at level {$level}: " . $e->getMessage());
+                \Log::error("Commission processing failed: " . $e->getMessage());
                 break;
             }
+        }
+    }
+
+    protected function createCommissionRecord(User $newUser, $upline, int $level, int $amount)
+    {
+        return Commission::create([
+            'user_id' => $upline->id,
+            'user_email' => $upline->email,
+            'referral_id' => $newUser->id,
+            'amount' => $amount,
+            'level' => $level,
+            'status' => 'pending',
+        ]);
+    }
+
+    protected function createReferralLog(User $newUser, $referrer, int $level)
+    {
+        return ReferralLog::create([
+            'user_id' => $newUser->id,
+            'referrer_id' => $referrer->id,
+            'referrer_type' => get_class($referrer),
+            'level' => $level,
+        ]);
+    }
+
+    protected function updateWallet($user, int $amount)
+    {
+        $wallet = Wallet::firstOrCreate([
+            'user_id' => $user->id,
+            'user_email' => $user->email,
+        ]);
+        
+        $wallet->balance += $amount;
+        $wallet->save();
+        
+        return $wallet;
+    }
+
+    protected function sendVerificationEmail(User $user)
+    {
+        $referralLink = "https://uniqueradiancerealtorsgroup.com/register/referral/{$user->referral_code}";
+        
+        try {
+            Mail::to($user->email)->send(new VerificationEmail($user, $referralLink));
+            \Log::info("Verification email sent to {$user->email}");
+        } catch (\Exception $e) {
+            \Log::error("Failed to send verification email: " . $e->getMessage());
         }
     }
 
@@ -227,5 +214,6 @@ class RegisteredUserController extends Controller
         
         return $code;
     }
+
 
 }
