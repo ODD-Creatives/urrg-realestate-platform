@@ -13,7 +13,8 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update'); 
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/profile/personal', [ProfileController::class, 'updatePersonal'])->name('profile.update.personal');
-   
+    Route::post('/profile/ update-payment', [ProfileController::class, 'updatePayment'])->name('profile.update.payment');
+  
     Route::get('/user/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
     Route::get('/user/referral', [UserDashboardController::class, 'referral'])->name('user.referral');
     Route::get('/user/commission', [UserDashboardController::class, 'commission'])->name('user.commission');
