@@ -415,8 +415,8 @@
                                 </div>
                                 <div class="team-social">
                                     <div class="th-social">
-                                        <a target="_blank" href="https://instagram.com/"><i class="fab fa-linkedin-in"></i></a> 
-                                        <a target="_blank" href="https://linkedin.com/"><i class="fa-solid fa-envelope"></i></a>
+                                        <a target="_blank" href="https://www.instagram.com/adejaremichael_adetomiwa?igsh=dml0MnB0MDQ3bzBm"><i class="fab fa-instagram"></i></a> 
+                                        <a target="_blank" href="#"><i class="fa-solid fa-envelope"></i></a>
                                     </div>
                                 </div>
                                 <button class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#modalMike">View Profile</button>
@@ -437,8 +437,8 @@
                                 </div>
                                 <div class="team-social">
                                     <div class="th-social">
-                                        <a target="_blank" href="https://instagram.com/"><i class="fab fa-linkedin-in"></i></a>
-                                        <a target="_blank" href="https://linkedin.com/"><i class="fa-solid fa-envelope"></i></a>
+                                        <a target="_blank" href="https://www.instagram.com/adehhhomes?igsh=MWUxZmJ6NWoyZWY2bg%3D%3D&utm_source=qr "><i class="fab fa-instagram"></i></a>
+                                        <a target="_blank" href="#"><i class="fa-solid fa-envelope"></i></a>
                                     </div>
                                 </div>
                                 <button class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#modalAde">View Profile</button>
@@ -457,12 +457,12 @@
                             <div class="team-content d-flex justify-content-between align-items-start">
                                 <div class="left-contet">
                                     <h3 class="box-title"><a href="team-details.html">Mr. Babalola Olaniyi Peter</a></h3>
-                                    <span class="team-desig">COO</span>
+                                    <span class="team-desig">Chief Operating Officer</span>
                                 </div>
                                 <div class="team-social">
                                     <div class="th-social">
-                                        <a target="_blank" href="https://instagram.com/"><i class="fab fa-linkedin-in"></i></a>
-                                        <a target="_blank" href="https://linkedin.com/"><i class="fa-solid fa-envelope"></i></a>
+                                        <a target="_blank" href="https://www.instagram.com/adejaremichael_adetomiwa?igsh=dml0MnB0MDQ3bzBm"><i class="fab fa-instagram"></i></a>
+                                        <a target="_blank" href="#"><i class="fa-solid fa-envelope"></i></a>
                                     </div>
                                 </div>
                                 <button class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#modalPeter">View Profile</button>
@@ -519,7 +519,7 @@
                 He is the CEO of P-Rock Homes, a real estate brand helping individuals secure genuine and profitable properties across Nigeria. <br> 
                 A graduate of Lagos State University of Science and Technology, he blends academic knowledge with hands-on experience. 
                 As a skilled graphic designer and real estate consultant, he has assisted over 50 investors in acquiring valuable assets. <br> 
-                Olaniyi also serves as COO of Unique Radial Realtor Group, driving leadership and team development. 
+                Olaniyi also serves as Chief Operating Officer (COO) of Unique Radial Realtor Group, driving leadership and team development. 
                 Beyond business, he mentors young people and contributes as a church sound engineer, embodying integrity, excellence, and a passion for impact.
             </div>
         </div>
