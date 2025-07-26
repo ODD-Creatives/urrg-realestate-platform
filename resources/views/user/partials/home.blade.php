@@ -20,7 +20,8 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="{{ asset('assets/user/assets/css/style.css') }}">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="{{ asset('assets/user/assets/images/favicon.png') }}" />
+    <link rel="shortcut icon" href="{{ asset('assets/img/icon.png') }}" />
+
   </head>
   <body>
     <div class="container-scroller">
