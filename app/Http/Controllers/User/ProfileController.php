@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -94,7 +95,7 @@ class ProfileController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-
+ 
         $user->update([
             'bank_name' => $request->bank_name,
             'account_name' => $request->account_name,
@@ -121,11 +122,11 @@ class ProfileController extends Controller
         
         // Delete old avatar if exists
         if ($user->photo) {
-            Storage::delete('public/avatars/'.$user->avaphototar);
+            Storage::delete('public/avatars/'.$user->photo);
         }
         // Store new avatar
-        $avatarName = $user->id.'_avatar'.time().'.'.$request->photo->extension();
-        $request->photo->storeAs('public/avatars', $avatarName);
+        $avatarName = $user->id.'_avatar'.time().'.'.$request->avatar->extension();
+        $request->avatar->storeAs('public/avatars', $avatarName);
 
         // Update user record
         $user->photo = $avatarName;

@@ -26,40 +26,53 @@
         <div class="row">
             <div class="col-lg-8 grid-margin stretch-card8">
                 
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Referral Performance</h4>
-                            <div class="table-responsive">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Status</th>
-                                            <th>Level</th>
-                                            <th>Earnings</th>
-                                            <th>Joined</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($user->referrals as $referral)
-                                        <tr>
-                                            <td>{{ $referral->full_name }}</td>
-                                            <td>
-                                                <span class="badge bg-{{ $referral->status === 'active' ? 'success' : 'secondary' }}">
-                                                    {{ ucfirst($referral->status) }}
-                                                </span>
-                                            </td>
-                                            <td>Level {{ $referral->paidCommissions->first()->level ?? 1 }}</td>
-                                            <td>₦{{ number_format($referral->paidCommissions->sum('amount')) }}</td>
-                                            <td>{{ $referral->created_at->format('M d, Y') }}</td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Referral Performance</h4>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Relationship</th>
+                                        <th>Status</th>
+                                        <th>Level</th>
+                                        <th>Earnings</th>
+                                        <th>Joined</th>
+                                        <th>Referrer</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($allReferrals as $referral)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $referral['user']->full_name }}</td>
+                                        <td>
+                                            @if($referral['level'] == 1)
+                                                <span class="badge bg-success">Child</span>
+                                            @elseif($referral['level'] == 2)
+                                                <span class="badge bg-info">Grandchild</span>
+                                            @else
+                                                <span class="badge bg-warning">Great Grandchild</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-{{ $referral['user']->status === 'active' ? 'success' : 'secondary' }}">
+                                                {{ ucfirst($referral['user']->status) }}
+                                            </span>
+                                        </td>
+                                        <td>Level {{ $referral['level'] }}</td>
+                                        <td>₦{{ number_format($referral['user']->paidCommissions->sum('amount')) }}</td>
+                                        <td>{{ $referral['user']->created_at->format('M d, Y') }}</td>
+                                        <td>{{ $referral['referrer'] }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-              
+                </div>
             </div>
             <div class="col-lg-4 grid-margin">
                 <div class="card">
@@ -70,16 +83,28 @@
                                 <li>
                                     <span class="caret caret-down">{{ $user->full_name }} (You)</span>
                                     <ul class="nested active">
-                                        @foreach($referralTree[1] ?? [] as $level1)
+                                        @foreach($referralTree['children'] as $childData)
                                         <li>
-                                            <span class="caret">{{ $level1->full_name }} (Level 1)</span>
-                                            <ul class="nested">
-                                                @foreach($level1->referrals as $level2)
+                                            <span class="caret {{ count($childData['grandchildren']) > 0 ? 'caret-down' : '' }}">
+                                                {{ $childData['child']->full_name }} 
+                                                <span class="badge bg-success">Child</span>
+                                                <small class="text-muted">Earned: ₦{{ number_format($childData['child']->paidCommissions->sum('amount')) }}</small>
+                                            </span>
+                                            <ul class="nested {{ count($childData['grandchildren']) > 0 ? 'active' : '' }}">
+                                                @foreach($childData['grandchildren'] as $grandchildData)
                                                 <li>
-                                                    <span class="caret">{{ $level2->full_name }} (Level 2)</span>
-                                                    <ul class="nested">
-                                                        @foreach($level2->referrals as $level3)
-                                                        <li>{{ $level3->full_name }} (Level 3)</li>
+                                                    <span class="caret {{ count($grandchildData['great_grandchildren']) > 0 ? 'caret-down' : '' }}">
+                                                        {{ $grandchildData['grandchild']->full_name }}
+                                                        <span class="badge bg-info">Grandchild</span>
+                                                        <small class="text-muted">Earned: ₦{{ number_format($grandchildData['grandchild']->paidCommissions->sum('amount')) }}</small>
+                                                    </span>
+                                                    <ul class="nested {{ count($grandchildData['great_grandchildren']) > 0 ? 'active' : '' }}">
+                                                        @foreach($grandchildData['great_grandchildren'] as $greatGrandchild)
+                                                        <li>
+                                                            {{ $greatGrandchild->full_name }}
+                                                            <span class="badge bg-warning">Great Grandchild</span>
+                                                            <small class="text-muted">Earned: ₦{{ number_format($greatGrandchild->paidCommissions->sum('amount')) }}</small>
+                                                        </li>
                                                         @endforeach
                                                     </ul>
                                                 </li>

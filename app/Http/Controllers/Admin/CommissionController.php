@@ -3,68 +3,33 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Commission; // Assuming you have a Commission model
+use App\Models\Realtor;
 use Illuminate\Http\Request;
 
 class CommissionController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display the admin dashboard.
+     *
+     * @return \Illuminate\View\View
      */
-    public function index()
+
+    public function index(Request $request)
     {
-        return view('admin.pages.commission.index');
+        $commissions = \App\Models\Commission::with(['user', 'referral'])
+        ->when($request->search, fn($q) => $q->whereHas('user', fn($q2) => $q2->where('name', 'like', '%'.$request->search.'%')))
+        ->when($request->date, fn($q) => $q->whereDate('created_at', $request->date))
+        ->get();
+
+        $unreadAlerts = 3; 
+
+        return view('admin.pages.commission.index', compact('commissions', 'unreadAlerts'));
     }
 
     public function commission_pay()
     {
         return view('admin.pages.commission.commission_pay');
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+   
 }

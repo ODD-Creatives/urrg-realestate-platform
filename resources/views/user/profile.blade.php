@@ -55,7 +55,8 @@
                         <div class="row">
                            <div class="col-md-3 text-center">
                             <!-- Profile Picture -->
-                            <img src="{{ auth()->user()->avatar ? asset('storage/avatars/'.auth()->user()->avatar) : asset('assets/user/assets/images/faces/face1.jpg') }}" 
+                            <img 
+                                src="{{ auth()->user()->photo ? asset('storage/avatars/'.auth()->user()->photo) : asset('assets/user/assets/images/faces/face1.jpg') }}" 
                                 class="rounded-circle img-fluid mb-2" 
                                 alt="Profile Photo" 
                                 style="width: 120px; height: 120px; object-fit: cover;">
@@ -64,7 +65,7 @@
                                 
                                 <!-- Avatar Upload Form -->
                                 <form method="POST" action="{{ route('profile.update.avatar') }}" enctype="multipart/form-data" class="mb-3">
-                                    @csrf
+                                    @csrf 
                                     <div class="input-group">
                                         <input type="file" name="avatar" class="form-control d-none" id="avatarUpload" accept="image/*">
                                         <label for="avatarUpload" class="btn btn-primary w-100">

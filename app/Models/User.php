@@ -87,21 +87,42 @@ class User extends Authenticatable implements MustVerifyEmail
             ->get();
     }
 
+    // public function downlineTree($levels = 3)
     public function downlineTree($levels = 3)
     {
-        $tree = [];
-        $currentLevel = [$this];
+        $tree = [
+            'self' => $this,
+            'children' => []
+        ];
+
+        $currentGeneration = $this->referrals()->with(['wallet', 'paidCommissions'])->get();
         
-        for ($i = 1; $i <= $levels; $i++) {
-            $nextLevel = [];
-            foreach ($currentLevel as $user) {
-                $referrals = $user->referrals;
-                $nextLevel = array_merge($nextLevel, $referrals->all());
+        if ($levels >= 1 && $currentGeneration->count() > 0) {
+            foreach ($currentGeneration as $child) {
+                $grandchildren = collect([]);
+                
+                if ($levels >= 2) {
+                    $grandchildren = $child->referrals()->with(['wallet', 'paidCommissions'])->get();
+                }
+                
+                $tree['children'][] = [
+                    'child' => $child,
+                    'grandchildren' => $grandchildren->map(function ($grandchild) use ($levels) {
+                        $greatGrandchildren = collect([]);
+                        
+                        if ($levels >= 3) {
+                            $greatGrandchildren = $grandchild->referrals()->with(['wallet', 'paidCommissions'])->get();
+                        }
+                        
+                        return [
+                            'grandchild' => $grandchild,
+                            'great_grandchildren' => $greatGrandchildren
+                        ];
+                    })
+                ];
             }
-            if (empty($nextLevel)) break;
-            $tree[$i] = collect($nextLevel);
-            $currentLevel = $nextLevel;
         }
+
         return $tree;
     }
 }

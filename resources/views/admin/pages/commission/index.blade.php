@@ -6,12 +6,18 @@
             <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                     <h3 class="font-weight-bold">💰 Commission Records </h3>
-                    <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h6>
+                    <h6 class="font-weight-normal mb-0">
+                        All systems are running smoothly! You have 
+                        <span class="text-primary">{{ $unreadAlerts ?? 0 }} unread alerts!</span>
+                    </h6>
                 </div>
                 <div class="col-12 mt-4">
                     <p>Filter By:-</p>
-                    <input type="date" class="form-control d-inline-block" style="width: auto;">
-                    <input type="text" class="form-control d-inline-block ms-2" placeholder="Search Realtor..." style="width: 200px;">
+                    <form method="GET" action="{{ route('admin.commissions.index') }}" class="d-inline-block">
+                        <input type="date" name="date" value="{{ request('date') }}" class="form-control d-inline-block" style="width: auto;">
+                        <input type="text" name="search" value="{{ request('search') }}" class="form-control d-inline-block ms-2" placeholder="Search Realtor..." style="width: 200px;">
+                        <button type="submit" class="btn btn-sm btn-primary ms-2">Filter</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -31,50 +37,41 @@
                         <tr>
                         <th>#</th>
                         <th>Realtor</th>
+                        <th>Realtor Email</th>
                         <th>Level</th>
-                        <th>Realtor ₦</th>
-                        <th>Upline 1</th>
-                        <th>Upline 1 ₦</th>
-                        <th>Upline 2</th>
-                        <th>Upline 2 ₦</th>
+                        <th>Amount ₦</th>
+                        <th>Referral</th>
                         <th>Status</th>
-                        <th>Payout Date</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @forelse($commissions as $commission)
                         <tr>
-                        <td>1</td>
-                        <td>Grace Johnson</td>
-                        <td>Direct</td>
-                        <td>₦10,000</td>
-                        <td>John Musa</td>
-                        <td>₦3,000</td>
-                        <td>Deborah Olu</td>
-                        <td>₦2,000</td>
-                        <td><span class="badge bg-success">Paid</span></td>
-                        <td>2024-07-01</td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $commission->user ? $commission->user->firstname . ' ' . $commission->user->lastname : '-' }}</td>
+    
+                            <td>{{ $commission->user_email }}</td>
+                            <td>{{ $commission->level }}</td>
+                            <td>₦{{ number_format($commission->amount, 0) }}</td>
+                            <td>{{ $commission->referral ? $commission->referral->firstname. ' ' . $commission->referral->lastname : '-'}}</td>
+    
+                            <td>
+                                @if($commission->status === 'Paid')
+                                    <span class="badge bg-success">Paid</span>
+                                @else
+                                    <span class="badge bg-warning text-dark">Pending</span>
+                                @endif
+                            </td>
                         </tr>
+                        @empty
                         <tr>
-                        <td>2</td>
-                        <td>Ahmed Musa</td>
-                        <td>Direct</td>
-                        <td>₦8,000</td>
-                        <td>Sarah Bello</td>
-                        <td>₦2,500</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td><span class="badge bg-warning text-dark">Pending</span></td>
-                        <td>--</td>
+                            <td colspan="7" class="text-center">No commission records found.</td>
                         </tr>
+                        @endforelse
                     </tbody>
                     </table>
                 </div>
             </div>
-
-
-                
-
-                
         </div>
     </div>
-@endsection 
+@endsection
