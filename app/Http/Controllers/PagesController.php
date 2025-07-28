@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use App\Models\ReferralCode;
 use App\Models\User;
+use App\Models\Developer;
+use App\Mail\DeveloperVerificationEmail;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use App\Models\DeveloperApplication;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -54,14 +60,16 @@ class PagesController extends Controller
         return view('frontend.properties.show');
     }
  
-    public function eventDetails(){
+    public function eventDetails()
+    {
         return view('frontend.event.show');
     }
 
 
-    public function store(Request $request)
+    public function developerStore(Request $request)
     {
-        $validated = $request->validate([
+        // Validate the request
+        $validator = Validator::make($request->all(), [
             'company_name' => 'required|string|max:255',
             'contact_person' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
@@ -69,21 +77,70 @@ class PagesController extends Controller
             'subject' => 'required|string|max:255',
             'letter_of_intent' => 'required|file|mimes:pdf,doc,docx|max:2048',
             'company_profile' => 'required|file|mimes:pdf,doc,docx|max:2048',
-            'property_details' => 'required|file|mimes:pdf,doc,docx,jpg,png|max:2048',
+            'property_details' => 'required|file|mimes:pdf,doc,docx|max:2048',
         ]);
 
-        $application = DeveloperApplication::create([
-            'company_name' => $validated['company_name'],
-            'contact_person' => $validated['contact_person'],
-            'phone' => $validated['phone'],
-            'email' => $validated['email'],
-            'subject' => $validated['subject'],
-            'letter_of_intent_path' => $request->file('letter_of_intent')->store('developer_applications'),
-            'company_profile_path' => $request->file('company_profile')->store('developer_applications'),
-            'property_details_path' => $request->file('property_details')->store('developer_applications'),
-        ]);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
 
-        return response()->json(['success' => true, 'message' => 'Application submitted successfully!']);
+        // Create directory if it doesn't exist
+        $publicPath = public_path('assets/uploads/developer_documents/');
+        if (!file_exists($publicPath)) {
+            mkdir($publicPath, 0777, true);
+        }
+
+        // Process file uploads
+        $filePaths = [];
+        $fileFields = ['letter_of_intent', 'company_profile', 'property_details'];
+
+        foreach ($fileFields as $field) {
+            if ($request->hasFile($field)) {
+                $file = $request->file($field);
+                $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $extension = $file->getClientOriginalExtension();
+                $fileName = Str::slug($originalName) . '_' . time() . '.' . $extension;
+                
+                // Move file to public/assets directory
+                $file->move($publicPath, $fileName);
+                $filePaths[$field] = 'assets/uploads/developer_documents/' . $fileName;
+            }
+        }
+
+        // Store data in database (adjust according to your model)
+        $developer = new Developer(); // Replace with your actual model
+        $developer->company_name = $request->company_name;
+        $developer->contact_person = $request->contact_person;
+        $developer->phone = $request->phone;
+        $developer->email = $request->email;
+        $developer->subject = $request->subject;
+        $developer->letter_of_intent_path = $filePaths['letter_of_intent'] ?? null;
+        $developer->company_profile_path = $filePaths['company_profile'] ?? null;
+        $developer->property_details_path = $filePaths['property_details'] ?? null;
+        $developer->save();
+
+        // Send email verification notification
+        event(new Registered($developer));
+
+        // Return success response
+        return redirect()->back()->with('success', 'Your application has been submitted successfully! Please check your email to verify your account.');
     }
-    
+     
+    public function verifyEmail($id)
+    {
+        $developer = Developer::findOrFail($id);
+        
+        if ($developer->email_verified_at) {
+            return redirect()->route('home')->with('info', 'Email already verified');
+        }
+
+        $developer->email_verified_at = now();
+        $developer->save();
+
+        return redirect()->route('home')->with('success', 'Email verified successfully!');
+    }
+
+
 }

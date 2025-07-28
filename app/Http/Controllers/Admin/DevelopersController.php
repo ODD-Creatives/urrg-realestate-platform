@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Developer;
 
 class DevelopersController extends Controller
 {
@@ -12,7 +13,8 @@ class DevelopersController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.developers.index');
+        $developers = Developer::latest()->get();
+        return view('admin.pages.developers.index', compact('developers'));
     } 
 
     /**
@@ -34,22 +36,31 @@ class DevelopersController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Developer $developer)
     {
-        //
+        return view('admin.pages.developers.view', compact('developer'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
-        //
+        $developer = Developer::findOrFail(decrypt($id));
+        return view('admin.pages.developers.edit', compact('developer'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    public function updateStatus(Request $request, Developer $developer)
+    {
+        $request->validate([
+            'status' => 'required|in:pending,approved,rejected'
+        ]);
+        
+        $developer->update([
+            'status' => $request->status,
+            // You might want to add other fields like 'approved_by', 'approved_at', etc.
+        ]);
+        
+        return redirect()->back()->with('success', 'Developer status updated successfully');
+    }
+
     public function update(Request $request, string $id)
     {
         //

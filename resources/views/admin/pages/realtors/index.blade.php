@@ -46,8 +46,7 @@
                             
                                 <td>
                                     <div class="btn-group">
-                                        {{-- <a href="{{ route('admin.realtors.view', $user->id) }}" class="btn btn-sm btn-outline-info">View</a> --}}
-                                        <a href="#" class="btn btn-sm btn-outline-info">View</a>
+                                        <a href="{{ route('admin.realtors.view', encrypt($user->id) ) }}" class="btn btn-sm btn-outline-info">View</a>
                                         @if($user->isActive())
                                             <form action="{{ route('admin.realtors.deactivate', $user->id) }}" method="POST">
                                                 @csrf
@@ -61,10 +60,7 @@
                                                 <button type="submit" class="btn btn-sm btn-outline-success">Activate</button>
                                             </form>
                                         @endif
-                                        <a href="#" class="btn btn-sm btn-outline-primary">Referrals</a>
-                                        {{-- <a href="{{ route('admin.realtors.referral', $user->id) }}" class="btn btn-sm btn-outline-primary">Referrals</a> --}}
-                                        {{-- <a href="{{ route('admin.realtors.commission', $user->id) }}" class="btn btn-sm btn-outline-success">Commissions</a> --}}
-                                        <a href="#" class="btn btn-sm btn-outline-success">Commissions</a>
+                                        <a href="{{ route('admin.realtors.referral', encrypt($user->id) ) }}" class="btn btn-sm btn-outline-primary">Referrals</a>
                                     </div>
                                 </td>
                             </tr>

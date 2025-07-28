@@ -200,7 +200,10 @@
                             </div>
                         </div>
                         <div class="contact-form-wrap">
-                            <form action="{{ route('developer.applications.store') }}" method="POST" class="contact-form ajax-contact" enctype="multipart/form-data">
+                            <form action="{{ route('developer.store') }}" method="POST" class="contact-form " enctype="multipart/form-data">
+                               @csrf
+                                <div class="form-messages"></div>
+
                                 <h3 class="form-title">Join URRG as a Developer</h3>
                                 <div class="row">
                                     <!-- Developer/Company Name -->
@@ -252,7 +255,6 @@
 
                                 <p class="form-messages mb-0 mt-3"></p>
                             </form>
-
                         </div>
                     </div>
                 </div>

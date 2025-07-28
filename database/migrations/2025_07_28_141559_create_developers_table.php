@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('contact_person');
             $table->string('phone');
             $table->string('email');
+            $table->timestamp('email_verified_at')->nullable();
+            
             $table->string('subject');
             
             // File paths (they'll be stored in storage and paths saved in DB)

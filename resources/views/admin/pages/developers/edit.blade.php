@@ -19,7 +19,7 @@
                     <h4 class="mb-0"> Property Details</h4>
                     <div>
                         <a href="{{ route('admin.developers.listings_add') }}" class="btn btn-sm btn-outline-warning">Edit</a>
-                        <a href="{{ route('admin.developers.listings') }}" class="btn btn-sm btn-outline-dark">Back</a>
+                        <a href="{{ route('admin.developers.index') }}" class="btn btn-sm btn-outline-dark">Back</a>
                         
                     </div>
                 </div>
@@ -27,7 +27,15 @@
                     <div class="row mb-3">
                         <div class="col-md-4">
                             <p><strong>Category:</strong> Apartment</p>
-                            <p><strong>Status:</strong> <span class="badge bg-success">Approved</span></p>
+                            <p><strong>Status:</strong> 
+                                 @if($developer->status == 'approved')
+                                    <span class="badge bg-success">Approved</span>
+                                @elseif($developer->status == 'rejected')
+                                    <span class="badge bg-danger">Rejected</span>
+                                @else
+                                    <span class="badge bg-warning">Pending</span>
+                                @endif
+                            </p>
                             <p><strong>Featured:</strong> <span class="badge bg-info">Yes</span></p> 
                             <p><strong>Listed On:</strong> 2024-06-01</p>
                         </div>
@@ -71,15 +79,32 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 mb-3">
-                                <a href="#" class="btn btn-sm btn-outline-success">Approve</a>
-                                <a href="#" class="btn btn-sm btn-outline-danger">Reject</a> 
-                        
+                    
+                    <div class="col-md-6 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Manage Developer</h4>
+                                <form action="{{ route('admin.developers.update-status', $developer->id) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="form-group">
+                                        <label>Change Status</label>
+                                        <select name="status" class="form-control">
+                                            <option value="pending" {{ $developer->status == 'pending' ? 'selected' : '' }}>Pending</option>
+                                            <option value="approved" {{ $developer->status == 'approved' ? 'selected' : '' }}>Approved</option>
+                                            <option value="rejected" {{ $developer->status == 'rejected' ? 'selected' : '' }}>Rejected</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Update Status</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
 
                     
                 </div>
-            </div>
+
+               
         </div>
     </div>
 @endsection 

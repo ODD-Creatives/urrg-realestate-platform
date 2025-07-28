@@ -13,7 +13,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     protected $fillable = [
         'firstname', 'lastname', 'name', 'email', 'phone',
-        'state_of_residence', 'referral_code', 'experience',
+        'state_of_residence', 'referral_code', 'realtor_id', 'experience',
         'password', 'status', 'dob', 'address', 'bank_name',
         'account_name', 'account_number', 'payment_method',
         'photo', 'upline_referral'

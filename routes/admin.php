@@ -30,7 +30,7 @@ Route::middleware(['admin.auth'])->prefix('admin')->name('admin.')->group(functi
         Route::put('/update/{id}', 'update')->name('update');
         Route::delete('/destroy/{id}', 'destroy')->name('destroy');
     });   
-
+ 
     Route::prefix('properties')->name('property.')->controller(ProperiesController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/create', 'create')->name('create');
@@ -42,6 +42,8 @@ Route::middleware(['admin.auth'])->prefix('admin')->name('admin.')->group(functi
     
     Route::prefix('realtors')->name('realtors.')->controller(RealtorController::class)->group(function () {
         Route::get('/', 'index')->name('index');
+        Route::get('show/{id}', 'show')->name('show');
+        Route::get('referral/show/{id}', 'referral')->name('referral');
     });
 
     Route::prefix('realtor')->name('realtors.')->controller(RealtorController::class)->group(function () {
@@ -56,7 +58,11 @@ Route::middleware(['admin.auth'])->prefix('admin')->name('admin.')->group(functi
 
     Route::prefix('developer')->name('developers.')->controller(DevelopersController::class)->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::get('/view','developer_view')->name('view');
+        Route::get('/view','developer_view')->name('show');
+        Route::get('/edit/{id}','edit')->name('edit');
+        Route::put('/update/{id}','update')->name('update');
+        Route::put('/{developer}/status','updateStatus')->name('update-status');
+
         Route::get('/developer-listings','developer_listing')->name('listings');
         Route::get('/developer-listings-add','developer_listing_add')->name('listings_add');
         Route::get('/developer-listings-view','developer_listing_view')->name('listings_view');

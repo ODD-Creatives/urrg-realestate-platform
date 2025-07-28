@@ -78,14 +78,14 @@ class RealtorController extends Controller
      */
     public function show( $realtor)
     {
-        $user = User::where('id', $realtor)->firstOrFail();
+        $user = User::where('id', decrypt($realtor) )->firstOrFail();
         // dd($realtor);
         return view('admin.pages.realtors.show', [
             'user' => $user,
             // 'referrals' => $realtor->referrals()->latest()->paginate(5),
             // 'commissions' => $realtor->commissions()->latest()->paginate(5)
         ]);
-    }
+    } 
 
     public function referral(Realtor $realtor)
     {

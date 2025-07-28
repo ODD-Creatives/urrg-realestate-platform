@@ -5,8 +5,9 @@ use Mail;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Commission;
-use App\Models\Wallet;
+use App\Models\Wallet; 
 use App\Models\ReferralLog;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 use App\Models\Admin;
@@ -81,6 +82,7 @@ class RegisteredUserController extends Controller
                 'phone' => $request->phone,
                 'state_of_residence' => $request->state_of_residence,
                 'referral_code' => $this->generateUniqueReferralCode(),
+                'realtor_id' => $this->generateRealtorId(), 
                 'experience' => $request->experience,
                 'password' => Hash::make($request->password),
                 'upline_referral' => $request->referral_code,
@@ -102,6 +104,10 @@ class RegisteredUserController extends Controller
         });
     }
 
+    protected function generateRealtorId(): string
+    {
+        return 'RE-' . date('Ymd') . '-' . strtoupper(Str::random(4));
+    }
 
     protected function processReferralCommissionsAdmin(User $newUser, ReferralCode $referrer)
     {

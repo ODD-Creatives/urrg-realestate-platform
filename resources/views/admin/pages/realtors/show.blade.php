@@ -43,7 +43,7 @@
                                 {{ $user->created_at->format('jS \o\f F, Y') }}
                             </p>
                             @if($user->status === 'active')
-                                <form action="{{ route('admin.realtors.suspend', $user->id) }}" method="POST" class="d-inline">
+                                <form action="{{ route('admin.realtors.deactivate', $user->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('PATCH')
                                     <button type="submit" class="btn btn-sm btn-outline-danger">Suspend</button>
@@ -56,7 +56,7 @@
                                 </form>
                             @endif
                         </div>
-                        <!-- Basic Info -->
+                        <!-- Basic Info --> 
                         <div class="col-md-6">
                             <div class="card bg-light border mb-3">
                                 <div class="card-body text-center ">
