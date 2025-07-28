@@ -73,8 +73,22 @@ Route::middleware(['admin.auth'])->prefix('admin')->name('admin.')->group(functi
     Route::prefix('events')->name('events.')->controller(EventController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/create','create')->name('create');
+        Route::post('/store', 'store')->name('store');
         Route::get('/show','show')->name('show');
+
     });
+
+    Route::prefix('events')->name('events.')->controller(EventController::class)->group(function () {
+        Route::get('/', 'index')->name('index');                     
+        Route::get('/create', 'create')->name('create');            
+        Route::post('/store', 'store')->name('store');              
+        Route::get('/show/{id}', 'show')->name('show');             
+        Route::get('/edit/{id}', 'edit')->name('edit');             
+        Route::put('/update/{id}', 'update')->name('update');      
+        Route::delete('/delete/{id}', 'destroy')->name('destroy');
+
+    });
+
 
     Route::prefix('referral')->name('referrals.')->controller(ReferralController::class)->group(function () {
         Route::get('/', 'index')->name('index');

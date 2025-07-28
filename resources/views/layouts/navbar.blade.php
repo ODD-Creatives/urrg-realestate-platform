@@ -71,7 +71,7 @@
                                     <a href="{{ route('signin') }}" class="text-white">Sign In</a>
                                 </button>
                             </div>
-                        @endif
+                        @endif 
                         </div>
 
                         <button type="button" class="th-menu-toggle d-block d-lg-none">

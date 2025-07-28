@@ -32,8 +32,8 @@
                                         <h3 class="widget_title">Quick Links</h3>
                                         <div class="menu-all-pages-container">
                                             <ul class="menu">
-                                                <li><a href="#">Realtor Signin</a></li>
-                                                <li><a href="#">Academy Event</a></li>
+                                                <li><a href="{{ route('signin') }}">Realtor Signin</a></li>
+                                                <li><a href="#">URRG Academy</a></li>
                                                 <li><a href="#">Developer Project</a></li>
                                             </ul>
                                         </div>
@@ -47,7 +47,6 @@
                                         <div class="menu-all-pages-container">
                                             <ul class="menu">
                                                 <li><a href="#">Contact Us</a></li>
-                                                <li><a href="#">FAQs</a></li>
                                                 <li><a href="#">About Us</a></li>
                                             </ul>
                                         </div>

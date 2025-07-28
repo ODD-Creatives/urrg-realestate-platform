@@ -11,17 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('referral_logs', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id'); 
-            $table->unsignedBigInteger('referrer_id');  
-            $table->string('referrer_type');            
-            $table->integer('level')->default(1);       
-            $table->timestamps();
-            
-            $table->foreign('user_id')->references('id');
-            $table->index(['referrer_id', 'referrer_type']); 
-        });
+         if (!Schema::hasTable('referral_logs')) {
+            Schema::create('referral_logs', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedBigInteger('user_id'); 
+                $table->unsignedBigInteger('referrer_id');  
+                $table->string('referrer_type');            
+                $table->integer('level')->default(1);       
+                $table->timestamps();
+                
+                $table->foreign('user_id')->references('id');
+                $table->index(['referrer_id', 'referrer_type']); 
+            });
+        } 
     }
 
     /**

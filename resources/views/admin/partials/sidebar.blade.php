@@ -6,19 +6,7 @@
         <span class="menu-title">Dashboard</span>
         </a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">
-        <i class="mdi mdi-shape-plus menu-icon"></i>
-        <span class="menu-title">Services</span>
-        <i class="menu-arrow"></i>
-        </a>
-        <div class="collapse" id="error">
-        <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{ route('admin.property.index') }}">Properties</a></li>
-            <li class="nav-item"> <a class="nav-link" href="#">Lands </a></li>
-        </ul>
-        </div>
-    </li>
+    
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.realtors.index') }}" >
         <i class="icon-head menu-icon"></i>
@@ -37,7 +25,13 @@
         <i class="mdi mdi-wallet menu-icon"></i>
         <span class="menu-title">Comission</span>
         </a>
-    
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.property.index') }}">
+        <i class="mdi mdi-shape-plus menu-icon"></i>
+        <span class="menu-title">Properties</span>
+        </a>
+    </li>
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.referrals.code.generator') }}">
         <i class="icon-grid menu-icon"></i>
