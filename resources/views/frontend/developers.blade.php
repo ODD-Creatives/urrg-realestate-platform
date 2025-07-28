@@ -200,7 +200,7 @@
                             </div>
                         </div>
                         <div class="contact-form-wrap">
-                            <form action="#" method="POST" class="contact-form ajax-contact" enctype="multipart/form-data">
+                            <form action="{{ route('developer.applications.store') }}" method="POST" class="contact-form ajax-contact" enctype="multipart/form-data">
                                 <h3 class="form-title">Join URRG as a Developer</h3>
                                 <div class="row">
                                     <!-- Developer/Company Name -->

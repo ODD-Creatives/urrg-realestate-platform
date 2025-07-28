@@ -42,6 +42,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Commission::class, 'referral_id');
     }
 
+    public function getFormattedCreatedAtAttribute()
+    {
+        return $this->created_at->format('M d, Y'); // Example: "Jul 28, 2023"
+        // Or for more detailed format:
+        // return $this->created_at->format('F j, Y \a\t g:i a');
+    }
+
     public function referrals()
     {
         return $this->hasMany(User::class, 'upline_referral', 'referral_code');
@@ -124,5 +131,22 @@ class User extends Authenticatable implements MustVerifyEmail
         }
 
         return $tree;
+    }
+
+    public function isActive()
+    {
+        return $this->status === 'active'; // or whatever your active status value is
+    }
+
+    public function deactivate()
+    {
+        $this->update(['status' => 'inactive']);
+        return $this;
+    }
+
+    public function activate()
+    {
+        $this->update(['status' => 'active']);
+        return $this;
     }
 }

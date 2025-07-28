@@ -20,7 +20,7 @@ Route::get('/event/show', [PagesController::class, 'eventDetails'])->name('event
 Route::get('/referral/{code}', [PagesController::class, 'referral']); 
 Route::get('/referral/register/{code}', [PagesController::class, 'referral']); 
 
-
+ 
 
 
 require __DIR__.'/auth.php';
