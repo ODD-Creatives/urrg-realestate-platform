@@ -34,12 +34,15 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>Unique ID</th>
                                         <th>Name</th>
+                                        {{--
                                         <th>Relationship</th>
                                         <th>Status</th>
                                         <th>Level</th>
                                         <th>Earnings</th>
-                                        <th>Joined</th>
+                                        --}}
+                                        <th>Date Joined</th>
                                         <th>Referrer</th>
                                     </tr>
                                 </thead>
@@ -74,6 +77,7 @@
                     </div>
                 </div>
             </div>
+            {{--
             <div class="col-lg-4 grid-margin">
                 <div class="card">
                     <div class="card-body">
@@ -119,7 +123,7 @@
                     </div>
                 </div>
                 
-            </div>
+            </div>--}}
          </div>
     </div>
 </div>

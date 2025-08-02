@@ -58,8 +58,8 @@
                                     </div>
                                 </div>
                                 <!-- Contact Developer Button -->
-                                <a href="mailto:sales@eliteestates.com" class="btn btn-primary">
-                                    <i class="bi bi-envelope"></i> Contact Developer
+                                <a href="{{route('user.properties')}}" class="btn btn-secondary">
+                                    <i class="bi bi-envelope"></i> Back
                                 </a>
                             </div>
                         </div>

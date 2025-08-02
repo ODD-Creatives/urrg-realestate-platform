@@ -15,6 +15,15 @@ class DevelopersController extends Controller
         return view('admin.pages.developers.index');
     } 
 
+    public function developer_view()
+    {
+        return view('admin.pages.developers.view');
+    } 
+
+    public function developer_listing()
+    {
+        return view('admin.pages.developers.listings_view');
+    } 
     /**
      * Show the form for creating a new resource.
      */

@@ -33,6 +33,12 @@
         </a>
     </li>
     <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.property.index') }}">
+        <i class="mdi mdi-shape-plus menu-icon"></i>
+        <span class="menu-title">Projects</span>
+        </a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.referrals.code.generator') }}">
         <i class="icon-grid menu-icon"></i>
         <span class="menu-title">Referral Code Generator</span>
@@ -50,6 +56,12 @@
             <span class="menu-title">Events</span>
         </a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.events.index') }}">
+            <i class="mdi mdi-newspaper menu-icon"></i>
+            <span class="menu-title">URRG Accademy</span>
+        </a>
+    </li>
    
 
     <li class="nav-item">
@@ -61,7 +73,7 @@
         <div class="collapse" id="settings"> 
         <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="{{ route('admin.menu.index') }}">Menu Items</a></li>
-            <li class="nav-item"> <a class="nav-link" href="#">Lands </a></li>
+           
         </ul>
         </div>
     </li>

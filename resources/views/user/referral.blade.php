@@ -83,6 +83,7 @@
                     </div>
               
             </div>
+            {{--
             <div class="col-lg-4 grid-margin">
                 <div class="card">
                     <div class="card-body">
@@ -117,6 +118,7 @@
                 </div>
                 
             </div>
+            --}}
          </div>
     </div>
         

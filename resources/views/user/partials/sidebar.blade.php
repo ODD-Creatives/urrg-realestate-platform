@@ -39,17 +39,23 @@
               <i class="fa fa-users menu-icon"></i>
               <span class="menu-title">Referral</span>
             </a>
-          </li>
+          </li>{{--
           <li class="nav-item">
             <a class="nav-link"  href="{{route('user.commission')}}" aria-expanded="false" aria-controls="forms">
               <i class="fa fa-briefcase menu-icon"></i>
               <span class="menu-title">Commission</span>
             </a>
-          </li>
+          </li>--}}
           <li class="nav-item">
             <a class="nav-link"  href="{{route('user.properties')}}" aria-expanded="false" aria-controls="forms">
               <i class="mdi mdi-castle menu-icon"></i>
               <span class="menu-title">Properties</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"  href="{{route('user.properties')}}" aria-expanded="false" aria-controls="forms">
+              <i class="mdi mdi-castle menu-icon"></i>
+              <span class="menu-title">Project</span>
             </a>
           </li>
           <li class="nav-item">
