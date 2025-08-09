@@ -21,28 +21,14 @@ class UserDashboardController extends Controller
         ]);
         $referralTree = $user->downlineTree();
     
-        $commissionBreakdown = [
-            'level1' => [
-                'amount' => $user->getCommissionByLevel(1),
-                'count' => $user->getReferralsByLevel(1)->count()
-            ], 
-            'level2' => [
-                'amount' => $user->getCommissionByLevel(2),
-                'count' => $user->getReferralsByLevel(2)->count()
-            ],
-            'level3' => [
-                'amount' => $user->getCommissionByLevel(3),
-                'count' => $user->getReferralsByLevel(3)->count()
-            ]
-        ];
-        // Flatten the referral tree for table display
+      
+        // Flatten the referral tree for table display 
         $allReferrals = $this->flattenReferralTree($referralTree, $user);
 
         
         return view('user.dashboard', [
             'user' => $user,
             'allReferrals' => $allReferrals,
-            'commissionBreakdown' => $commissionBreakdown,
             'referralTree' => $referralTree,
         ]);
     }
@@ -153,7 +139,7 @@ class UserDashboardController extends Controller
         ];
 
         return view('user.referral', [
-            'user' => $user,
+            'user' => $user, 
             'commissionBreakdown' => $commissionBreakdown,
             'referralTree' => $user->downlineTree()
         ]);

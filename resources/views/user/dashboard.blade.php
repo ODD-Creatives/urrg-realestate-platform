@@ -7,7 +7,7 @@
             <p class="m-0 pe-4">Welcome back, {{ $user->firstname }}!</p>
         </div>
         <div class="col-md-6">
-            <div class="input-group">
+            <div class="input-group"> 
                 <input type="text" class="form-control form-control-sm"
                  value="{{ url('/referral/register/'.$user->referral_code)  }}"
                     {{-- value="{{ url('/register?ref='.$user->referral_code) }}" --}}
@@ -25,7 +25,7 @@
         
         <div class="row">
             <div class="col-lg-8 grid-margin stretch-card8">
-                
+                 
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Referral Performance</h4>
@@ -34,38 +34,21 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>Unique ID</th>
                                         <th>Name</th>
-                                        <th>Relationship</th>
-                                        <th>Status</th>
-                                        <th>Level</th>
-                                        <th>Earnings</th>
-                                        <th>Joined</th>
                                         <th>Referrer</th>
+                                        <th>Date Joined</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($allReferrals as $referral)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $referral['user']->realtor_id }}</td>
                                         <td>{{ $referral['user']->full_name }}</td>
-                                        <td>
-                                            @if($referral['level'] == 1)
-                                                <span class="badge bg-success">Child</span>
-                                            @elseif($referral['level'] == 2)
-                                                <span class="badge bg-info">Grandchild</span>
-                                            @else
-                                                <span class="badge bg-warning">Great Grandchild</span>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <span class="badge bg-{{ $referral['user']->status === 'active' ? 'success' : 'secondary' }}">
-                                                {{ ucfirst($referral['user']->status) }}
-                                            </span>
-                                        </td>
-                                        <td>Level {{ $referral['level'] }}</td>
-                                        <td>₦{{ number_format($referral['user']->paidCommissions->sum('amount')) }}</td>
-                                        <td>{{ $referral['user']->created_at->format('M d, Y') }}</td>
                                         <td>{{ $referral['referrer'] }}</td>
+
+                                        <td>{{ $referral['user']->created_at->format('M d, Y') }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -81,6 +64,18 @@
                         <div id="referral-tree">
                             <ul>
                                 <li>
+                                    @if($user->upline_referral)
+                                        @php 
+                                            $referrer = \App\Models\ReferralCode::where('code', $user->upline_referral)->first();
+                                        @endphp
+                                        @if($referrer)
+                                            <p>{{ $referrer->admin->username }} (Upline)</p>
+                                        @else
+                                            <p class="text-muted">Upline not found</p>
+                                        @endif
+                                    @else
+                                        <p class="text-muted">No Upline</p>
+                                    @endif
                                     <span class="caret caret-down">{{ $user->full_name }} (You)</span>
                                     <ul class="nested active">
                                         @foreach($referralTree['children'] as $childData)
@@ -112,7 +107,7 @@
                                             </ul>
                                         </li>
                                         @endforeach
-                                    </ul>
+                                    </ul> 
                                 </li>
                             </ul>
                         </div>

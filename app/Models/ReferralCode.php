@@ -13,7 +13,7 @@ class ReferralCode extends Model
     protected $fillable = [
         'user_id',
         'code',
-        'uses',
+        'uses', 
         'max_uses',
         'expires_at'
     ];

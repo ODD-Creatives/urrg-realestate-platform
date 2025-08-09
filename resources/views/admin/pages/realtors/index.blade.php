@@ -24,18 +24,20 @@
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Realtor ID</th>
                                 <th>Phone</th>
                                 <th>Status</th>
                                 <th>Joined</th>
                                 <th>Actions</th>
                             </tr>
-                        </thead>
+                        </thead> 
                         <tbody>
                             @foreach($users as $user)
-                            <tr>
+                            <tr> 
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $user->full_name }}</td>
                                 <td>{{ $user->email }}</td>
+                                <td>{{ $user->realtor_id }}</td>
                                 <td>{{ $user->phone }}</td>
                                 <td>
                                     <span class="badge bg-{{ $user->isActive() ? 'success' : 'secondary' }}">
@@ -45,7 +47,7 @@
                                 <td>{{ $user->formatted_created_at ?? 'N/A' }}</td> 
                             
                                 <td>
-                                    <div class="btn-group">
+                                    <div class="btn-group"> 
                                         <a href="{{ route('admin.realtors.view', encrypt($user->id) ) }}" class="btn btn-sm btn-outline-info">View</a>
                                         @if($user->isActive())
                                             <form action="{{ route('admin.realtors.deactivate', $user->id) }}" method="POST">
@@ -59,8 +61,8 @@
                                                 @method('PATCH')
                                                 <button type="submit" class="btn btn-sm btn-outline-success">Activate</button>
                                             </form>
-                                        @endif
-                                        <a href="{{ route('admin.realtors.referral', encrypt($user->id) ) }}" class="btn btn-sm btn-outline-primary">Referrals</a>
+                                        @endif 
+                                        <a href="{{ route('admin.referrals.referral.chain', encrypt($user->id) ) }}" class="btn btn-sm btn-outline-primary">Referrals</a>
                                     </div>
                                 </td>
                             </tr>

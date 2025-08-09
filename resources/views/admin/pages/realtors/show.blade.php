@@ -24,13 +24,13 @@
                     <div class="row">
                         <!-- Profile Photo -->
                         <div class="col-md-4 text-center2 mb-3">
-                            <img src="{{ $user->photo ? asset('storage/'.$user->photo) : asset('assets/admin/assets/images/faces/face28.jpg') }}" 
-                                 alt="Realtor Photo" 
-                                 class="img-fluid rounded-circle" 
-                                 style="width: 150px; height: 150px; object-fit: cover;">
+                            <img src="{{ $user->photo ? asset('storage/'.$user->photo) : asset('assets/user/assets/images/avatar.jpg') }}" 
+                                 alt="Realtor Photo"  
+                                 class="img-fluid rounded-circle"  
+                                 style="width: 100px; height: 100px; object-fit: cover;">
                             <p class="mt-2 fw-bold"> {{ $user->full_name }}</p>
                         
-                            <p><strong>Email:</strong> {{ $user->email }}</p>
+                            <p><strong>Email:</strong> {{ $user->email }}</p> 
                             <p><strong>Phone:</strong> {{ $user->phone }}</p>
                             <p>
                                 <strong>Status:</strong> 
@@ -68,23 +68,37 @@
                             </div>
                             <div>
                                 <p>
-                                    <strong>Bank:</strong> 
-                                    Zenith
+                                    <strong>Bank:</strong>
+                                    {{ $user->bank_name ?? 'N/A' }}
                                 </p>
-                                <p><strong>Account Number:</strong> 
-                                    0223456789
+                                <p>
+                                    <strong>Account Number:</strong>
+                                    {{ $user->account_number ?? 'N/A' }}
                                 </p>
-                                <p><strong>Referral Code:</strong> 
-                                    Qrty2345686
+                                <p>
+                                    <strong>Referral Code:</strong>
+                                    {{ $user->referral_code ?? 'N/A' }}
                                 </p>
-                                <p><strong>Upline:</strong> 
-                                    Johnson Quinm, James Ademola
+                                <p>
+                                    <strong>Upline:</strong>
+                                    @if($user->upline_referral)
+                                        @php 
+                                            $referrer = \App\Models\ReferralCode::where('code', $user->upline_referral)->first();
+                                        @endphp
+                                        @if($referrer)
+                                            {{ $referrer->admin->username }}
+                                        @else
+                                            Upline not found
+                                        @endif
+                                    @else
+                                        No Upline
+                                    @endif
                                 </p>
-                            </div>
+                            </div> 
                             <div class="mt-4">
-                                <a href="" class="btn btn-outline-primary">View Referral Chain</a>
-                                <a href="" class="btn btn-outline-success">View Commissions</a>
-                            </div>
+                                <a href="{{ route('admin.referrals.referral.chain', encrypt($user->id)) }}" class="btn btn-outline-primary">View Referral Chain</a>
+                                <a href="{{ route('admin.commissions.index', encrypt($user->id)) }}" class="btn btn-outline-success">View Commissions</a>
+                            </div> 
                         </div>
                         
                     </div>

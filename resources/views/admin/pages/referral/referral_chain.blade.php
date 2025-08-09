@@ -40,9 +40,8 @@
             <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                 <h3 class="font-weight-bold">Realtor's </h3>
-                <h6 class="font-weight-normal mb-0">📈 Referral Tree – Grace Johnson </h6>
+                <h6 class="font-weight-normal mb-0">📈 Referral Tree – {{$user->fullname}} </h6>
                 </div>
-                
             </div>
             </div>
         </div>
@@ -58,41 +57,83 @@
                     <div class="row">
                         
                         <div class="col-md-4 text-center2 mb-3">
-                            <img src="{{ asset('assets/admin/assets/images/faces/face28.jpg') }}" alt="Realtor Photo" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover;">
-                            <p class="mt-2 fw-bold"> Grace Johnson </p>
+                            <img src="{{ $user->photo ? asset('storage/'.$user->photo) : asset('assets/user/assets/images/avatar.jpg') }}" 
+                                 alt="Realtor Photo"  
+                                 class="img-fluid rounded-circle"  
+                                 style="width: 100px; height: 100px; object-fit: cover;">
+                            <p class="mt-2 fw-bold"> {{ $user->full_name }}</p>
                         
-                            <p><strong>Email:</strong> grace@example.com</p>
-                            <p><strong>Phone:</strong> +234 801 234 5678</p>
-                            <p><strong>Status:</strong> 
-                                <span class="badge bg-success">Active</span>
-                            
-                            </p>
+                            <p><strong>Email:</strong> {{ $user->email }}</p> 
+                            <p><strong>Phone:</strong> {{ $user->phone }}</p>
                             <p>
-                                <strong>Joined:</strong> 
-                                    3rd of June, 2025.
+                                <strong>Status:</strong> 
+                                <span class="badge bg-{{ $user->status === 'active' ? 'success' : 'danger' }}">
+                                    {{ ucfirst($user->status) }}
+                                </span>
                             </p>
-                        </div>
-                        <div class="col-md-8 shadow-sm">
-                            <ul class="referral-tree">
-                                <li>
-                                    <span class="caret">Grace Johnson</span>
-                                    <ul class="nested">
-                                    <li>
-                                        <span class="caret">Bob Wilson</span>
-                                        <ul class="nested">
-                                        <li>Linda Okoro</li>
-                                        <li>Victor James</li>
+                             <p>
+                                <strong>Joined:</strong> 
+                                {{ $user->created_at->format('jS \o\f F, Y') }}
+                            </p>
+                        </div> 
+                       
+                        <div class="col-lg-8 shadow-sm">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Referral Network</h4>
+                                    <div id="referral-tree">
+                                        <ul class="referral-tree"> 
+                                            <li>
+                                                @if($user->upline_referral)
+                                                    @php 
+                                                        $referrer = \App\Models\ReferralCode::where('code', $user->upline_referral)->first();
+                                                    @endphp
+                                                    @if($referrer)
+                                                        <p>{{ $referrer->admin->username }} (Upline)</p>
+                                                    @else
+                                                        <p class="text-muted">Upline not found</p>
+                                                    @endif
+                                                @else
+                                                    <p class="text-muted">No Upline</p>
+                                                @endif
+                                                <span class="caret caret-down">{{ $user->full_name }} (You)</span>
+                                                <ul class="nested active">
+                                                    @foreach($referralTree['children'] as $childData)
+                                                    <li>
+                                                        <span class="caret {{ count($childData['grandchildren']) > 0 ? 'caret-down' : '' }}">
+                                                            {{ $childData['child']->full_name }} 
+                                                            <span class="badge bg-success">Child</span>
+                                                            <small class="text-muted">Earned: ₦{{ number_format($childData['child']->paidCommissions->sum('amount')) }}</small>
+                                                        </span>
+                                                        <ul class="nested {{ count($childData['grandchildren']) > 0 ? 'active' : '' }}">
+                                                            @foreach($childData['grandchildren'] as $grandchildData)
+                                                            <li>
+                                                                <span class="caret {{ count($grandchildData['great_grandchildren']) > 0 ? 'caret-down' : '' }}">
+                                                                    {{ $grandchildData['grandchild']->full_name }}
+                                                                    <span class="badge bg-info">Grandchild</span>
+                                                                    <small class="text-muted">Earned: ₦{{ number_format($grandchildData['grandchild']->paidCommissions->sum('amount')) }}</small>
+                                                                </span>
+                                                                <ul class="nested {{ count($grandchildData['great_grandchildren']) > 0 ? 'active' : '' }}">
+                                                                    @foreach($grandchildData['great_grandchildren'] as $greatGrandchild)
+                                                                    <li>
+                                                                        {{ $greatGrandchild->full_name }}
+                                                                        <span class="badge bg-warning">Great Grandchild</span>
+                                                                        <small class="text-muted">Earned: ₦{{ number_format($greatGrandchild->paidCommissions->sum('amount')) }}</small>
+                                                                    </li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </li>
+                                                    @endforeach
+                                                </ul> 
+                                            </li>
                                         </ul>
-                                    </li>
-                                    <li>
-                                        <span class="caret">Joy Adewale</span>
-                                        <ul class="nested">
-                                        <li>Samuel Obi</li>
-                                        </ul>
-                                    </li>
-                                    </ul>
-                                </li>
-                            </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
                     

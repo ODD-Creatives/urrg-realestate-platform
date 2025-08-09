@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Realtor;
 use App\Models\ReferralCode;
+use App\Models\User;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -14,16 +15,22 @@ use App\Services\ReferralService;
 class ReferralController extends Controller
 {
     protected $referralService;
-
+ 
     public function __construct(ReferralService $referralService)
     {
         $this->referralService = $referralService;
     }
 
     public function index()
-    { 
+    {  
+        // Eager load referrer and a count of direct referrals to avoid N+1 query issues.
+        $users = User::with('referrer')
+            ->withCount('referrals')
+            ->latest()
+            ->paginate(10);
+       
         $realtors = Realtor::latest()->paginate(10);
-        return view('admin.pages.referral.index', compact('realtors'));
+        return view('admin.pages.referral.index', compact('realtors','users'));
     }
 
     public function generateReferralIndex(){
@@ -74,9 +81,6 @@ class ReferralController extends Controller
             ->with('success', 'Referral code deleted successfully');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('admin.pages.realtors.create');
@@ -119,25 +123,16 @@ class ReferralController extends Controller
         return redirect()->route('admin.realtors.index')->with('success', 'Realtor created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Realtor $realtor)
     {
         return view('admin.pages.realtors.show', compact('realtor'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Realtor $realtor)
     {
         return view('admin.realtors.edit', compact('realtor'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Realtor $realtor)
     {
         $request->validate([
@@ -171,12 +166,20 @@ class ReferralController extends Controller
         return redirect()->route('admin.realtors.index')->with('success', 'Realtor updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Realtor $realtor)
     {
         $realtor->delete();
         return redirect()->route('admin.realtors.index')->with('success', 'Realtor deleted successfully.');
     }
+ 
+    public function referralChain( $realtor)
+    {
+        $user = User::where('id', decrypt($realtor) )->firstOrFail();
+        $referralTree = $user->downlineTree(); 
+     
+        return view('admin.pages.referral.referral_chain', [
+            'user' => $user, 
+            'referralTree' => $referralTree,
+        ]); 
+    } 
 }

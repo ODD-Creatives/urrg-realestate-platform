@@ -20,7 +20,7 @@ class AdminController extends Controller
         $adminUser = Auth::guard('admin')->user();
         $userCount = User::count();
         $developerCount = Developer::count();
- 
+
         return view('admin.dashboard', compact('adminUser', 'userCount', 'developerCount'));
     }
 }

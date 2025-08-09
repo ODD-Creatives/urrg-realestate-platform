@@ -35,7 +35,7 @@
                         </thead>
                         <tbody>
                             @forelse ($referrals as $index => $referral)
-                                <tr>
+                                <tr> 
                                     <td><strong>{{ $loop->iteration }}</strong></td> 
                                     <td>
                                     <div class="input-group">

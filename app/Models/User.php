@@ -12,7 +12,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasFactory, Notifiable;
 
     protected $fillable = [
-        'firstname', 'lastname', 'name', 'email', 'phone',
+        'firstname', 'lastname', 'name', 'referrer_id', 'email', 'phone',
         'state_of_residence', 'referral_code', 'realtor_id', 'experience',
         'password', 'status', 'dob', 'address', 'bank_name',
         'account_name', 'account_number', 'payment_method',
@@ -36,7 +36,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Commission::class, 'user_id');
     }
-
+ 
     public function paidCommissions()
     {
         return $this->hasMany(Commission::class, 'referral_id');
@@ -56,8 +56,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function referrer()
     {
-        return $this->belongsTo(User::class, 'upline_referral', 'referral_code');
-    }
+        return $this->belongsTo(User::class, 'referrer_id'); // Recommended to use ID instead of code
+    } 
+
 
     public function activeReferrals()
     {
@@ -94,7 +95,6 @@ class User extends Authenticatable implements MustVerifyEmail
             ->get();
     }
 
-    // public function downlineTree($levels = 3)
     public function downlineTree($levels = 3)
     {
         $tree = [
@@ -133,9 +133,32 @@ class User extends Authenticatable implements MustVerifyEmail
         return $tree;
     }
 
+    public function getDownlinesCountByLevelAttribute()
+    {
+        $tree = $this->downlineTree();
+        
+        $direct = count($tree['children']);
+        $grandchildren = 0;
+        $greatGrandchildren = 0;
+
+        foreach ($tree['children'] as $child) {
+            $grandchildren += count($child['grandchildren']);
+            foreach ($child['grandchildren'] as $grandchild) {
+                $greatGrandchildren += count($grandchild['great_grandchildren']);
+            }
+        }
+
+        return [
+            'direct' => $direct,
+            'grandchildren' => $grandchildren,
+            'great_grandchildren' => $greatGrandchildren,
+            'total' => $direct + $grandchildren + $greatGrandchildren,
+        ];
+    }
+
     public function isActive()
     {
-        return $this->status === 'active'; // or whatever your active status value is
+        return $this->status === 'active';
     }
 
     public function deactivate()

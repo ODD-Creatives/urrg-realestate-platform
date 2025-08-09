@@ -17,7 +17,7 @@ class RealtorController extends Controller
     { 
         $users = User::latest()->paginate(10);
         return view('admin.pages.realtors.index', compact('users'));
-    }
+    } 
 
     public function activate(User $user)
     {

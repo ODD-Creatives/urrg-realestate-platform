@@ -97,12 +97,12 @@ Route::middleware(['admin.auth'])->prefix('admin')->name('admin.')->group(functi
 
 
     Route::prefix('referral')->name('referrals.')->controller(ReferralController::class)->group(function () {
-        Route::get('/', 'index')->name('index');
+        Route::get('/', 'index')->name('index'); 
         Route::get('/generate-referral-code', 'generateReferralCode')->name('code.generator');
         Route::post('/generate-referral-store', 'generateReferralStore')->name('code.store');
         Route::get('/generate-referral-index', 'generateReferralIndex')->name('code.index');
         Route::delete('/destroy/{id}', 'generateReferralDestroy')->name('code.delete');
-        Route::get('/referral-chain', 'referral_chain')->name('referral-chain');
+        Route::get('/referral-chain/{id}', 'referralChain')->name('referral.chain'); 
        
     });
 

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+use DB; 
 use Mail; 
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -9,7 +10,6 @@ use App\Models\Wallet;
 use App\Models\ReferralLog;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\DB;
 use App\Models\Admin;
 use App\Models\ReferralCode;
 use Illuminate\Auth\Events\Registered;
@@ -106,7 +106,31 @@ class RegisteredUserController extends Controller
 
     protected function generateRealtorId(): string
     {
-        return 'RE-' . date('Ymd') . '-' . strtoupper(Str::random(4));
+        $date = now();
+        $datePrefix = $date->format('Ymd'); 
+        $displayDate = $date->format('mdy'); 
+        
+        $sequence = DB::table('realtor_sequences')
+            ->where('date_prefix', $datePrefix)
+            ->lockForUpdate()
+            ->first();
+        
+        if ($sequence) {
+            $newSequence = $sequence->last_sequence + 1;
+            DB::table('realtor_sequences')
+                ->where('date_prefix', $datePrefix)
+                ->update(['last_sequence' => $newSequence]);
+        } else {
+            $newSequence = 1;
+            DB::table('realtor_sequences')->insert([
+                'date_prefix' => $datePrefix,
+                'last_sequence' => $newSequence,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+        }
+        
+        return 'URR' . $displayDate . str_pad($newSequence, 2, '0', STR_PAD_LEFT);
     }
 
     protected function processReferralCommissionsAdmin(User $newUser, ReferralCode $referrer)
@@ -141,7 +165,7 @@ class RegisteredUserController extends Controller
 
     protected function processReferralCommissionsUser(User $newUser, User $referrer)
     {
-        $commissionAmount = 50;
+        $commissionAmount = 0;
         $levelsToPay = 3;
         $currentUpline = $referrer;
         $level = 1;

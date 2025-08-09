@@ -5,7 +5,7 @@
             </button>
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
               <a class="navbar-brand brand-logo-mini" href="index.html78"><img src="{{ asset('assets/img/favicons/apple-icon-28x28.png') }}" alt="logo" /></a>
-            </div>
+            </div> 
             <ul class="navbar-nav">
               <li class="nav-item dropdown">
                 <a class="nav-link" id="messageDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">

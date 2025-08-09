@@ -12,7 +12,7 @@ class Developer extends Model
         'contact_person',
         'phone',
         'email',
-        'subject',
+        'subject', 
         'email_verified_at',
         'letter_of_intent_path',
         'company_profile_path',

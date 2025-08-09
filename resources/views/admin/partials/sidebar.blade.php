@@ -32,12 +32,14 @@
         <span class="menu-title">Properties</span>
         </a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.referrals.code.generator') }}">
-        <i class="icon-grid menu-icon"></i>
-        <span class="menu-title">Referral Code Generator</span>
-        </a>
-    </li>
+    @if(Auth::guard('admin')->user()->id == 1)
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.referrals.code.generator') }}">
+            <i class="icon-grid menu-icon"></i>
+            <span class="menu-title">Referral Code Generator</span>
+            </a>
+        </li>
+    @endif
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.referrals.index') }}">
         <i class="mdi mdi-account-multiple menu-icon"></i>
