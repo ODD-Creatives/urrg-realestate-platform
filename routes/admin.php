@@ -51,7 +51,7 @@ Route::middleware(['admin.auth'])->prefix('admin')->name('admin.')->group(functi
         Route::get('/{user}','show')->name('view');
         Route::get('/{user}/referral','referral')->name('referral');
         Route::get('/{user}/commission','commission')->name('commission');
-        Route::patch('/{user}/activate', 'activate')->name('activate');
+        Route::patch('/{user}/activate', 'activate')->name('activate'); 
         Route::patch('/{user}/deactivate', 'deactivate')->name('deactivate');
 
     });
@@ -73,7 +73,8 @@ Route::middleware(['admin.auth'])->prefix('admin')->name('admin.')->group(functi
 
     Route::prefix('commissions')->name('commissions.')->controller(CommissionController::class)->group(function () {
         Route::get('/','index')->name('index');
-        Route::get('/commission-pay','commission_pay')->name('pay');
+        Route::get('/commission-pay','commissionPay')->name('pay');
+        Route::post('/process-payment','processPayment')->name('process-payment');
     });
 
     Route::prefix('events')->name('events.')->controller(EventController::class)->group(function () {
@@ -82,7 +83,7 @@ Route::middleware(['admin.auth'])->prefix('admin')->name('admin.')->group(functi
         Route::post('/store', 'store')->name('store');
         Route::get('/show','show')->name('show');
 
-    });
+    }); 
 
     Route::prefix('events')->name('events.')->controller(EventController::class)->group(function () {
         Route::get('/', 'index')->name('index');                     

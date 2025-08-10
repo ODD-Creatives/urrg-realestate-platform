@@ -34,21 +34,21 @@
                                 <td>{{ $loop->iteration + $users->firstItem() - 1 }}</td>
                                 <td>{{ $user->fullname ?? 'N/A' }}</td>
                                 <td>
-                                    @if($user->upline_referral)
-                                        @php 
-                                            $referrer = \App\Models\ReferralCode::where('code', $user->upline_referral)->first();
-                                        @endphp
-                                        @if($referrer)
-                                            <p>{{ $referrer->admin->username }} (Upline)</p>
+                                    @if($upline = $user->relationLoaded('upline') ? $user->upline : null)
+                                        @if($upline instanceof \App\Models\User)
+                                            {{ $upline->fullname }}
+                                        @elseif($upline instanceof \App\Models\ReferralCode && $upline->admin)
+                                            {{ $upline->admin->username }} (Admin)
                                         @else
-                                            <p class="text-muted">Upline not found</p>
+                                            <span class="text-muted">Upline not found</span>
                                         @endif
-                                    @else
-                                        <p class="text-muted">No Upline</p>
+                                    @else 
+                                        <span class="text-muted">N/A</span>
                                     @endif
                                 </td>
 
                                 <td>
+                                    {{-- Note: The 'downlines_count_by_level' attribute can be very slow. --}}
                                     {{ $user->downlines_count_by_level['total'] }}
                                     <small class="text-muted">
                                         (Direct: {{ $user->downlines_count_by_level['direct'] }}, 

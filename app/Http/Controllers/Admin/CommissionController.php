@@ -5,31 +5,122 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Commission; // Assuming you have a Commission model
 use App\Models\Realtor;
+use App\Models\User;
+use App\Services\CommissionService;
 use Illuminate\Http\Request;
 
 class CommissionController extends Controller
 {
-    /**
-     * Display the admin dashboard.
-     *
-     * @return \Illuminate\View\View
-     */
+    protected $commissionService;
+
+    public function __construct(CommissionService $commissionService)
+    {
+        $this->commissionService = $commissionService;
+    }
 
     public function index(Request $request)
     {
         $commissions = \App\Models\Commission::with(['user', 'referral'])
-        ->when($request->search, fn($q) => $q->whereHas('user', fn($q2) => $q2->where('name', 'like', '%'.$request->search.'%')))
-        ->when($request->date, fn($q) => $q->whereDate('created_at', $request->date))
-        ->get();
+            ->when($request->search, function($q) use ($request) {
+                $q->where(function($query) use ($request) {
+                    $query->whereHas('user', function($q2) use ($request) {
+                        $q2->where('referral_code', 'like', '%'.$request->search.'%')
+                        ->orWhere('realtor_id', 'like', '%'.$request->search.'%')
+                        ->orWhere('email', 'like', '%'.$request->search.'%')
+                        ->orWhere('firstname', 'like', '%'.$request->search.'%')
+                        ->orWhere('lastname', 'like', '%'.$request->search.'%');
+                    });
+                });
+            })
+            ->when($request->date, fn($q) => $q->whereDate('created_at', $request->date))
+            ->when($request->status, fn($q) => $q->where('status', $request->status))
+            ->orderBy('created_at', 'desc')
+            ->paginate(15); // Use pagination instead of get()
 
-        $unreadAlerts = 3; 
+        $unreadAlerts = 3;
 
         return view('admin.pages.commission.index', compact('commissions', 'unreadAlerts'));
     }
 
-    public function commission_pay()
+    public function commissionPay(Request $request)
     {
-        return view('admin.pages.commission.commission_pay');
+        $realtor = null;
+        $uplineTree = null;
+        
+        if ($request->has('search')) {
+            $realtor = User::where('realtor_id', $request->search)
+                ->orWhere('email', $request->search)
+                // ->with(['bankDetails'])
+                ->first();
+                
+            if ($realtor) {
+                $uplineTree = $realtor->downlineTree(3); // Get 3 levels deep
+            }
+        }
+
+        return view('admin.pages.commission.pay', compact('realtor', 'uplineTree'));
     }
-   
+
+    // In your controller method
+    public function processPayment(Request $request, CommissionService $commissionService)
+    {
+        $validated = $request->validate([
+            'realtor_id' => 'required|exists:users,id',
+            'realtor_amount' => 'required|numeric|min:0',
+            'upline_commissions' => 'sometimes|array',
+            'upline_commissions.*.user_id' => 'required|exists:users,id',
+            'upline_commissions.*.amount' => 'required|numeric|min:0'
+        ]);
+
+        try {
+            $realtor = User::findOrFail($validated['realtor_id']);
+            
+            // Prepare upline commissions with levels
+            $uplineCommissions = array_map(function($upline) use ($realtor, $commissionService) {
+                $referral = User::find($upline['user_id']);
+                return [
+                    'user_id' => $upline['user_id'],
+                    'amount' => $upline['amount'],
+                    'level' => $commissionService->calculateLevel($realtor, $referral)
+                ];
+            }, $validated['upline_commissions'] ?? []);
+
+            // Process all payments
+            $results = $commissionService->processBulkPayments(
+                $realtor,
+                $validated['realtor_amount'],
+                $uplineCommissions
+            );
+
+            return redirect()->route('admin.commissions.index')
+                ->with('success', 'Commissions paid successfully!');
+                
+        } catch (\Exception $e) {
+            return back()->withInput()
+                ->with('error', 'Payment failed: ' . $e->getMessage());
+        }
+    }
+
+    protected function calculateLevel($realtorId, $uplineId)
+    {
+        // Implement your level calculation logic here
+        // This is a simplified example - adjust based on your business rules
+        $realtor = User::find($realtorId);
+        $upline = User::find($uplineId);
+        
+        // Check if direct upline (level 1)
+        if ($realtor->referrer_id == $upline->id) {
+            return 1;
+        }
+        
+        // Check if grand-upline (level 2)
+        $grandUpline = $realtor->referrer->referrer ?? null;
+        if ($grandUpline && $grandUpline->id == $upline->id) {
+            return 2;
+        }
+        
+        // Default to level 3 (great-grand-upline)
+        return 3;
+    }
+    
 }

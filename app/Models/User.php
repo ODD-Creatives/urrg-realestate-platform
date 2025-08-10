@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 class User extends Authenticatable implements MustVerifyEmail
-{
+{ 
     use HasFactory, Notifiable;
 
     protected $fillable = [
@@ -171,5 +171,10 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $this->update(['status' => 'active']);
         return $this;
+    }
+
+    public function bankDetails()
+    {
+        return $this->hasOne(BankDetail::class);
     }
 }

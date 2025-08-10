@@ -23,12 +23,31 @@ class ReferralController extends Controller
 
     public function index()
     {  
-        // Eager load referrer and a count of direct referrals to avoid N+1 query issues.
         $users = User::with('referrer')
             ->withCount('referrals')
             ->latest()
             ->paginate(10);
-       
+
+        // The 'upline_referral' can be a User's code or an Admin's code.
+        // We need to manually eager-load this polymorphic-like relationship to avoid N+1 queries in the view.
+        $uplineCodes = $users->pluck('upline_referral')->filter()->unique();
+
+        if ($uplineCodes->isNotEmpty()) {
+            // Find upline users (realtors)
+            $uplineUsers = User::whereIn('referral_code', $uplineCodes)->get()->keyBy('referral_code');
+            
+            // Find upline admins via their referral codes
+            $uplineAdminCodes = \App\Models\ReferralCode::with('admin')->whereIn('code', $uplineCodes)->get()->keyBy('code');
+
+            // Attach the resolved upline model (User or Admin's ReferralCode) to each user in the collection.
+            $users->each(function ($user) use ($uplineUsers, $uplineAdminCodes) {
+                if ($user->upline_referral) {
+                    $upline = $uplineUsers->get($user->upline_referral) ?? $uplineAdminCodes->get($user->upline_referral);
+                    $user->setRelation('upline', $upline);
+                }
+            });
+        }
+
         $realtors = Realtor::latest()->paginate(10);
         return view('admin.pages.referral.index', compact('realtors','users'));
     }

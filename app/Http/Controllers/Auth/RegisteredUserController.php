@@ -135,7 +135,7 @@ class RegisteredUserController extends Controller
 
     protected function processReferralCommissionsAdmin(User $newUser, ReferralCode $referrer)
     {
-        $commissionAmount = 50;
+        $commissionAmount = 0;
         $levelsToPay = 3;
         $currentUpline = $referrer;
         $level = 1;
@@ -188,14 +188,16 @@ class RegisteredUserController extends Controller
 
     protected function createCommissionRecord(User $newUser, $upline, int $level, int $amount)
     {
+         \Log::error("newUser: " . $newUser);
         return Commission::create([
-            'user_id' => $upline->id,
-            'user_email' => $upline->email,
-            'referral_id' => $newUser->id,
-            'amount' => $amount,
-            'level' => $level,
+            'user_id' => $newUser->id ??  null,
+            'user_email' => $newUser->email ?? null,
+            'referral_id' => $upline->id ?? null,
+            'referral_code' => $newUser->referral_code ?? null,
+            'amount' => $amount ?? null,
+            'level' => $level ?? null,
             'status' => 'pending',
-        ]);
+        ]); 
     }
 
     protected function createReferralLog(User $newUser, $referrer, int $level)
