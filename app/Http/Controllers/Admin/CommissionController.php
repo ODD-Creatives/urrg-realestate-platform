@@ -35,12 +35,12 @@ class CommissionController extends Controller
             ->when($request->date, fn($q) => $q->whereDate('created_at', $request->date))
             ->when($request->status, fn($q) => $q->where('status', $request->status))
             ->orderBy('created_at', 'desc')
-            ->paginate(15); // Use pagination instead of get()
+            ->paginate(15); 
 
-        $unreadAlerts = 3;
+        $unreadAlerts = 3; 
 
         return view('admin.pages.commission.index', compact('commissions', 'unreadAlerts'));
-    }
+    } 
 
     public function commissionPay(Request $request)
     {

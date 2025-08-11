@@ -50,12 +50,12 @@
                 <p class="mb-0">Approved Profiles</p>
             </div>
             </div>
-        </div>
+        </div> 
         <div class="col-md-3 stretch-card grid-margin">
             <div class="card bg-success text-white">
             <div class="card-body text-center">
                 <h4>Total Commission Paid</h4>
-                <h3>₦18,500,000</h3>
+                <h3>₦{{ $formattedTotal }}</h3>
                 <p class="mb-0">To Realtors/Uplines</p>
             </div>
             </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\Commission;
 use App\Models\Developer;
 use App\Models\User;
 
@@ -16,11 +17,25 @@ class AdminController extends Controller
      * @return \Illuminate\View\View
      */
     public function index()
-    {
+    { 
         $adminUser = Auth::guard('admin')->user();
         $userCount = User::count();
         $developerCount = Developer::count();
- 
-        return view('admin.dashboard', compact('adminUser', 'userCount', 'developerCount'));
+        $commissionCount = Commission::count();
+        
+        // Calculate total commission amount
+        $totalCommission = Commission::sum('amount');
+        
+        // For formatted currency display (optional)
+        $formattedTotal = number_format($totalCommission, 2);
+
+        return view('admin.dashboard', compact(
+            'adminUser', 
+            'userCount', 
+            'developerCount',
+            'commissionCount',
+            'totalCommission',
+            'formattedTotal'
+        ));
     }
 }

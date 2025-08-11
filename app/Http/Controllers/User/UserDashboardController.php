@@ -141,7 +141,7 @@ class UserDashboardController extends Controller
         return view('user.referral', [
             'user' => $user, 
             'commissionBreakdown' => $commissionBreakdown,
-            'referralTree' => $user->downlineTree()
+            'referralTree' => $user->downlineTree() 
         ]);
     }
 

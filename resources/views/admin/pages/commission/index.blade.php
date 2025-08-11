@@ -34,7 +34,7 @@
                                         <a href="{{ route('admin.commissions.index') }}" class="btn btn-outline-secondary">
                                             Clear
                                         </a>
-                                    @endif
+                                    @endif 
                                 </div>
                             </div>
                             <div class="col-md-2 text-end">
@@ -68,7 +68,7 @@
                             </thead>
                             <tbody> 
                                 @forelse($commissions as $commission)
-                                <tr>
+                                <tr>  
                                     <td>{{ ($commissions->currentPage()-1) * $commissions->perPage() + $loop->iteration }}</td>
                                     <td>
                                         @if($commission->user)
@@ -76,7 +76,7 @@
                                                 {{ $commission->user->fullname }} 
                                             </a>
                                         @else
-                                            -
+                                            - 
                                         @endif
                                     </td>
                                     <td>{{ $commission->user_email }}</td>
@@ -84,7 +84,7 @@
                                         <span class="badge bg-info">
                                             {{ $commission->user->realtor_id ?? '-' }}
                                         </span>
-                                    </td>
+                                    </td> 
                                     <td class="fw-bold">₦{{ number_format($commission->amount, 2) }}</td>
                                     <td>
                                         @if($commission->referral)

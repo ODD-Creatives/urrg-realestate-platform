@@ -69,8 +69,8 @@
                                             <td>
                                                 <span class="badge bg-{{ $referral->status === 'active' ? 'success' : 'secondary' }}">
                                                     {{ ucfirst($referral->status) }}
-                                                </span>
-                                            </td>
+                                                </span> 
+                                            </td>  
                                             <td>Level {{ $referral->paidCommissions->first()->level ?? 1 }}</td>
                                             <td>₦{{ number_format($referral->paidCommissions->sum('amount')) }}</td>
                                             <td>{{ $referral->created_at->format('M d, Y') }}</td>

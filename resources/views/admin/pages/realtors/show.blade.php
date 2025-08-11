@@ -100,7 +100,7 @@
                             </div> 
                             <div class="mt-4">
                                 <a href="{{ route('admin.referrals.referral.chain', encrypt($user->id)) }}" class="btn btn-outline-primary">View Referral Chain</a>
-                                <a href="{{ route('admin.commissions.index', encrypt($user->id)) }}" class="btn btn-outline-success">View Commissions</a>
+                                <a href="{{ route('admin.commissions.index') }}" class="btn btn-outline-success">View Commissions</a>
                             </div> 
                         </div>
                         

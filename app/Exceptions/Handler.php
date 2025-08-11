@@ -54,6 +54,10 @@ class Handler extends ExceptionHandler
             return response()->view('auth.login', [], 419);
         }
 
+        if ($exception instanceof \Illuminate\Session\TokenMismatchException) {
+            return response()->view('auth.login', [], 404);
+        }
+
         return parent::render($request, $exception);
     }
 
