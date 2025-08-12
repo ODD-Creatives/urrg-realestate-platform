@@ -44,9 +44,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getFormattedCreatedAtAttribute()
     {
-        return $this->created_at->format('M d, Y'); // Example: "Jul 28, 2023"
-        // Or for more detailed format:
-        // return $this->created_at->format('F j, Y \a\t g:i a');
+        return $this->created_at->format('M d, Y'); 
     }
 
     public function referrals()
@@ -56,7 +54,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function referrer()
     {
-        return $this->belongsTo(User::class, 'referrer_id'); // Recommended to use ID instead of code
+        return $this->belongsTo(User::class, 'referrer_id'); 
     } 
 
 

@@ -3,7 +3,7 @@
 @section('content')
 <div class="content-wrapper">
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12"> 
             @if(session('success'))
                 <div id="success-alert" class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ session('success') }}

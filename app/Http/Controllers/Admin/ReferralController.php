@@ -71,7 +71,7 @@ class ReferralController extends Controller
         $validated = $request->validate([
             'user_id' => 'required|exists:admins,id',
             'expires_at' => 'nullable|date|after:now',
-        ]);
+        ]); 
 
         $user = Admin::find($validated['user_id']);
         $referral = $this->referralService->generateReferralCode($user, [

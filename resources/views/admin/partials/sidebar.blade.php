@@ -32,7 +32,7 @@
         <span class="menu-title">Properties</span>
         </a>
     </li>
-    @if(Auth::guard('admin')->user()->id == 1)
+    @if(Auth::guard('admin')->user()->email == 'admin@gmail.com')
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.referrals.code.generator') }}">
             <i class="icon-grid menu-icon"></i>

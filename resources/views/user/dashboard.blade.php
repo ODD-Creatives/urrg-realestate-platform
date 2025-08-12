@@ -66,13 +66,13 @@
                                 <li>
                                     @if($user->upline_referral)
                                         @if($upline = $user->relationLoaded('upline') ? $user->upline : null)
-                                        @if($upline instanceof \App\Models\User)
-                                            {{ $upline->fullname }}
-                                        @elseif($upline instanceof \App\Models\ReferralCode && $upline->admin)
-                                            {{ $upline->admin->username }} (Admin)
+                                            @if($upline instanceof \App\Models\User)
+                                                {{ $upline->fullname }}
+                                            @elseif($upline instanceof \App\Models\ReferralCode && $upline->admin)
+                                                {{ $upline->admin->username }} (Admin)
                                         @else
                                             <span class="text-muted">Upline not found</span>
-                                        @endif
+                                        @endif 
                                     @else
                                         <span class="text-muted">N/A</span>
                                     @endif 
