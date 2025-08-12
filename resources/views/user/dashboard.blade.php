@@ -25,7 +25,6 @@
         
         <div class="row">
             <div class="col-lg-8 grid-margin stretch-card8">
-                 
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Referral Performance</h4>
@@ -56,7 +55,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> 
             <div class="col-lg-4 grid-margin">
                 <div class="card">
                     <div class="card-body">
@@ -65,19 +64,31 @@
                             <ul>
                                 <li>
                                     @if($user->upline_referral)
-                                        @if($upline = $user->relationLoaded('upline') ? $user->upline : null)
+                                        @php
+                                            $upline = $user->relationLoaded('upline') ? $user->upline : null;
+                                            
+                                             if (!$upline) {
+                                                $upline = \App\Models\User::where('referral_code', $user->upline_referral)->first();
+                                                
+                                                if (!$upline) {
+                                                    $upline = \App\Models\ReferralCode::where('code', $user->upline_referral)->with('admin')->first();
+                                                }
+                                            }
+                                        @endphp
+
+                                        @if($upline)
                                             @if($upline instanceof \App\Models\User)
-                                                {{ $upline->fullname }}
+                                                {{ $upline->fullname }} ({{ $upline->realtor_id ?? 'User' }})
                                             @elseif($upline instanceof \App\Models\ReferralCode && $upline->admin)
-                                                {{ $upline->admin->username }} (Admin)
+                                                {{ $upline->admin->username }} (Admin) <br>
+                                            @else
+                                                <span class="text-muted">Upline Code: {{ $user->upline_referral }}</span>
+                                            @endif
                                         @else
-                                            <span class="text-muted">Upline not found</span>
-                                        @endif 
+                                            <span class="text-muted">Upline Code: {{ $user->upline_referral }}</span>
+                                        @endif
                                     @else
-                                        <span class="text-muted">N/A</span>
-                                    @endif 
-                                    @else
-                                        <p class="text-muted">No Upline</p>
+                                        <span class="text-muted">No Upline</span>
                                     @endif
                                     <span class="caret caret-down">{{ $user->full_name }} (You)</span>
                                     <ul class="nested active">
@@ -85,23 +96,20 @@
                                         <li>
                                             <span class="caret {{ count($childData['grandchildren']) > 0 ? 'caret-down' : '' }}">
                                                 {{ $childData['child']->full_name }} 
-                                                <span class="badge bg-success">Child</span>
-                                                <small class="text-muted">Earned: ₦{{ number_format($childData['child']->paidCommissions->sum('amount')) }}</small>
+                                                {{-- <small class="text-muted">Earned: ₦{{ number_format($childData['child']->paidCommissions->sum('amount')) }}</small> --}}
                                             </span>
                                             <ul class="nested {{ count($childData['grandchildren']) > 0 ? 'active' : '' }}">
                                                 @foreach($childData['grandchildren'] as $grandchildData)
                                                 <li>
                                                     <span class="caret {{ count($grandchildData['great_grandchildren']) > 0 ? 'caret-down' : '' }}">
                                                         {{ $grandchildData['grandchild']->full_name }}
-                                                        <span class="badge bg-info">Grandchild</span>
-                                                        <small class="text-muted">Earned: ₦{{ number_format($grandchildData['grandchild']->paidCommissions->sum('amount')) }}</small>
+                                                        {{-- <small class="text-muted">Earned: ₦{{ number_format($grandchildData['grandchild']->paidCommissions->sum('amount')) }}</small> --}}
                                                     </span>
                                                     <ul class="nested {{ count($grandchildData['great_grandchildren']) > 0 ? 'active' : '' }}">
                                                         @foreach($grandchildData['great_grandchildren'] as $greatGrandchild)
                                                         <li>
                                                             {{ $greatGrandchild->full_name }}
-                                                            <span class="badge bg-warning">Great Grandchild</span>
-                                                            <small class="text-muted">Earned: ₦{{ number_format($greatGrandchild->paidCommissions->sum('amount')) }}</small>
+                                                            {{-- <small class="text-muted">Earned: ₦{{ number_format($greatGrandchild->paidCommissions->sum('amount')) }}</small> --}}
                                                         </li>
                                                         @endforeach
                                                     </ul>

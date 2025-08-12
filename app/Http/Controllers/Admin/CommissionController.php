@@ -63,7 +63,7 @@ class CommissionController extends Controller
 
     // In your controller method
     public function processPayment(Request $request, CommissionService $commissionService)
-    {
+    { 
         $validated = $request->validate([
             'realtor_id' => 'required|exists:users,id',
             'realtor_amount' => 'required|numeric|min:0',

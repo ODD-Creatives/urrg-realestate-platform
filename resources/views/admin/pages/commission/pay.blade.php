@@ -44,9 +44,9 @@
                     
                     @if(isset($realtor))
                         <form method="POST" action="{{ route('admin.commissions.process-payment') }}">
-                            @csrf
+                            @csrf 
                             <input type="hidden" name="realtor_id" value="{{ $realtor->id }}">
-
+     
                             <!-- Main Realtor Card -->
                             <div class="border rounded p-3 mb-3 bg-light">
                                 <h5 class="mb-3">

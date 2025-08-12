@@ -56,39 +56,79 @@
                 <form action="{{ route('register')}}" method="POST" class="contact-form form-contact" enctype="multipart/form-data">
                     @csrf
                     <h3 class="form-title">Join URRG as a Realtor</h3>
+                    
+                    <!-- Display general form errors -->
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    
                     <div class="row"> 
-          
                         <!-- First Name -->
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Firstname *" required>
+                            <input type="text" class="form-control @error('firstname') is-invalid @enderror" name="firstname" id="firstname" placeholder="Firstname *" value="{{ old('firstname') }}" required>
+                            @error('firstname')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
                         <!-- Last Name -->
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" name="lastname" id="lastname" placeholder="lastname *" required>
+                            <input type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" id="lastname" placeholder="Lastname *" value="{{ old('lastname') }}" required>
+                            @error('lastname')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
                         <!-- Phone -->
                         <div class="form-group col-md-6">
-                            <input type="tel" class="form-control" name="phone" id="phone" placeholder="Phone *" required>
+                            <input type="tel" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" placeholder="Phone *" value="{{ old('phone') }}" required>
+                            @error('phone')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
                         <!-- Email -->
                         <div class="form-group col-md-6">
-                            <input type="email" class="form-control" name="email" id="email" placeholder="Email Address *" required>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" placeholder="Email Address *" value="{{ old('email') }}" required>
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
                         <!-- State of Residence -->
                         <div class="form-group col-md-12">
-                            <input type="text" class="form-control" name="state_of_residence" id="state_of_residence" placeholder="State of Residence *" required>
+                            <input type="text" class="form-control @error('state_of_residence') is-invalid @enderror" name="state_of_residence" id="state_of_residence" placeholder="State of Residence *" value="{{ old('state_of_residence') }}" required>
+                            @error('state_of_residence')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
                         <!-- Referral Code -->
-                        {{-- {{$referralDetails->referral_code}} --}}
                         <div class="form-group col-md-12">
-                            <input readonly type="text" class="form-control" name="referral_code" id="referral_code" 
-                            value="{{ isset($referralDetails) ? ($referralDetails->code ?? $referralDetails->referral_code) : '' }}" 
-                            placeholder="Referral Code *" required >
+                            <input readonly type="text" class="form-control @error('referral_code') is-invalid @enderror" name="referral_code" id="referral_code" 
+                            value="{{ isset($referralDetails) ? ($referralDetails->code ?? $referralDetails->referral_code) : old('referral_code') }}" 
+                            placeholder="Referral Code *" required>
+                            @error('referral_code')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                             <small class="form-text text-muted mt-1">
                                 Don't have a referral code? <a href="https://wa.me/23490339742526" target="_blank" style="color: #25D366; font-weight: 500;">Click here to message the admin on WhatsApp</a>.
                             </small>
@@ -97,21 +137,31 @@
                         <!-- Experience in Real Estate -->
                         <div class="form-group col-12">
                             <label for="experience" class="form-label">How long have you been in the Real Estate Industry?</label>
-                            <select class="form-control" name="experience" id="experience" required>
+                            <select class="form-control @error('experience') is-invalid @enderror" name="experience" id="experience" required>
                                 <option value="">Select experience range</option>
-                                <option value="Below 6 months">Below 6 months</option>
-                                <option value="6 months - 1 year">6 months - 1 year</option>
-                                <option value="1 year - 3 years">1 year - 3 years</option>
-                                <option value="3 years - 5 years">3 years - 5 years</option>
-                                <option value="5 years - 7 years">5 years - 7 years</option>
-                                <option value="Above 7 years">Above 7 years</option>
+                                <option value="Below 6 months" {{ old('experience') == 'Below 6 months' ? 'selected' : '' }}>Below 6 months</option>
+                                <option value="6 months - 1 year" {{ old('experience') == '6 months - 1 year' ? 'selected' : '' }}>6 months - 1 year</option>
+                                <option value="1 year - 3 years" {{ old('experience') == '1 year - 3 years' ? 'selected' : '' }}>1 year - 3 years</option>
+                                <option value="3 years - 5 years" {{ old('experience') == '3 years - 5 years' ? 'selected' : '' }}>3 years - 5 years</option>
+                                <option value="5 years - 7 years" {{ old('experience') == '5 years - 7 years' ? 'selected' : '' }}>5 years - 7 years</option>
+                                <option value="Above 7 years" {{ old('experience') == 'Above 7 years' ? 'selected' : '' }}>Above 7 years</option>
                             </select>
+                            @error('experience')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
                         <!-- Password -->
                         <div class="form-group col-md-6">
                             <label for="password" class="form-label">Password *</label>
-                            <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password" required>
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" placeholder="Enter Password" required>
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
                         <!-- Confirm Password -->

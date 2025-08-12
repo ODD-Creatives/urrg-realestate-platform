@@ -9,7 +9,7 @@
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
-            padding: 20px;
+            padding: 20px; 
         } 
         .email-container {
             background-color: #ffffff;
@@ -55,6 +55,30 @@
         .footer p {
             margin: 5px 0;
         }
+        .core-values {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #47008E;
+        }
+        .core-values h3 {
+            color: #47008E;
+            margin-top: 0;
+        }
+        .core-values ul {
+            padding-left: 20px;
+        }
+        .core-values li {
+            margin-bottom: 8px;
+        }
+        .motto {
+            font-weight: bold;
+            font-style: italic;
+            text-align: center;
+            margin: 15px 0;
+            color: #47008E;
+        }
     </style>
 </head>
 <body>
@@ -70,12 +94,25 @@
             <p>Dear {{ $first_name}} {{ $last_name }},</p>
             <p>Welcome to URRG, your trusted partner in finding premium landed properties. We are excited to have you on board and look forward to helping you make informed decisions in the real estate market.</p>
             
+            <div class="core-values">
+                <h3>URRG – Core Values</h3>
+                <p class="motto">"One Vision. One Standard. One Success."</p>
+                <ul>
+                    <li><strong>Integrity</strong> – We tell the truth, keep our word, and build trust that lasts.</li>
+                    <li><strong>Professionalism</strong> – We handle every deal with excellence, structure, and respect.</li>
+                    <li><strong>Collaboration</strong> – We win together by uniting realtors, developers, and clients as one team.</li>
+                    <li><strong>Accountability</strong> – We take ownership of our actions and deliver on every promise.</li>
+                    <li><strong>Value Creation</strong> – We ensure every deal benefits all parties — developers, agents, and clients.</li>
+                    <li><strong>Continuous Growth</strong> – We keep learning, innovating, and improving to stay ahead in the market.</li>
+                    <li><strong>Excellence in Service</strong> – We go beyond expectations to deliver top-notch results every time.</li>
+                    <li><strong>Mutual Respect</strong> – We honor every partner's role and treat each other with dignity.</li>
+                </ul>
+            </div>
+            
             <p>To complete your registration and gain access to your exclusive property dashboard, please verify your email address by clicking the button below:</p>
             
             <p style="text-align: center;">
                 <a href="{{ $verifyUrl }} " target="_blank" class="button">Verify Your Email</a>
-                {{-- <a href="{{ route('verification.notice', ['user_id' => encrypt($user_id)]) }} " target="_blank" class="button">Verify Your Account</a> --}}
-                
             </p>
             
             <p>This link will expire in 24 hours, so please verify your email promptly to continue exploring our available properties and services.</p>
@@ -84,13 +121,10 @@
                 <p>Your referral code is <strong>{{ $referralCode }}</strong>. Share it with your friends and earn rewards when they sign up.</p>
             @endif
             
-            <p>{{ $verifyUrl }}</p>
-
             <p>If you did not initiate this request, please disregard this email.</p>
 
-            <p>We are also excited to inform you that your virtual account has been successfully created with us! Below are your account details:</p>
+            <p>We are also excited to inform you that your virtual account has been successfully created with us!</p>
 
-            
             <p>If you have any questions or need further assistance, please don't hesitate to reach out to us.</p>
 
             <p>Thank you for choosing URRG!</p>
@@ -102,8 +136,8 @@
         <!-- Footer Section -->
         <div class="footer">
             <p>&copy; {{ date('Y') }} URRG. All rights reserved.</p>
-            <p> Your Gateway to Landed Properties!</p>
-            <p><a href="https://uniqueradiancerealtorsgroup.com" style="color: #555; text-decoration: none;">https://uniqueradiancerealtorsgroup.com/</a></p>
+            <p>Your Gateway to Landed Properties!</p>
+            <p><a href="{{ config('app.url') }}" style="color: #555; text-decoration: none;">https://uniqueradiancerealtorsgroup.com/</a></p>
         </div>
     </div>
 </body>

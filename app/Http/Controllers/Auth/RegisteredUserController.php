@@ -39,7 +39,7 @@ class RegisteredUserController extends Controller
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'phone' => 'required|string|max:20',
+            'phone' => 'required|string|max:20|unique:users',
             'state_of_residence' => 'required|string|max:255',
             'referral_code' => [
                 'required',
@@ -149,7 +149,7 @@ class RegisteredUserController extends Controller
                     break;
                 }
 
-                $this->createCommissionRecord($newUser, $uplineAdmin, $level, $commissionAmount);
+                // $this->createCommissionRecord($newUser, $uplineAdmin, $level, $commissionAmount);
                 $this->createReferralLog($newUser, $uplineAdmin, $level);
                 $this->updateWallet($uplineAdmin, $commissionAmount);
                 
@@ -172,7 +172,7 @@ class RegisteredUserController extends Controller
         
         while ($currentUpline && $level <= $levelsToPay) {
             try {
-                $this->createCommissionRecord($newUser, $currentUpline, $level, $commissionAmount);
+                // $this->createCommissionRecord($newUser, $currentUpline, $level, $commissionAmount);
                 $this->createReferralLog($newUser, $currentUpline, $level);
                 $this->updateWallet($currentUpline, $commissionAmount);
                 
@@ -225,7 +225,7 @@ class RegisteredUserController extends Controller
 
     protected function sendVerificationEmail(User $user)
     {
-        $referralLink = "https://uniqueradiancerealtorsgroup.com/register/referral/{$user->referral_code}";
+        $referralLink = config('app.url') . '/register/referral/' . $user->referral_code;
         
         try {
             Mail::to($user->email)->send(new VerificationEmail($user, $referralLink));
