@@ -92,8 +92,8 @@
                                     <label class="form-label">Preferred Payment Method</label>
                                     <select class="form-select" name="payment_method" required>
                                         <option value="Bank Transfer" {{ (auth()->user()->payment_method ?? '') == 'Bank Transfer' ? 'selected' : '' }}>Bank Transfer</option>
-                                        <option value="PayPal" {{ (auth()->user()->payment_method ?? '') == 'PayPal' ? 'selected' : '' }}>PayPal</option>
-                                        <option value="Cheque" {{ (auth()->user()->payment_method ?? '') == 'Cheque' ? 'selected' : '' }}>Cheque</option>
+                                        {{-- <option value="PayPal" {{ (auth()->user()->payment_method ?? '') == 'PayPal' ? 'selected' : '' }}>PayPal</option> --}}
+                                        {{-- <option value="Cheque" {{ (auth()->user()->payment_method ?? '') == 'Cheque' ? 'selected' : '' }}>Cheque</option> --}}
                                     </select>
                                 </div>
                             </div>

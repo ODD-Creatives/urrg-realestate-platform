@@ -89,7 +89,34 @@
                         <h4 class="card-title">Referral Network</h4>
                         <div id="referral-tree">
                             <ul>
-                                <li>
+                                <li> 
+                                    @if($user->upline_referral)
+                                        @php
+                                            $upline = $user->relationLoaded('upline') ? $user->upline : null;
+                                            
+                                             if (!$upline) {
+                                                $upline = \App\Models\User::where('referral_code', $user->upline_referral)->first();
+                                                
+                                                if (!$upline) {
+                                                    $upline = \App\Models\ReferralCode::where('code', $user->upline_referral)->with('admin')->first();
+                                                }
+                                            }
+                                        @endphp
+
+                                        @if($upline)
+                                            @if($upline instanceof \App\Models\User)
+                                                {{ $upline->fullname }} ({{ $upline->realtor_id ?? 'User' }})
+                                            @elseif($upline instanceof \App\Models\ReferralCode && $upline->admin)
+                                                {{ $upline->admin->username }} (Admin) <br>
+                                            @else
+                                                <span class="text-muted">Upline Code: {{ $user->upline_referral }}</span>
+                                            @endif
+                                        @else
+                                            <span class="text-muted">Upline Code: {{ $user->upline_referral }}</span>
+                                        @endif
+                                    @else
+                                        <span class="text-muted">No Upline</span>
+                                    @endif
                                     <span class="caret caret-down">{{ $user->full_name }} (You)</span>
                                     <ul class="nested active">
                                         @foreach($referralTree[1] ?? [] as $level1)

@@ -92,7 +92,9 @@
         <!-- Content Section -->
         <div class="content">
             <p>Dear {{ $first_name}} {{ $last_name }},</p>
-            <p>Welcome to URRG, your trusted partner in finding premium landed properties. We are excited to have you on board and look forward to helping you make informed decisions in the real estate market.</p>
+            <p>
+                Welcome to Unique Radiance Realtor Group (URRG) — your trusted partner in connecting clients with premium landed properties. We’re excited to have you as part of our network of real estate professionals, and we look forward to supporting you in closing deals faster, building lasting client relationships, and thriving in today’s competitive property market.
+            </p>
             
             <div class="core-values">
                 <h3>URRG – Core Values</h3>
@@ -118,7 +120,11 @@
             <p>This link will expire in 24 hours, so please verify your email promptly to continue exploring our available properties and services.</p>
 
             @if(isset($referralCode))
-                <p>Your referral code is <strong>{{ $referralCode }}</strong>. Share it with your friends and earn rewards when they sign up.</p>
+                <p>Your Referral code is <strong>{{ $referralCode }}</strong>. Share it with your friends and earn rewards when they sign up.</p>
+            @endif
+            
+            @if(isset($realtorId))
+                <p>Your Realtor ID is <strong>{{ $realtorId }}</strong>. You can use this for identification within our platform.</p>
             @endif
             
             <p>If you did not initiate this request, please disregard this email.</p>
