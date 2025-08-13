@@ -85,11 +85,11 @@
             </div>
             <div class="col-lg-4 grid-margin">
                 <div class="card">
-                    <div class="card-body">
+                     <div class="card-body">
                         <h4 class="card-title">Referral Network</h4>
                         <div id="referral-tree">
                             <ul>
-                                <li> 
+                                <li>
                                     @if($user->upline_referral)
                                         @php
                                             $upline = $user->relationLoaded('upline') ? $user->upline : null;
@@ -116,19 +116,28 @@
                                         @endif
                                     @else
                                         <span class="text-muted">No Upline</span>
-                                    @endif
+                                    @endif 
                                     <span class="caret caret-down">{{ $user->full_name }} (You)</span>
                                     <ul class="nested active">
-                                        @foreach($referralTree[1] ?? [] as $level1)
+                                        @foreach($referralTree['children'] as $childData)
                                         <li>
-                                            <span class="caret">{{ $level1->full_name }} (Level 1)</span>
-                                            <ul class="nested">
-                                                @foreach($level1->referrals as $level2)
+                                            <span class="caret {{ count($childData['grandchildren']) > 0 ? 'caret-down' : '' }}">
+                                                {{ $childData['child']->full_name }} 
+                                                {{-- <small class="text-muted">Earned: ₦{{ number_format($childData['child']->paidCommissions->sum('amount')) }}</small> --}}
+                                            </span>
+                                            <ul class="nested {{ count($childData['grandchildren']) > 0 ? 'active' : '' }}">
+                                                @foreach($childData['grandchildren'] as $grandchildData)
                                                 <li>
-                                                    <span class="caret">{{ $level2->full_name }} (Level 2)</span>
-                                                    <ul class="nested">
-                                                        @foreach($level2->referrals as $level3)
-                                                        <li>{{ $level3->full_name }} (Level 3)</li>
+                                                    <span class="caret {{ count($grandchildData['great_grandchildren']) > 0 ? 'caret-down' : '' }}">
+                                                        {{ $grandchildData['grandchild']->full_name }}
+                                                        {{-- <small class="text-muted">Earned: ₦{{ number_format($grandchildData['grandchild']->paidCommissions->sum('amount')) }}</small> --}}
+                                                    </span>
+                                                    <ul class="nested {{ count($grandchildData['great_grandchildren']) > 0 ? 'active' : '' }}">
+                                                        @foreach($grandchildData['great_grandchildren'] as $greatGrandchild)
+                                                        <li>
+                                                            {{ $greatGrandchild->full_name }}
+                                                            {{-- <small class="text-muted">Earned: ₦{{ number_format($greatGrandchild->paidCommissions->sum('amount')) }}</small> --}}
+                                                        </li>
                                                         @endforeach
                                                     </ul>
                                                 </li>
@@ -136,7 +145,7 @@
                                             </ul>
                                         </li>
                                         @endforeach
-                                    </ul>
+                                    </ul> 
                                 </li>
                             </ul>
                         </div>

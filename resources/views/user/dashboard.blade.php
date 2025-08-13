@@ -89,7 +89,7 @@
                                         @endif
                                     @else
                                         <span class="text-muted">No Upline</span>
-                                    @endif
+                                    @endif 
                                     <span class="caret caret-down">{{ $user->full_name }} (You)</span>
                                     <ul class="nested active">
                                         @foreach($referralTree['children'] as $childData)
