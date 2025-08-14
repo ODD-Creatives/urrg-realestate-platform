@@ -98,9 +98,12 @@ class RegisteredUserController extends Controller
 
             // Send verification email
             $this->sendVerificationEmail($user);
-
+            // Store WhatsApp link in session to be used in the view
+            $whatsappLink = 'https://chat.whatsapp.com/K8z72O68OL9IjpvXfKa5uN?mode=ac_t';
+        
             return redirect()->route('signin')
-                ->with('success', 'Registration successful! Please check your email to verify your account.');
+                ->with('success', 'Registration successful! Please check your email to verify your account.')
+                ->with('whatsapp_link', $whatsappLink);
         });
     }
 

@@ -52,6 +52,14 @@
                     </div>
                 </div>
             </div>
+            @if(session('whatsapp_link'))
+            <script>
+                window.onload = function() {
+                    window.open('{{ session('whatsapp_link') }}', '_blank');
+                };
+            </script>
+            @endif
+            
             <div class="col-lg-6 col-md-6 p-3 shadow-sm">
                 <form action="{{ route('register')}}" method="POST" class="contact-form form-contact" enctype="multipart/form-data">
                     @csrf

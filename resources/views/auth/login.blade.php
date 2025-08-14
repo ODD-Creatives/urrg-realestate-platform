@@ -4,6 +4,24 @@
 
 @section('content')
 <div class="container pt-5">
+    @if(session('whatsapp_link'))
+            <script>
+                window.onload = function() {
+                    window.open('{{ session('whatsapp_link') }}', '_blank');
+                };
+            </script>
+            @endif
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+            @if(session('whatsapp_link'))
+                <br>
+                <a href="{{ session('whatsapp_link') }}" target="_blank" class="btn btn-primary mt-2">
+                    Join our WhatsApp group
+                </a>
+            @endif
+        </div>
+    @endif
      <br/> <br/>
     <div class="row justify-content-center">
         <div class="col-lg-5 col-md-6 mt-5">
