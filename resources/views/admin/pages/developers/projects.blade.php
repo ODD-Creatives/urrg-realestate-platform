@@ -1,75 +1,73 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    <div class="content-wrapper">
-        <div class="row">
-            <div class="col-md-12 grid-margin">
-                <div class="row">
-                    <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                    <h3 class="font-weight-bold">Developer's Projects</h3>
-                    <h5 class="font-weight-bold">🏠 Manage Projects – URRG Properties Ltd</h5>
-                    <a href="{{ route('admin.developers.listings_add') }}" class="btn btn-sm btn-warning">+ Add New Project</a>
-                    </div>
-                </div>
-            </div>
+<div class="content-wrapper">
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <h3 class="font-weight-bold">📋 Projects by {{ $developer->company_name }}</h3>
+            <a href="{{ route('admin.developers.index') }}" class="btn btn-sm btn-outline-secondary">🔙 Back to Developers</a>
+            <a href="{{ route('admin.projects.create') }}" class="btn btn-sm btn-outline-primary">➕ Add New Project</a>
         </div>
-        <div class="row">
-            <div class="card mb-4">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h4 class="mb-0">Project </h4>
-                    <a href="{{ route('admin.developers.view') }}" class="btn btn-sm btn-outline-dark">Back</a>
-                </div>
-                <div class="card-body table-responsive">
-                    <table class="table table-striped align-middle">
-                    <thead class="table-light">
-                        <tr>
-                        <th>#</th>
-                        <th>Property Title</th>
-                        <th>Category</th>
-                        <th>Flags</th>
-                        <th>Status</th>
-                        <th>Listed On</th>
-                        <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                        <td>1</td>
-                        <td>Oakwood Villa</td>
-                        <td>Estate</td>
-                        <td><span class="badge bg-info">Featured</span></td>
-                        <td><span class="badge bg-success">Approved</span></td>
-                        <td>2024-06-01</td>
-                        <td>
-                            <div class="btn-group">
-                            <a href="{{ route('admin.developers.projects_view') }}" class="btn btn-sm btn-outline-secondary">View</a>
-                            <a href="{{ route('admin.developers.projects_add') }}" class="btn btn-sm btn-outline-warning">Edit</a>
-                            <a href="#" class="btn btn-sm btn-outline-success">Approve</a>
-                            <a href="#" class="btn btn-sm btn-outline-danger">Reject</a>
-                            </div>
-                        </td>
-                        </tr>
-                        <tr>
-                        <td>2</td>
-                        <td>Green Estate Plot B</td>
-                        <td>Land</td>
-                        <td><span class="badge bg-secondary">Standard</span></td>
-                        <td><span class="badge bg-warning text-dark">Pending</span></td>
-                        <td>2024-06-10</td>
-                        <td>
-                            <div class="btn-group">
-                            <a href="{{ route('admin.developers.projects_view') }}" class="btn btn-sm btn-outline-secondary">View</a>
-                            <a href="{{ route('admin.developers.projects_add') }}" class="btn btn-sm btn-outline-warning">Edit</a>
-                            <a href="#" class="btn btn-sm btn-outline-success">Approve</a>
-                            <a href="#" class="btn btn-sm btn-outline-danger">Reject</a>
-                            </div>
-                        </td>
-                        </tr>
-                        <!-- More properties -->
-                    </tbody>
+    </div>
+
+    @if ($projects->isEmpty())
+        <div class="alert alert-info">No projects available for this developer.</div>
+    @else
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Cover</th>
+                                <th>Title</th>
+                                <th>Status</th>
+                                <th>Units</th>
+                                <th>Price/Unit</th>
+                                <th>Location</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($projects as $index => $project)
+                                <tr>
+                                    <td>{{ $index + 1 }}</td>
+                                    <td>
+                                        @if($project->cover_image)
+                                            <img src="{{ asset('storage/' . $project->cover_image) }}" width="70" class="img-thumbnail">
+                                        @else
+                                            <small class="text-muted">No Image</small>
+                                        @endif
+                                    </td>
+                                    <td>{{ $project->title }}</td>
+                                    <td>
+                                        <span class="badge bg-{{ 
+                                            $project->status === 'completed' ? 'success' : 
+                                            ($project->status === 'ongoing' ? 'primary' : 'warning') 
+                                        }}">
+                                            {{ ucfirst($project->status) }}
+                                        </span>
+                                    </td>
+                                    <td>{{ $project->number_of_units ?? '-' }}</td>
+                                    <td>₦{{ number_format($project->price_per_unit ?? 0) }}</td>
+                                    <td>{{ $project->location ?? '-' }}</td>
+                                    <td>
+                                        <a href="{{ route('admin.projects.show', $project->id) }}" class="btn btn-sm btn-info">View</a>
+                                        <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                        <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Delete this project?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-sm btn-danger">Del</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
-    </div>
-@endsection 
+    @endif
+</div>
+@endsection

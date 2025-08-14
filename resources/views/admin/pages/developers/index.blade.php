@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                     <h3 class="font-weight-bold">Developer's </h3>
-                    <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary">{{ $developers->where('status', 'pending')->count() }} pending applications!</span></h6>
+                   
                 </div>
             </div>
         </div>
@@ -26,8 +26,11 @@
                     <thead class="table-light">
                         <tr>
                             <th>#</th>
+                            <th>Developer ID</th>
                             <th>Company Name</th>
+                            <th>Company Logo</th>
                             <th>Email</th>
+                            <th>Contact Person</th>
                             <th>Phone</th>
                             <th>Status</th>
                             <th>Verified</th>
@@ -39,8 +42,11 @@
                         @foreach($developers as $key => $developer)
                         <tr>
                             <td>{{ $key + 1 }}</td>
+                            <td>{{ $developer->developer_id }}</td>
                             <td>{{ $developer->company_name }}</td>
+                            <td><img src="{{ asset($developer->logo) }}" alt="Developer Logo" class="img-fluid" style="max-height: 120px;"></td>
                             <td>{{ $developer->email }}</td>
+                            <td>{{ $developer->contact_person }}</td>
                             <td>{{ $developer->phone }}</td>
                             <td>
                                 @if($developer->status == 'approved')
@@ -59,12 +65,12 @@
                             <td>{{ $developer->created_at->format('M d, Y')  }}</td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="{{ route('admin.developers.edit', encrypt($developer->id) ) }}" class="btn btn-sm btn-outline-warning">View</a>
+                                    <a href="{{ route('admin.developers.view', encrypt($developer->id) ) }}" class="btn btn-sm btn-outline-warning">View</a>
                                     @if($developer->status != 'approved')
-                                        <a href="#" class="btn btn-sm btn-outline-success">Approve</a>
+                                        <a href="{{ route('admin.developers.edit', encrypt($developer->id)) }}" class="btn btn-sm btn-outline-success">Approve</a>
                                     @endif
                                     @if($developer->status != 'rejected')
-                                        <a href="#" class="btn btn-sm btn-outline-danger">Reject</a>
+                                        <a href="{{ route('admin.developers.edit', encrypt($developer->id)) }}" class="btn btn-sm btn-outline-danger">Reject</a>
                                     @endif
                                 </div>
                             </td>

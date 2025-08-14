@@ -8,9 +8,15 @@ class Event extends Model
 {
     protected $fillable = [
         'title',
-        'event_date',
-        'banner',
         'description',
+        'event_date',
+        'location',
+        'status',
     ];
 
+    public function images()
+    {
+        return $this->hasMany(EventImage::class);
+    }
 }
+

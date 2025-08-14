@@ -3,114 +3,145 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\EventImage;
+use Illuminate\Http\Request;
+
 class EventController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // 📌 List all events
     public function index()
     {
-        $events = Event::latest()->get();
+        $events = Event::withCount('images')->latest()->get();
         return view('admin.pages.events.index', compact('events'));
-        
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    // 📌 Show create form
     public function create()
     {
         return view('admin.pages.events.create');
     }
 
-    /** 
-     * Store a newly created resource in storage.
-     */
+    // 📌 Store event
     public function store(Request $request)
     {
-         $request->validate([
-            'title' => 'required|string|max:255',
-            'event_date' => 'required|date',
-            'description' => 'required|string',
-            'banner' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+        $validated = $request->validate([
+            'title'       => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'event_date'  => 'required|date',
+            'location'    => 'nullable|string',
+            'status'      => 'required|in:past,upcoming',
+            'images.*'    => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ]);
-        //dd("Hello");
-        $bannerPath = $request->file('banner')->store('events', 'public');
 
-        Event::create([
-            'title' => $request->title,
-            'event_date' => $request->event_date,
-            'description' => $request->description,
-            'banner' => $bannerPath,
-        ]);
+        $event = Event::create($validated);
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $filename = uniqid('img_') . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('assets/uploads/events'), $filename);
+                $event->images()->create([
+                    'image_path' => 'assets/uploads/events/' . $filename
+                ]);
+            }
+        }
 
         return redirect()->route('admin.events.index')->with('success', 'Event created successfully.');
-
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show($id)
+    // 📌 Show event details
+    public function show(Event $event)
     {
-        $event = Event::findOrFail($id); // fetch event by ID
-        return view('admin.pages.events.show', compact('event')); // pass to view
+        $event->load('images');
+        return view('admin.pages.events.show', compact('event'));
     }
 
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
+    // 📌 Edit form
+    public function edit(Event $event)
     {
-        $event = Event::findOrFail($id);
+        $event->load('images');
         return view('admin.pages.events.edit', compact('event'));
     }
 
-
+    // 📌 Update event
     public function update(Request $request, $id)
     {
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'event_date' => 'required|date',
-            'description' => 'required|string',
-            'banner' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-        ]);
-
-        // 🔧 Fetch the event manually
+        //dd('Update method called');
         $event = Event::findOrFail($id);
 
-        // 🖼️ Handle image update
-        if ($request->hasFile('banner')) {
-            $path = $request->file('banner')->store('events', 'public');
-            $validated['banner'] = $path;
-        }
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'event_date' => 'required|date',
+            'location' => 'nullable|string|max:255',
+            'status' => 'required|in:past,upcoming',
+            'images.*' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
+        ]);
 
-        // 📝 Update the event
-        $event->update($validated);
+        $event->update([
+            'title'       => $validated['title'],
+            'description' => $validated['description'] ?? null,
+            'event_date'  => $validated['event_date'],
+            'location'    => $validated['location'] ?? null,
+            'status'      => $validated['status'],
+        ]);
+
+        // Count current images
+        $existingCount = $event->images()->count();
+
+        // Add new images if provided
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
+                if ($existingCount >= 20) break;
+
+                $path = $file->store('events/images', 'public');
+
+                EventImage::create([
+                    'event_id'   => $event->id,
+                    'image_path' => 'storage/' . $path,
+                ]);
+
+                $existingCount++;
+            }
+        }
 
         return redirect()->route('admin.events.index')->with('success', 'Event updated successfully.');
     }
 
-
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id)
+    public function deleteImage($id)
     {
-        $event = Event::findOrFail($id);
+        $image = EventImage::findOrFail($id);
 
-        // Delete banner image if it exists
-        if ($event->banner && \Storage::disk('public')->exists($event->banner)) {
-            \Storage::disk('public')->delete($event->banner);
+        if (file_exists(public_path($image->image_path))) {
+            unlink(public_path($image->image_path));
+        }
+
+        $image->delete();
+
+        return back()->with('success', 'Image deleted successfully.');
+    }
+
+
+
+
+    // 📌 Delete event
+    public function destroy(Event $event)
+    {
+        //dd('Delete method called');
+
+        // Delete images from storage
+        foreach ($event->images as $image) {
+            $path = public_path($image->image_path);
+            if (file_exists($path)) {
+                unlink($path);
+            }
         }
 
         $event->delete();
 
         return redirect()->route('admin.events.index')->with('success', 'Event deleted successfully.');
     }
+
+    
 
 }

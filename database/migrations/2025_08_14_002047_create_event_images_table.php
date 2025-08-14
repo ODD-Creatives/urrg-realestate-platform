@@ -11,23 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('properties', function (Blueprint $table) {
+        Schema::create('event_images', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('location');
-            $table->decimal('price', 15, 2);
-            $table->text('description');
-            $table->string('image')->nullable(); // Store image path or filename
-            $table->date('date')->nullable();
+            $table->unsignedBigInteger('event_id');
+            $table->string('image_path');
             $table->timestamps();
+
+            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
         });
     }
+
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('properties');
+        Schema::dropIfExists('event_images');
     }
 };

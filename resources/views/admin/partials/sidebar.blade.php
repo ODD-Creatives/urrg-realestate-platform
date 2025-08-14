@@ -27,11 +27,18 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.property.index') }}">
+        <a class="nav-link" href="{{ route('admin.properties.index') }}">
         <i class="mdi mdi-shape-plus menu-icon"></i>
         <span class="menu-title">Properties</span>
         </a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.projects.index') }}">
+        <i class="mdi mdi-shape-plus menu-icon"></i>
+        <span class="menu-title">Projects</span>
+        </a>
+    </li>
+    {{--
     @if(Auth::guard('admin')->user()->email == 'admin@gmail.com')
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.referrals.code.generator') }}">
@@ -40,6 +47,7 @@
             </a>
         </li>
     @endif
+    --}}
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.referrals.index') }}">
         <i class="mdi mdi-account-multiple menu-icon"></i>
@@ -50,6 +58,12 @@
         <a class="nav-link" href="{{ route('admin.events.index') }}">
             <i class="mdi mdi-newspaper menu-icon"></i>
             <span class="menu-title">Events</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.accademyEvents.index') }}">
+            <i class="mdi mdi-newspaper menu-icon"></i>
+            <span class="menu-title">URRG Accademy</span>
         </a>
     </li>
    

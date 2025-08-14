@@ -18,6 +18,9 @@ class Developer extends Model
         'company_profile_path',
         'property_details_path',
         'status', 
+        'logo',           
+        'company_description',      
+        'developer_id',  
     ];
 
     

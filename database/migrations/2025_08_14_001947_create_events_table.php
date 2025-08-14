@@ -14,13 +14,14 @@ return new class extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->text('description')->nullable();
             $table->date('event_date');
-            $table->text('description');
-            $table->string('banner'); // image path
+            $table->string('location')->nullable();
+            $table->enum('status', ['past', 'upcoming'])->default('past');
             $table->timestamps();
         });
-
     }
+
 
     /**
      * Reverse the migrations.

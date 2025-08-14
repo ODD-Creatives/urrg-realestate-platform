@@ -1,88 +1,71 @@
 @extends('admin.layouts.app')
 
 @section('content')
-        <div class="content-wrapper">
-            <div class="row">
-              <div class="col-md-12 grid-margin">
-                <div class="row">
-                    <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                        <h3 class="font-weight-bold">🏗️ Project / Property Listings</h3>
-                         
-                                               
-                    </div>
-                  
-                </div>
-              </div>
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-md-12 grid-margin">
+            <h3 class="font-weight-bold">🌍 All Property Listings</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4>Properties</h4>
+                <a href="{{ route('admin.properties.create') }}" class="btn btn-sm btn-success">+ Add New Property</a>
             </div>
-            <div class="row">
-                <div class="card mb-4">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <h4 class="mb-0"> All Project </h4>
-                    </div>
-                    <div class="card-body table-responsive">
-                        <table class="table table-striped align-middle">
-                        <thead class="table-light">
-                            <tr>
+
+            <div class="card-body table-responsive">
+                <table class="table table-striped align-middle">
+                    <thead class="table-light">
+                        <tr>
                             <th>#</th>
                             <th>Title</th>
-                            <th>Type</th>
-                            <th>Category</th>
                             <th>Developer</th>
+                            <th>Category</th>
+                            <th>Location</th>
+                            <th>Price (₦)</th>
                             <th>Status</th>
-                            <th>Flags</th>
-                            <th>Listed On</th>
-                            <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($properties as $index => $property)
                             <tr>
-                            <td>1</td>
-                            <td>Oakwood Villa</td>
-                            <td><span class="badge bg-secondary">Property</span></td>
-                            <td>Apartment</td>
-                            <td>URRG Properties Ltd</td>
-                            <td><span class="badge bg-success">Approved</span></td>
-                            <td>
-                                <span class="badge bg-info">Featured</span>
-                                <span class="badge bg-dark">Verified</span>
-                            </td>
-                            <td>2024-06-01</td>
-                            <td>
-                                <div class="btn-group">
-                                <a href="{{ route('admin.developers.listings_view') }}" class="btn btn-sm btn-outline-info">View</a>
-                                <a href="{{ route('admin.developers.listings_add') }}" class="btn btn-sm btn-outline-warning">Edit</a>
-                                <a href="#" class="btn btn-sm btn-outline-success">Approve</a>
-                                <a href="#" class="btn btn-sm btn-outline-danger">Reject</a>
-                                </div>
-                            </td>
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $property->title }}</td>
+                                <td>{{ $property->developer->company_name ?? 'N/A' }}</td>
+                                <td>{{ ucfirst($property->category) }}</td>
+                                <td>{{ $property->location }}</td>
+                                <td>{{ number_format($property->price, 2) }}</td>
+                                
+                                <td>
+                                    <span class="badge bg-{{ $property->status === 'approved' ? 'success' : ($property->status === 'sold' ? 'danger' : 'warning') }}">
+                                        {{ ucfirst($property->status) }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a href="{{ route('admin.properties.show', $property->id) }}" class="btn btn-sm btn-outline-info">View</a>
+                                        <a href="{{ route('admin.properties.edit', $property->id) }}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                        <form action="{{ route('admin.properties.destroy', $property->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this property?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-sm btn-outline-danger">Delete</button>
+                                        </form>
+                                    </div>
+                                </td>
                             </tr>
+                        @endforeach
+                        @if($properties->isEmpty())
                             <tr>
-                            <td>2</td>
-                            <td>Greenstone Estate</td>
-                            <td><span class="badge bg-primary">Project</span></td>
-                            <td>Land</td>
-                            <td>Greenstone Developers</td>
-                            <td><span class="badge bg-warning text-dark">Pending</span></td>
-                            <td><span class="badge bg-secondary">Not Verified</span></td>
-                            <td>2024-06-15</td>
-                            <td>
-                                <div class="btn-group">
-                                <a href="{{ route('admin.developers.projects_view') }}" class="btn btn-sm btn-outline-info">View</a>
-                                <a href="{{ route('admin.developers.projects_add') }}" class="btn btn-sm btn-outline-warning">Edit</a>
-                                <a href="#" class="btn btn-sm btn-outline-success">Approve</a>
-                                <a href="#" class="btn btn-sm btn-outline-danger">Reject</a>
-                                </div>
-                            </td>
+                                <td colspan="8" class="text-center">No properties found.</td>
                             </tr>
-                            <!-- More rows as needed -->
-                        </tbody>
-                        </table>
-                    </div>
-                </div>
-
-
-
+                        @endif
+                    </tbody>
+                </table>
             </div>
-            
         </div>
-@endsection 
+    </div>
+</div>
+@endsection

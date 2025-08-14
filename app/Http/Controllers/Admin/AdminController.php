@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Commission;
 use App\Models\Developer;
+use App\Models\Property;
+use App\Models\Project;
 use App\Models\User;
 
 class AdminController extends Controller
@@ -29,13 +31,20 @@ class AdminController extends Controller
         // For formatted currency display (optional)
         $formattedTotal = number_format($totalCommission, 2);
 
+        $projectsCount = Project::where('status', 'approved')->count();
+        $propertiesCount = Property::where('status', 'approved')->count();
+
+        $totalApproved = $projectsCount + $propertiesCount;
+
+
         return view('admin.dashboard', compact(
             'adminUser', 
             'userCount', 
             'developerCount',
             'commissionCount',
             'totalCommission',
-            'formattedTotal'
+            'formattedTotal',
+            'totalApproved'
         ));
     }
 }

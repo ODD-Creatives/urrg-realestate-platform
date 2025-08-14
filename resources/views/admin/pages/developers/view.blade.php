@@ -7,7 +7,6 @@
             <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                 <h3 class="font-weight-bold">🏗️ Developer Profile </h3>
-                <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h6>
                 </div>
                 
             </div>
@@ -25,34 +24,48 @@
                     <div class="row mb-4">
                     <!-- Developer Logo -->
                     <div class="col-md-4 ">
-                        <img src="{{ asset('assets/img/urrglogo1.png') }}" alt="Developer Logo" class="img-fluid rounded" style="max-height: 120px;">
-                        <p><strong>Company Name:</strong> URRG Properties Ltd</p>
-                        <p><strong>Email:</strong> urrg@example.com</p>
-                        <p><strong>Phone:</strong> +234 809 123 4567</p>
+                        <img src="{{ asset($developer->logo) }}" alt="Developer Logo" class="img-fluid rounded mb-2" style="max-height: 120px;">
+                        <p><strong>Company Name:</strong> {{ $developer->company_name }}</p>
+                        <p><strong>Contact Person:</strong> {{ $developer->contact_person }}</p>
+                        <p><strong>Joined:</strong> {{ $developer->updated_at->format('M d, Y')  }}</p>
+
                     </div>
                     <!-- Developer Info -->
                     <div class="col-md-8">
                         <div class="row">
                             <div class="col-md-5">
-                                <p><strong>Verified:</strong> <span class="badge bg-success">Yes</span></p>
-                                <p><strong>Joined:</strong> 2024-05-10</p>
+                                <p><strong>Email:</strong> {{ $developer->email }}</p>
+                                <p><strong>Phone:</strong> {{ $developer->phone }}</p>
+                                <p><strong>Verified:</strong> <span class="badge bg-{{ $developer->email_verified_at ? 'success' : 'secondary' }}">
+                                    {{ $developer->email_verified_at ? 'Yes' : 'No' }}
+                                </span></p>
+                                
                                 <p><strong>Total Listings:</strong> 12</p>
                                 <p><strong>Featured Projects:</strong> 3</p>
-                                <p><strong>Status:</strong> <span class="badge bg-success">Approved</span></p>
+                                <p><strong>Status:</strong> 
+                                    @if($developer->status == 'approved')
+                                        <span class="badge bg-success">Approved</span>
+                                    @elseif($developer->status == 'rejected')
+                                        <span class="badge bg-danger">Rejected</span>
+                                    @else
+                                        <span class="badge bg-warning text-dark">Pending</span>
+                                    @endif
+                                </p>
 
                                 
                             </div>
                             <div class="col-md-7">
                                 <h6>📄 Company Description</h6>
                                 <p>
-                                    URRG Properties Ltd is a leading real estate developer providing premium housing projects across Lagos and Abuja.
-                                    Our mission is to redefine luxury living with affordability and security.
+                                    {{ $developer->company_description ?? 'No company description provided yet.' }}
                                 </p>
+ 
 
                                 <!-- Actions -->
                                 <div class="mt-3">
-                                    <a href="{{ route('admin.developers.listings') }}" class="btn btn-outline-warning">Listings</a>
-                                    <a href="{{ route('admin.developers.projects') }}" class="btn btn-outline-warning"> Projects</a>
+                                    <a href="{{ route('admin.developers.edit', encrypt($developer->id)) }}" class="btn btn-outline-secondary">✏️ Edit</a>
+                                    <a href="{{ route('admin.developers.properties', encrypt($developer->id)) }}" class="btn btn-outline-warning">📦 Listings</a>
+                                    <a href="{{ route('admin.developers.projects', encrypt($developer->id)) }}" class="btn btn-outline-warning">🏗 Projects</a>
                                 </div>
                             </div>
                         </div>

@@ -5,10 +5,13 @@ use App\Http\Controllers\Admin\DevelopersController;
 use App\Http\Controllers\Admin\CommissionController;
 use App\Http\Controllers\Admin\ReferralController;
 use App\Http\Controllers\Admin\ProperiesController;
+use App\Http\Controllers\Admin\PropertiesController;
+use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\RealtorController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\AccademyEventController;
 use App\Http\Controllers\Admin\SettingController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,14 +34,26 @@ Route::middleware(['admin.auth'])->prefix('admin')->name('admin.')->group(functi
         Route::delete('/destroy/{id}', 'destroy')->name('destroy');
     });   
  
-    Route::prefix('properties')->name('property.')->controller(ProperiesController::class)->group(function () {
+     Route::prefix('properties')->name('properties.')->controller(PropertiesController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/create', 'create')->name('create');
         Route::post('/store', 'store')->name('store');
-        Route::get('/edit/{id}', 'edit')->name('edit');
-        Route::put('/update/{id}', 'update')->name('update');
-        Route::delete('/destroy/{id}', 'destroy')->name('destroy');
+        Route::get('/{property}', 'show')->name('show');
+        Route::get('/{property}/edit', 'edit')->name('edit');
+        Route::put('/{property}', 'update')->name('update');
+        Route::delete('/{property}', 'destroy')->name('destroy');
     });
+
+    Route::prefix('projects')->name('projects.')->controller(ProjectController::class)->group(function () {
+        Route::get('/', 'index')->name('index');                    // List all projects
+        Route::get('/create', 'create')->name('create');            // Show create form
+        Route::post('/store', 'store')->name('store');              // Store new project
+        Route::get('/{project}', 'show')->name('show');             // Show single project
+        Route::get('/{project}/edit', 'edit')->name('edit');        // Show edit form
+        Route::put('/{project}', 'update')->name('update');         // Update project
+        Route::delete('/{project}', 'destroy')->name('destroy');    // Delete project
+    });
+
     
     Route::prefix('realtors')->name('realtors.')->controller(RealtorController::class)->group(function () {
         Route::get('/', 'index')->name('index');
@@ -58,25 +73,36 @@ Route::middleware(['admin.auth'])->prefix('admin')->name('admin.')->group(functi
 
     Route::prefix('developer')->name('developers.')->controller(DevelopersController::class)->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::get('/view','developer_view')->name('show');
+        Route::get('/view{id}','show')->name('view');
         Route::get('/edit/{id}','edit')->name('edit');
         Route::put('/update/{id}','update')->name('update');
         Route::put('/{developer}/status','updateStatus')->name('update-status');
+        Route::get('/{developer}/properties', 'developerProperties')->name('properties');
+        Route::get('/{developer}/projects', 'developerProjects')->name('projects');
+        
 
-        Route::get('/developer-listings','developer_listing')->name('listings');
-        Route::get('/developer-listings-add','developer_listing_add')->name('listings_add');
-        Route::get('/developer-listings-view','developer_listing_view')->name('listings_view');
-        Route::get('/developer-projects','developer_project')->name('projects');
-        Route::get('/developer-projects-add','developer_project_add')->name('projects_add');
-        Route::get('/developer-projects-view','developer_project_view')->name('projects_view');
     });
+
+    Route::prefix('events')->name('events.')->group(function () {
+        Route::get('/', [EventController::class, 'index'])->name('index');
+        Route::get('/create', [EventController::class, 'create'])->name('create');
+        Route::post('/store', [EventController::class, 'store'])->name('store');
+        Route::get('/{event}', [EventController::class, 'show'])->name('show');
+        Route::get('/{event}/edit', [EventController::class, 'edit'])->name('edit');
+        Route::put('/{event}', [EventController::class, 'update'])->name('update');
+        Route::delete('/{event}', [EventController::class, 'destroy'])->name('destroy');
+
+        // Special route for deleting images
+        Route::delete('/image/{id}', [EventController::class, 'deleteImage'])->name('deleteImage');
+    });
+
 
     Route::prefix('commissions')->name('commissions.')->controller(CommissionController::class)->group(function () {
         Route::get('/','index')->name('index');
         Route::get('/commission-pay','commissionPay')->name('pay'); 
         Route::post('/process-payment','processPayment')->name('process-payment');
     });
-
+/*
     Route::prefix('events')->name('events.')->controller(EventController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/create','create')->name('create');
@@ -84,8 +110,8 @@ Route::middleware(['admin.auth'])->prefix('admin')->name('admin.')->group(functi
         Route::get('/show','show')->name('show');
 
     }); 
-
-    Route::prefix('events')->name('events.')->controller(EventController::class)->group(function () {
+*/
+    Route::prefix('accademyEvents')->name('accademyEvents.')->controller(AccademyEventController::class)->group(function () {
         Route::get('/', 'index')->name('index');                     
         Route::get('/create', 'create')->name('create');            
         Route::post('/store', 'store')->name('store');              

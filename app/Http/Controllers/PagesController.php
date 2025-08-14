@@ -109,8 +109,24 @@ class PagesController extends Controller
             }
         }
 
+        // Generate developer_id in format: URRDEVddmmyyNN
+        $datePart = now()->format('dmy'); // e.g., 040825
+        $prefix = 'URRDEV' . $datePart;
+
+        // Get the last developer created today to determine next serial
+        $lastDeveloperToday = Developer::whereDate('created_at', now()->toDateString())
+            ->orderBy('id', 'desc')
+            ->first();
+
+        $serial = 1;
+        if ($lastDeveloperToday && preg_match('/\d{8}(\d{2})$/', $lastDeveloperToday->developer_id, $matches)) {
+            $serial = (int)$matches[1] + 1;
+        }
+
+        $developer_id = $prefix . str_pad($serial, 2, '0', STR_PAD_LEFT);
+
         // Store data in database (adjust according to your model)
-        $developer = new Developer(); // Replace with your actual model
+        $developer = new Developer();// Replace with your actual model
         $developer->company_name = $request->company_name;
         $developer->contact_person = $request->contact_person;
         $developer->phone = $request->phone;
@@ -119,7 +135,12 @@ class PagesController extends Controller
         $developer->letter_of_intent_path = $filePaths['letter_of_intent'] ?? null;
         $developer->company_profile_path = $filePaths['company_profile'] ?? null;
         $developer->property_details_path = $filePaths['property_details'] ?? null;
+        $developer->logo = $request->hasFile('logo') ? $request->file('logo')->store('uploads/developer_logo', 'public') : 'assets/uploads/developer_logo/default-logo.png';
+        //$developer->logo = $request->hasFile('logo') ? $request->file('logo')->store('logos', 'public') : null;
+        $developer->company_description = $request->input('company'); // Optional company description
+        $developer->developer_id = $developer_id;
         $developer->save();
+
 
         // Send email verification notification
         event(new Registered($developer));
