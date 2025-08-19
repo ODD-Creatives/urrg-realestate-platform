@@ -103,17 +103,155 @@
             </div>
         </div>
     </div>
+    <section class="space-top space-extra-bottom bg-light">
+    <div class="container">
+        <!-- Section Header -->
+        <div class="col-lg-12 text-center">
+            <div class="title-area text-left mb-2">
+                <p class="sub-title fadeinup wow" data-wow-duration="1.5s" data-wow-delay="0.1s">
+                    <span class="double-line"></span> Our Core Values
+                </p>
+                <h5 class="fadeinup wow" data-wow-duration="1.5s" data-wow-delay="0.3s">
+                    One Vision. One Standard. One Success.
+                </h5>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <!-- Integrity -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3 text-warning fs-2">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h5 class="fw-bold">Integrity</h5>
+                        <p class="text-muted small">
+                            We tell the truth, keep our word, and build trust that lasts.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Professionalism -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3 text-warning fs-2">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h5 class="fw-bold">Professionalism</h5>
+                        <p class="text-muted small">
+                            We handle every deal with excellence, structure, and respect.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Collaboration -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3 text-warning fs-2">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h5 class="fw-bold">Collaboration</h5>
+                        <p class="text-muted small">
+                            We win together by uniting realtors, developers, and clients as one team.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accountability -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3 text-warning fs-2">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <h5 class="fw-bold">Accountability</h5>
+                        <p class="text-muted small">
+                            We take ownership of our actions and deliver on every promise.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Value Creation -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3 text-warning fs-2">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <h5 class="fw-bold">Value Creation</h5>
+                        <p class="text-muted small">
+                            We ensure every deal benefits all parties — developers, agents, and clients.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Continuous Growth -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3 text-warning fs-2">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h5 class="fw-bold">Continuous Growth</h5>
+                        <p class="text-muted small">
+                            We keep learning, innovating, and improving to stay ahead in the market.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Excellence in Service -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3 text-warning fs-2">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h5 class="fw-bold">Excellence in Service</h5>
+                        <p class="text-muted small">
+                            We go beyond expectations to deliver top-notch results every time.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mutual Respect -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3 text-warning fs-2">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h5 class="fw-bold">Mutual Respect</h5>
+                        <p class="text-muted small">
+                            We honor every partner’s role and treat each other with dignity.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
     <div class="why-sec-2 bg-smoke space" id="why-sec" data-bg-src="{{asset('assets/img/shape/what-we-do-3-bg.png')}}">
         <div class="container">
             <div class="row justify-content-lg-between gy-4 justify-content-center align-items-center mb-40">
-                <div class="col-lg-6">
+                <div class="col-lg-10">
                     <div class="title-area text-left mb-2">
                         <p class="sub-title fadeinup wow" data-wow-duration="1.5s" data-wow-delay="0.1s">
                             <span class="double-line"></span> Our Goals
                         </p>
-                        <h2 class="sec-title fadeinup wow" data-wow-duration="1.5s" data-wow-delay="0.3s">
+                        <h4 class="sec-title fadeinup wow" data-wow-duration="1.5s" data-wow-delay="0.3s">
                             Unique Radiance Realtor Group (URRG) Plans.
-                        </h2>
+                        </h4>
                     </div>
                 </div>
                 
@@ -122,7 +260,7 @@
                 <div class="col-xl-3 col-lg-4 col-md-6 fadeinup wow">
                     <div class="why-card-1 style-2 style-4">
                         <h4 class="count">01</h4>
-                        <div class="why-card-1__icon"><img src="{{asset('assets/img/icon/why-icon-1-1.svg')}}" alt="image"></div>
+                        <div class="why-card-1__icon"><img src="{{asset('assets/img/icon/why-icon-1-2.svg')}}" alt="image"></div>
                         <div class="why-card-1__content">
                             <h3 class="box-title">
                                 <span>Raise Leaders of Influence<span>
@@ -150,7 +288,7 @@
                 <div class="col-xl-3 col-lg-4 col-md-6 fadeinup wow">
                     <div class="why-card-1 style-2 style-4">
                         <h4 class="count">03</h4>
-                        <div class="why-card-1__icon"><img src="{{ asset('assets/img/icon/why-icon-1-3.svg')}}" alt="image"></div>
+                        <div class="why-card-1__icon"><img src="{{ asset('assets/img/icon/why-icon-1-2.svg')}}" alt="image"></div>
                         <div class="why-card-1__content">
                             <h3 class="box-title">Partner with Visionary Developers</h3>
                             <p class="box-text">
@@ -164,7 +302,7 @@
                 <div class="col-xl-3 col-lg-4 col-md-6 fadeinup wow">
                     <div class="why-card-1 style-2 style-4">
                         <h4 class="count">04</h4>
-                        <div class="why-card-1__icon"><img src="{{asset('assets/img/icon/why-icon-1-4.svg')}}" alt="image"></div>
+                        <div class="why-card-1__icon"><img src="{{asset('assets/img/icon/why-icon-1-2.svg')}}" alt="image"></div>
                         <div class="why-card-1__content">
                             <h3 class="box-title">Promote a Culture of Excellence</h3>
                             <p class="box-text">
@@ -178,7 +316,7 @@
                 <div class="col-xl-3 col-lg-4 col-md-6 fadeinup wow">
                     <div class="why-card-1 style-2 style-4">
                         <h4 class="count">05</h4>
-                        <div class="why-card-1__icon"><img src="{{asset('assets/img/icon/why-icon-1-1.svg')}}" alt="image"></div>
+                        <div class="why-card-1__icon"><img src="{{asset('assets/img/icon/why-icon-1-2.svg')}}" alt="image"></div>
                         <div class="why-card-1__content">
                             <h3 class="box-title"> Educate and Empower Our Team</h3>
                             <p class="box-text">
@@ -208,7 +346,7 @@
                 <div class="col-xl-3 col-lg-4 col-md-6 fadeinup wow">
                     <div class="why-card-1 style-2 style-4">
                         <h4 class="count">07</h4>
-                        <div class="why-card-1__icon"><img src="{{asset('assets/img/icon/why-icon-1-3.svg')}}" alt="image"></div>
+                        <div class="why-card-1__icon"><img src="{{asset('assets/img/icon/why-icon-1-2.svg')}}" alt="image"></div>
                         <div class="why-card-1__content">
                             <h3 class="box-title">Build Systems that Scale</h3>
                             <p class="box-text">
@@ -397,7 +535,7 @@
                     </div>
                 </div>
             </div>
-            <div class="slider-area mb-20">
+            <div class="slider-area mb-10">
                 <div class="swiper th-slider has-shadow" id="teamSlider1"
                     data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"1"},"768":{"slidesPerView":"2"},"992":{"slidesPerView":"2"},"1200":{"slidesPerView":"3"},"1400":{"slidesPerView":"4"}}, "autoHeight": "true"}'>
                     <div class="swiper-wrapper">
@@ -470,11 +608,15 @@
                             
                         </div>
                     </div>
-                </div>
 
-                
+                    
+                </div>
             </div>
-            
+            <div class="row pt-5 text-center justify-content-center">
+                <a href="{{ url('team-leads') }}" class="text-decoration-none text-warning fw-bold">
+                    Click to see the whole team →
+                </a>
+            </div>
         </div>
     </section>
     <!-- Modal: Mike -->

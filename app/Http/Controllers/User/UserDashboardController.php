@@ -5,6 +5,8 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Property;
+use App\Models\Project;
 use Illuminate\Support\Facades\Auth;
 
 class UserDashboardController extends Controller
@@ -176,36 +178,27 @@ class UserDashboardController extends Controller
             'referralTree' => $user->downlineTree()
         ]);
     }
+
     public function properties()
     {
-         $user = Auth::user()->load([
-            'referrals' => fn($q) => $q->with('paidCommissions'),
-            'activeReferrals',
-            'inactiveReferrals',
-            'earnedCommissions',
-            'referrer'
-        ]);
+        //dd('Project Details');
+        $query = Property::where('status', 'approved');
+        $properties = $query->paginate(9);
+        //dd('Project Details');
 
-        $commissionBreakdown = [
-            'level1' => [
-                'amount' => $user->getCommissionByLevel(1),
-                'count' => $user->getReferralsByLevel(1)->count()
-            ],
-            'level2' => [
-                'amount' => $user->getCommissionByLevel(2),
-                'count' => $user->getReferralsByLevel(2)->count()
-            ],
-            'level3' => [
-                'amount' => $user->getCommissionByLevel(3),
-                'count' => $user->getReferralsByLevel(3)->count()
-            ]
-        ];
+        return view('user.properties', compact('properties'));
+    }
+    public function projects()
+    {
+        $projects = Project::latest()->paginate(9);
+        return view('user.projects', compact('projects'));
+    }
 
-        return view('user.properties', [
-            'user' => $user,
-            'commissionBreakdown' => $commissionBreakdown,
-            'referralTree' => $user->downlineTree()
-        ]);
+    public function projectDetails($id)
+    {
+        //dd('Project Details');
+        $project = Project::findOrFail($id);
+        return view('user.projectsDetails', compact('project'));
     }
 
     

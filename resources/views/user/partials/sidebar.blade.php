@@ -8,6 +8,13 @@
               </div>
               <div class="nav-profile-text d-flex ms-0 mb-3 flex-column">
                 <span class="fw-semibold mb-1 mt-2 text-center"> {{ auth()->user()->full_name }}</span>
+                <small class="fw-semibold mb-1 mt-2 text-center">
+                  <span id="unique-id">{{ auth()->user()->realtor_id }}</span>
+                  <i class="fa fa-copy copy-btn ms-2" data-clipboard-target="#unique-id" style="cursor: pointer;"></i>
+                </small>
+
+                
+                    
                 
               </div>
             </a>
@@ -43,13 +50,13 @@
           <li class="nav-item">
             <a class="nav-link"  href="{{route('user.properties')}}" aria-expanded="false" aria-controls="forms">
               <i class="mdi mdi-castle menu-icon"></i>
-              <span class="menu-title">Properties</span>
+              <span class="menu-title">Building Projects</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link"  href="{{route('user.properties')}}" aria-expanded="false" aria-controls="forms">
-              <i class="fa fa-briefcase menu-icon"></i>
-              <span class="menu-title">Project</span>
+            <a class="nav-link"  href="{{route('user.projects')}}" aria-expanded="false" aria-controls="forms">
+              <i class="mdi mdi-castle menu-icon"></i>
+              <span class="menu-title">Land Projects</span>
             </a>
           </li>
           <li class="nav-item">

@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\AccademyEventController;
+use App\Http\Controllers\Admin\TeamLeadController;
 use App\Http\Controllers\Admin\SettingController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,7 @@ Route::post('/admin/login', [LoginController::class, 'login'])->name('admin.logi
  
 Route::middleware(['admin.auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard.index');
+    Route::get('/profile', [SettingController::class, 'profile'])->name('profile');
 
     Route::prefix('menu')->name('menu.')->controller(MenuController::class)->group(function () {
         Route::get('/', 'index')->name('index');
@@ -132,6 +134,16 @@ Route::middleware(['admin.auth'])->prefix('admin')->name('admin.')->group(functi
         Route::get('/referral-chain/{id}', 'referralChain')->name('referral.chain'); 
        
     });
+
+    Route::prefix('teamLeads')->name('teamLeads.')->controller(TeamLeadController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{teamLead}/edit', 'edit')->name('edit');
+        Route::put('/{teamLead}', 'update')->name('update');
+        Route::delete('/{teamLead}', 'destroy')->name('destroy');
+    });
+
 
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 }); 

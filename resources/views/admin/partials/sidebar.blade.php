@@ -66,7 +66,12 @@
             <span class="menu-title">URRG Accademy</span>
         </a>
     </li>
-   
+   <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.teamLeads.index') }}">
+            <i class="mdi mdi-account-multiple-plus menu-icon"></i>
+            <span class="menu-title">Team Leads</span>
+        </a>
+    </li>
 
     <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#settings" aria-expanded="false" aria-controls="error">
@@ -77,7 +82,7 @@
         <div class="collapse" id="settings"> 
         <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="{{ route('admin.menu.index') }}">Menu Items</a></li>
-            <li class="nav-item"> <a class="nav-link" href="#">Lands </a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('admin.profile') }}">Profile </a></li>
         </ul>
         </div>
     </li>

@@ -12,4 +12,7 @@ class AccademyEvent extends Model
         'banner',
         'description',
     ];
+
+    
 }
+ 

@@ -33,8 +33,8 @@
                                         <div class="menu-all-pages-container">
                                             <ul class="menu">
                                                 <li><a href="{{ route('signin') }}">Realtor Signin</a></li>
-                                                <li><a href="#">URRG Academy</a></li>
-                                                <li><a href="#">Developer Project</a></li>
+                                                <li><a href="{{ url('urrg-academy') }}">URRG Academy</a></li>
+                                                <li><a href="{{ url('building-projects') }}">Building Project</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -46,8 +46,8 @@
                                         <h3 class="widget_title">Support</h3>
                                         <div class="menu-all-pages-container">
                                             <ul class="menu">
-                                                <li><a href="#">Contact Us</a></li>
-                                                <li><a href="#">About Us</a></li>
+                                                <li><a href="{{ url('contact') }}">Contact Us</a></li>
+                                                <li><a href="{{ url('about-us') }}">About Us</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -82,8 +82,10 @@
                     <p>Social Media:</p>
                     <div class="th-social">
                         <a href="https://www.facebook.com/share/15mDCMedN9/?mibextid=wwXIfr"><i class="fab fa-facebook-f"></i></a> 
-                        <a href="https://x.com/urrg_realtors?s=21"><i class="fab fa-twitter"></i></a> 
+                        <a href="https://x.com/urrg_realtors?s=21"><i class="fab fa-x"></i></a> 
                         <a href="https://www.linkedin.com/in/unique-radiance-realtors-group-35b17a362?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app "><i class="fab fa-linkedin-in"></i></a> 
+                        <a href="https://youtube.com/@uniqueradiancerealtors?si=X33TRJBLA__7as5p "><i class="fab fa-youtube"></i></a> 
+                        <a href="https://www.tiktok.com/@uniqueradiance_realtors?_t=ZM-8wqu4MJTafo&_r=1"><i class="fab fa-tiktok"></i></a> 
                         <a href="https://www.instagram.com/urrg_realtorsgroup?igsh=MWxzZzgxZ2pqemtmcQ%3D%3D&utm_source=qr"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
