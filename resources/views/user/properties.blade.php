@@ -83,7 +83,7 @@
 
                                         <!-- Price and Link -->
                                         <p class="fw-bold mb-1">₦{{ number_format($property->price, 2) }}</p>
-                                        <a href="{{ route('property.details', $property->id) }}" class="text-primary font-13">
+                                        <a href="{{ route('user.propertiesDetail', $property->id) }}" class="text-primary font-13">
                                             View Property
                                         </a>
                                     </div>
@@ -91,12 +91,7 @@
                             </div>
                         @empty
                             <p class="text-center">No approved properties available at the moment.</p>
-                        @endforelse
-
-    
-
-
-                        
+                        @endforelse                        
                     </div>
                     
                 </div>

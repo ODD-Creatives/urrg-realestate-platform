@@ -23,6 +23,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/properties', [UserDashboardController::class, 'properties'])->name('user.properties');
     Route::get('/user/projects', [UserDashboardController::class, 'projects'])->name('user.projects');
     Route::get('/user/project-details{id}', [UserDashboardController::class, 'projectDetails'])->name('user.projectDetail');
+    Route::get('/user/propertie-details{id}', [UserDashboardController::class, 'propertiesDetails'])->name('user.propertiesDetail');
 
    
 

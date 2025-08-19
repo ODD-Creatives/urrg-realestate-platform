@@ -20,53 +20,53 @@
             <div class="col-lg-6">
                 <div class="card">
                     <div class="popular-list-1 grid-style">
-                                        <div class="thumb-wrapper">
-                                            <div class="th-slider" data-slider-options='{"loop":false, "autoplay": false,"autoHeight": true, "effect":"fade"}'>
-                                                <div class="swiper-wrapper">
-                                                    @for ($i = 1; $i <= 5; $i++)
-                                                        @php $imageField = 'image'.$i; @endphp
-                                                        @if ($property->$imageField)
-                                                            <div class="swiper-slide">
-                                                                <a class="popular-popup-image" href="{{ asset($property->$imageField) }}">
-                                                                    <img src="{{ asset($property->$imageField) }}" alt="{{ $property->title }}">
-                                                                </a>
-                                                            </div>
-                                                        @endif
-                                                    @endfor
-                                                </div>
-                                                <div class="icon-wrap">
-                                                    <button class="slider-arrow slider-prev"><i class="far fa-arrow-left"></i></button>
-                                                    <button class="slider-arrow slider-next"><i class="far fa-arrow-right"></i></button>
-                                                </div>
+                        <div class="thumb-wrapper">
+                            <div class="th-slider" data-slider-options='{"loop":false, "autoplay": false,"autoHeight": true, "effect":"fade"}'>
+                                <div class="swiper-wrapper">
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        @php $imageField = 'image'.$i; @endphp
+                                        @if ($property->$imageField)
+                                            <div class="swiper-slide">
+                                                <a class="popular-popup-image" href="{{ asset($property->$imageField) }}">
+                                                    <img src="{{ asset($property->$imageField) }}" alt="{{ $property->title }}">
+                                                </a>
                                             </div>
+                                        @endif
+                                    @endfor
+                                </div>
+                                <div class="icon-wrap">
+                                    <button class="slider-arrow slider-prev"><i class="far fa-arrow-left"></i></button>
+                                    <button class="slider-arrow slider-next"><i class="far fa-arrow-right"></i></button>
+                                </div>
+                            </div>
 
-                                            <div class="popular-badge">
-                                                <img src="{{ asset('assets/img/icon/sell_rent_icon.svg') }}" alt="icon">
-                                                <p>{{ ucfirst($property->category) }}</p>
-                                            </div>
-                                        </div>
+                            <div class="popular-badge">
+                                <img src="{{ asset('assets/img/icon/sell_rent_icon.svg') }}" alt="icon">
+                                <p>{{ ucfirst($property->category) }}</p>
+                            </div>
+                        </div>
 
-                                        <div class="property-content">
-                                            
+                        <div class="property-content">
+                            
 
-                                            <ul class="property-featured">
-                                                @if($property->bedrooms)
-                                                    <li><div class="icon"><img src="{{ asset('assets/img/icon/bed.svg') }}" alt="icon"></div>Bed {{ $property->bedrooms }}</li>
-                                                @endif
-                                                @if($property->bathrooms)
-                                                    <li><div class="icon"><img src="{{ asset('assets/img/icon/bath.svg') }}" alt="icon"></div>Bath {{ $property->bathrooms }}</li>
-                                                @endif
-                                                @if($property->size)
-                                                    <li><div class="icon"><img src="{{ asset('assets/img/icon/sqft.svg') }}" alt="icon"></div>{{ $property->size }}</li>
-                                                @endif
-                                            </ul>
+                            <ul class="property-featured">
+                                @if($property->bedrooms)
+                                    <li><div class="icon"><img src="{{ asset('assets/img/icon/bed.svg') }}" alt="icon"></div>Bed {{ $property->bedrooms }}</li>
+                                @endif
+                                @if($property->bathrooms)
+                                    <li><div class="icon"><img src="{{ asset('assets/img/icon/bath.svg') }}" alt="icon"></div>Bath {{ $property->bathrooms }}</li>
+                                @endif
+                                @if($property->size)
+                                    <li><div class="icon"><img src="{{ asset('assets/img/icon/sqft.svg') }}" alt="icon"></div>{{ $property->size }}</li>
+                                @endif
+                            </ul>
 
-                                            <div class="property-bottom">
-                                                <h6 class="box-title">₦{{ number_format($property->price, 2) }}</h6>
-                                                <a class="th-btn sm style3 pill" href="{{ url('/building-projects') }}">Back</a>
-                                            </div>
-                                        </div>
-                                    </div> 
+                            <div class="property-bottom">
+                                <h6 class="box-title">₦{{ number_format($property->price, 2) }}</h6>
+                                <a class="th-btn sm style3 pill" href="{{ url('/building-projects') }}">Back</a>
+                            </div>
+                        </div>
+                    </div> 
                 </div>
                 
             </div>

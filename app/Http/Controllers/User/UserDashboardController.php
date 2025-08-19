@@ -188,6 +188,15 @@ class UserDashboardController extends Controller
 
         return view('user.properties', compact('properties'));
     }
+    public function propertiesDetails($id)
+    {
+        //dd('Project Details');
+         $property = Property::where('status', 'approved')
+            ->with('developer')
+            ->findOrFail($id);
+        
+        return view('user.propertyDetails', compact('property'));
+    }
     public function projects()
     {
         $projects = Project::latest()->paginate(9);
