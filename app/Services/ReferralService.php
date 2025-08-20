@@ -20,7 +20,6 @@ class ReferralService
             'referral_code' => $options['referral_code'] ?? '', 
             'uses' => 0,
             'max_uses' => $options['max_uses'] ?? 0,
-            'expires_at' => $options['expires_at'] ?? '',
         ]);
     }
 
