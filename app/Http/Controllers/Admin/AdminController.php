@@ -100,7 +100,7 @@ class AdminController extends Controller
             if (!empty($validated['referral_code'])) {
                 $user = Admin::find($admin->id);
                 $referral = $this->referralService->generateReferralCode($user, [
-                    'referral_code' => $validated['referral_code'] ?? null,
+                    'referral_code' => $validated['referral_code'] ?? Str::upper(Str::random(8)), // Generate a new code if not provided
                 ]); 
             }
         });
