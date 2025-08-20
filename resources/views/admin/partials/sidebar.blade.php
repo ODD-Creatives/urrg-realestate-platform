@@ -39,7 +39,7 @@
         </a>
     </li>
     
-    @if(Auth::guard('admin')->user()->email == 'admin@gmail.com' && 'micheal@uniqueradiancerealtorsgroup.com')
+    @if(Auth::guard('admin')->user()->email == 'micheal@uniqueradiancerealtorsgroup.com')
        
         <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#adminOnly" aria-expanded="false" aria-controls="error">
