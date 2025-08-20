@@ -27,6 +27,7 @@ Route::middleware(['admin.auth'])->prefix('admin')->name('admin.')->group(functi
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard.index');
     Route::get('/create/admin', [AdminController::class, 'createAdmin'])->name('create.admin');
     Route::post('/admin/post', [AdminController::class, 'storeAdmin'])->name('post.admin');
+    Route::get('/activitylog', [AdminController::class, 'activityLog'])->name('activityLog.index');
     
     Route::get('/profile', [SettingController::class, 'profile'])->name('profile');
     Route::post('/profile', [SettingController::class, 'updateProfile'])->name('profile.update');
@@ -109,15 +110,7 @@ Route::middleware(['admin.auth'])->prefix('admin')->name('admin.')->group(functi
         Route::get('/commission-pay','commissionPay')->name('pay'); 
         Route::post('/process-payment','processPayment')->name('process-payment');
     }); 
-/* 
-    Route::prefix('events')->name('events.')->controller(EventController::class)->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::get('/create','create')->name('create');
-        Route::post('/store', 'store')->name('store');
-        Route::get('/show','show')->name('show'); 
 
-    }); 
-*/
     Route::prefix('accademyEvents')->name('accademyEvents.')->controller(AccademyEventController::class)->group(function () {
         Route::get('/', 'index')->name('index');                     
         Route::get('/create', 'create')->name('create');            

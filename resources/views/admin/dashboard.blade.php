@@ -76,7 +76,7 @@
             <div class="card mb-4">
             <div class="card-header d-flex justify-content-between">
                 <h5 class="mb-0">🧾 Recent Activity Log</h5>
-                <a href="#" class="btn btn-sm btn-secondary">View All</a>
+                <a href="{{ route('admin.activityLog.index') }}" class="btn btn-sm btn-secondary">View All</a>
             </div>
             <div class="card-body table-responsive">
                 <table class="table table-striped align-middle">
@@ -85,7 +85,7 @@
                     <th>#</th>
                     <th>User</th>
                     <th>Role</th>
-                    <th>Activity</th>
+                    {{-- <th>Activity</th> --}}
                     <th>Timestamp</th>
                     </tr>
                 </thead>
@@ -93,9 +93,28 @@
                     @forelse($recentActivities as $activity)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $activity->actor_name }}</td>
-                            <td><span class="badge bg-info">{{ $activity->actor_role }}</span></td>
-                            <td>{{ $activity->activity }}</td>
+                            <td>{{ $activity->user->fullname }}</td>
+                            <td>
+                                @php
+                                    $role = 'Unknown';
+                                    $badgeClass = 'bg-secondary'; // default
+
+                                    if ($activity->user) {
+                                        $role = 'User';
+                                        $badgeClass = 'bg-primary';
+                                    } elseif ($activity->developer) {
+                                        $role = 'Developer';
+                                        $badgeClass = 'bg-info';
+                                    } elseif ($activity->admin) {
+                                        $role = 'Admin';
+                                        $badgeClass = 'bg-danger';
+                                    }
+                                @endphp
+
+                                <span class="badge {{ $badgeClass }}">{{ $role }}</span>
+
+                            </td>
+                            {{-- <td>{{ $activity->activity }}</td> --}}
                             <td>{{ $activity->created_at->diffForHumans() }}</td>
                         </tr>
                     @empty

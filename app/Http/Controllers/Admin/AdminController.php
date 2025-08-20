@@ -105,6 +105,19 @@ class AdminController extends Controller
             }
         });
 
+        // Log this activity
+        ActivityLog::create([
+            'actor_name' => auth('admin')->user()->name,
+            'actor_role' => 'Admin',
+            'activity' => "Created a new admin: {$validated['name']}",
+        ]);
+
         return redirect()->back()->with('success', 'Admin created successfully!');
+    }
+
+    public function activityLog()
+    {
+        $activities = ActivityLog::latest()->paginate(10);
+        return view('admin.pages.activity_log.index', compact('activities'));
     }
 }
