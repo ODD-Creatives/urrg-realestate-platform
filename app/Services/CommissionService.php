@@ -21,46 +21,51 @@ class CommissionService
      * @throws \Exception
      */
     public function updateOrCreateCommission(
-        User $user,
-        User $referral,
+        $user, // Can be User or Admin model
+        $referral, 
         float $amount,
         int $level,
         string $status = 'pending'
     ): Commission {
         try {
             return DB::transaction(function () use ($user, $referral, $amount, $level, $status) {
+                $commissionData = [
+                    'amount' => $amount,
+                    'level' => $level,
+                    'status' => $status,
+                    'paid_at' => $status === 'paid' ? now() : null
+                ];
+
+                // Handle different entity types
+                if ($user instanceof \App\Models\Admin) {
+                    $commissionData['admin_id'] = $user->id; 
+                    $commissionData['user_email'] = $user->email;
+                    $commissionData['referral_code'] = $user->referral_code;
+                } else {
+                    $commissionData['user_id'] = $user->id;
+                    $commissionData['user_email'] = $user->email;
+                    $commissionData['referral_code'] = $user->referral_code;
+                }
+
+                // Set referral information
+                if ($referral instanceof User) {
+                    $commissionData['referral_id'] = $referral->id;
+                    $commissionData['referral_code'] = $referral->referral_code;
+                }
+
                 $commission = Commission::updateOrCreate(
                     [
-                        'user_id' => $user->id,
+                        'user_id' => $user instanceof User ? $user->id : null,
+                        'admin_id' => $user instanceof \App\Models\Admin ? $user->id : null,
                         'referral_id' => $referral->id,
                         'level' => $level
                     ],
-                    [
-                        'user_email' => $user->email,
-                        'referral_code' => $user->referral_code,
-                        'amount' => $amount,
-                        'status' => $status,
-                        'paid_at' => $status === 'paid' ? now() : null
-                    ]
+                    $commissionData
                 );
-
-                Log::info("Commission processed", [
-                    'action' => $commission->wasRecentlyCreated ? 'created' : 'updated',
-                    'commission_id' => $commission->id,
-                    'user_id' => $user->id,
-                    'referral_id' => $referral->id,
-                    'amount' => $amount,
-                    'level' => $level
-                ]);
 
                 return $commission;
             });
         } catch (\Exception $e) {
-            Log::error("Commission processing failed", [
-                'error' => $e->getMessage(),
-                'user_id' => $user->id,
-                'referral_id' => $referral->id
-            ]);
             throw $e;
         }
     }
@@ -77,7 +82,8 @@ class CommissionService
     public function processBulkPayments(
         User $realtor,
         float $realtorAmount,
-        array $uplineCommissions = []
+        array $uplineCommissions = [],
+        ?int $propertyId = null
     ): array {
         $results = [];
         
@@ -95,13 +101,33 @@ class CommissionService
 
             // Process upline commissions
             foreach ($uplineCommissions as $upline) {
-                $results['upline_commissions'][] = $this->updateOrCreateCommission(
-                    User::find($upline['user_id']),
-                    $realtor,
-                    $upline['amount'],
-                    $upline['level'] ?? 1,
-                    'paid'
-                );
+                if ($upline['amount'] > 0) {
+                    $uplineUser = $upline['is_admin'] ? 
+                        \App\Models\Admin::find($upline['user_id']) : 
+                        User::find($upline['user_id']);
+                    
+                    if ($uplineUser) {
+                        $results['upline_commissions'][] = $this->updateOrCreateCommission(
+                            $uplineUser,
+                            $realtor,
+                            $upline['amount'],
+                            $upline['level'],
+                            'paid'
+                        );
+                    }
+                }
+            }
+
+            // Mark property as sold if provided
+            if ($propertyId) {
+                $property = \App\Models\Property::find($propertyId);
+                if ($property) {
+                    $property->update([
+                        'status' => 'sold',
+                        'sold_by' => $realtor->id,
+                        'sold_at' => now()
+                    ]);
+                }
             }
 
             DB::commit();
@@ -109,10 +135,6 @@ class CommissionService
             return $results;
         } catch (\Exception $e) {
             DB::rollBack();
-            Log::error("Bulk commission payment failed", [
-                'realtor_id' => $realtor->id,
-                'error' => $e->getMessage()
-            ]);
             throw $e;
         }
     }

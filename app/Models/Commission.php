@@ -22,4 +22,10 @@ class Commission extends Model
     {
         return $this->belongsTo(User::class, 'referral_id');
     }
+
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class);
+    }
+
 }

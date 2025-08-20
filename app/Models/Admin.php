@@ -20,7 +20,7 @@ class Admin extends Authenticatable
         'password',
         'status',
         'name',
-        'phone',
+        'phone', 
         'profile_photo',
         'bank_name',
         'account_name',
