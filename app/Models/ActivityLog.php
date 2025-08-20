@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ActivityLog extends Model
 {
     use HasFactory;
+     protected $table = "referral_logs";
 
-    protected $fillable = ['actor_name', 'actor_role', 'activity'];
+    protected $fillable = ['actor_name', 'user_id', 'actor_role', 'activity', 'details'];
 }
