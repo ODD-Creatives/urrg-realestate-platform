@@ -37,9 +37,9 @@ class Admin extends Authenticatable
         return $this->hasOne(ReferralCode::class, 'user_id');
     }
 
-    public function referredAdmins()
-    { 
-        return $this->hasOne(Admin::class, 'referral_code', 'referral_code');
-    }
+    // public function referredAdmins()
+    // { 
+    //     return $this->hasOne(Admin::class, 'referral_code', 'referral_code');
+    // }
 
 }
