@@ -9,7 +9,6 @@ use App\Models\Property;
 use App\Models\ActivityLog;
 use App\Models\Project;
 
-
 class DevelopersController extends Controller
 {
     /**
