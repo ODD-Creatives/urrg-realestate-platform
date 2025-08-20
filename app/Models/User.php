@@ -57,7 +57,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(User::class, 'referrer_id'); 
     } 
 
-
     public function activeReferrals()
     {
         return $this->referrals()->where('status', 'active');
@@ -130,6 +129,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
         return $tree;
     }
+
+   
+
 
     public function getDownlinesCountByLevelAttribute()
     {

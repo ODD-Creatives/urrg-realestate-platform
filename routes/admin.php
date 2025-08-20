@@ -108,13 +108,13 @@ Route::middleware(['admin.auth'])->prefix('admin')->name('admin.')->group(functi
         Route::get('/','index')->name('index');
         Route::get('/commission-pay','commissionPay')->name('pay'); 
         Route::post('/process-payment','processPayment')->name('process-payment');
-    });
-/*
+    }); 
+/* 
     Route::prefix('events')->name('events.')->controller(EventController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/create','create')->name('create');
         Route::post('/store', 'store')->name('store');
-        Route::get('/show','show')->name('show');
+        Route::get('/show','show')->name('show'); 
 
     }); 
 */
@@ -129,7 +129,7 @@ Route::middleware(['admin.auth'])->prefix('admin')->name('admin.')->group(functi
 
     });
 
-
+ 
     Route::prefix('referral')->name('referrals.')->controller(ReferralController::class)->group(function () {
         Route::get('/', 'index')->name('index'); 
         Route::get('/generate-referral-code', 'generateReferralCode')->name('code.generator');

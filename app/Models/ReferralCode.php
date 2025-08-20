@@ -53,5 +53,5 @@ class ReferralCode extends Model
     public function referredAdmins()
     {
         return $this->hasOne(Admin::class, 'referral_code', 'referral_code');
-    }
+    } 
 }

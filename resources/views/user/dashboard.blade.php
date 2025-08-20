@@ -24,7 +24,7 @@
         @includeIf('user.partials.dashboardHeader')
         
         <div class="row">
-            <div class="col-lg-8 grid-margin stretch-card8">
+            <div class="col-lg-7 grid-margin stretch-card8">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Referral Performance</h4>
@@ -56,7 +56,7 @@
                     </div>
                 </div>
             </div> 
-            <div class="col-lg-4 grid-margin">
+            <div class="col-lg-5 grid-margin">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Referral Network</h4>
@@ -80,19 +80,22 @@
                                             @if($upline instanceof \App\Models\User)
                                                 {{ $upline->fullname }} ({{ $upline->realtor_id ?? 'User' }})
                                             @elseif($upline instanceof \App\Models\ReferralCode && $upline->admin)
-                                                {{ $upline->admin->referralCode->referredAdmins->name}} 
+                                                <b>{{ $upline->admin->referralCode->referredAdmins->name}} </b>
                                                 
                                                 <br> 
                                                 {{ $upline->admin->username }} (Admin) <br> 
                                             @else
                                                 <span class="text-muted">Upline Code: {{ $user->upline_referral }}</span>
+                                                 <br> 
                                             @endif
                                         @else
                                             <span class="text-muted">Upline Code: {{ $user->upline_referral }}</span>
+                                            <br> 
                                         @endif
                                     @else
                                         <span class="text-muted">No Upline</span>
                                     @endif 
+                                    
                                     <span class="caret caret-down">{{ $user->full_name }} (You)</span>
                                     <ul class="nested active">
                                         @foreach($referralTree['children'] as $childData)

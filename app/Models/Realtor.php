@@ -11,7 +11,7 @@ use Illuminate\Notifications\Notifiable;
 class Realtor extends Model
 {
     use HasFactory;
-    protected $fillable = [
+    protected $fillable = [ 
         'firstname',
         'lastname',
         'phone',

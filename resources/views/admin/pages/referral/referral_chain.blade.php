@@ -83,19 +83,20 @@
                                     <h4 class="card-title">Referral Network</h4>
                                     <div id="referral-tree">
                                         <ul class="referral-tree"> 
-                                            <li>
+                                            <li> 
                                                 @if($user->upline_referral)
-                                                    @php 
+                                                    @php  
                                                         $referrer = \App\Models\ReferralCode::where('code', $user->upline_referral)->first();
                                                     @endphp
-                                                    @if($referrer)
-                                                        <p>{{ $referrer->admin->username }} (Upline)</p>
+                                                    @if($referrer) 
+                                                     <p><b>{{ $referrer->admin->referralCode->referredAdmins->name}} </b></p>
+                                                    <p>{{ $referrer->admin->username }} (Upline)</p>
                                                     @else
                                                         <p class="text-muted">Upline not found</p>
                                                     @endif
                                                 @else
                                                     <p class="text-muted">No Upline</p>
-                                                @endif
+                                                @endif 
                                                 <span class="caret caret-down">{{ $user->full_name }} (You)</span>
                                                 <ul class="nested active">
                                                     @foreach($referralTree['children'] as $childData)

@@ -43,23 +43,96 @@ class CommissionController extends Controller
     } 
 
     public function commissionPay(Request $request)
-    {
-        $realtor = null;
-        $uplineTree = null;
+{ 
+    $realtor = null; 
+    $uplineTree = null;
+    
+    if ($request->has('search')) {
+        $realtor = User::where('realtor_id', $request->search)
+            ->orWhere('email', $request->search)
+            ->first();
+            
+        if ($realtor) {
+            // Strictly get only 3 uplines maximum
+            $uplineTree = $this->getUplineTree($realtor, 3);
+        }
+    }
+
+    return view('admin.pages.commission.pay', compact('realtor', 'uplineTree'));
+}
+
+protected function getUplineTree(User $user, int $maxLevels = 3): array
+{
+    $tree = [
+        'self' => $user,
+        'uplines' => [],
+        'has_uplines' => false,
+        'total_levels' => 0
+    ];
+
+    if (empty($user->upline_referral)) {
+        return $tree;
+    }
+
+    $currentCode = $user->upline_referral;
+    $level = 1;
+    $processedCodes = [];
+
+    while ($currentCode && $level <= $maxLevels && !in_array($currentCode, $processedCodes)) {
+        $processedCodes[] = $currentCode;
+
+        // Check generate_codes table first
+        $generatedCode = \App\Models\ReferralCode::with('admin')->where('code', $currentCode)->first();
         
-        if ($request->has('search')) {
-            $realtor = User::where('realtor_id', $request->search)
-                ->orWhere('email', $request->search)
-                // ->with(['bankDetails'])
-                ->first();
+        if ($generatedCode && $generatedCode->admin) {
+            // Found in generate_codes - this is an admin
+            $tree['uplines'][] = [
+                'entity' => $generatedCode->admin,
+                'level' => $level,
+                'type' => 'admin',
+                'code' => $currentCode,
+                'is_admin' => true
+            ];
+            
+            // Move to admin's personal referral code
+            $currentCode = $generatedCode->admin->referral_code;
+            
+        } else {
+            // Check users table
+            $userUpline = User::where('referral_code', $currentCode)->first();
+            
+            if ($userUpline) {
+                // Found in users table
+                $tree['uplines'][] = [
+                    'entity' => $userUpline,
+                    'level' => $level,
+                    'type' => 'user',
+                    'code' => $currentCode,
+                    'is_admin' => false
+                ];
                 
-            if ($realtor) {
-                $uplineTree = $realtor->downlineTree(3); // Get 3 levels deep
+                // Move to user's upline referral
+                $currentCode = $userUpline->upline_referral;
+            } else {
+                // Code not found anywhere
+                break;
             }
         }
 
-        return view('admin.pages.commission.pay', compact('realtor', 'uplineTree'));
+        $level++;
+        
+        // Strictly stop at 3 levels
+        if ($level > $maxLevels) {
+            break;
+        }
     }
+
+    $tree['has_uplines'] = count($tree['uplines']) > 0;
+    $tree['total_levels'] = count($tree['uplines']);
+
+    return $tree;
+}
+
 
     // In your controller method
     public function processPayment(Request $request, CommissionService $commissionService)

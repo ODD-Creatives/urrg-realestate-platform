@@ -66,7 +66,7 @@
                                     <th>Date</th>
                                 </tr>
                             </thead>
-                            <tbody> 
+                            <tbody>  
                                 @forelse($commissions as $commission)
                                 <tr>  
                                     <td>{{ ($commissions->currentPage()-1) * $commissions->perPage() + $loop->iteration }}</td>
