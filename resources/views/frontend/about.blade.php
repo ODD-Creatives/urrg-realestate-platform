@@ -547,14 +547,14 @@
                             <div class="team-content d-flex justify-content-between align-items-start">
                                 <div class="left-contet">
                                     <h3 class="box-title">
-                                        <a href="team-details.html"> Amb. Adejare Micheal Adetomiwa</a>
+                                        <a href="team-details.html"> Amb. Adejare Michael Adetomiwa</a>
                                     </h3>
                                     <span class="team-desig">President</span>
                                 </div>
                                 <div class="team-social">
                                     <div class="th-social">
                                         <a target="_blank" href="https://www.instagram.com/adejaremichael_adetomiwa?igsh=dml0MnB0MDQ3bzBm"><i class="fab fa-instagram"></i></a> 
-                                        <a target="_blank" href="#"><i class="fa-solid fa-envelope"></i></a>
+                                        <a target="_blank" href="mailto:michael@uniqueradiancerealtorsgroup.com"><i class="fa-solid fa-envelope"></i></a>
                                     </div>
                                 </div>
                                 <button class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#modalMike">View Profile</button>
@@ -576,7 +576,7 @@
                                 <div class="team-social">
                                     <div class="th-social">
                                         <a target="_blank" href="https://www.instagram.com/adehhhomes?igsh=MWUxZmJ6NWoyZWY2bg%3D%3D&utm_source=qr "><i class="fab fa-instagram"></i></a>
-                                        <a target="_blank" href="#"><i class="fa-solid fa-envelope"></i></a>
+                                        <a target="_blank" href="mailto:ade@uniqueradiancerealtorsgroup.com"><i class="fa-solid fa-envelope"></i></a>
                                     </div>
                                 </div>
                                 <button class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#modalAde">View Profile</button>
@@ -600,7 +600,7 @@
                                 <div class="team-social">
                                     <div class="th-social">
                                         <a target="_blank" href="https://www.instagram.com/adejaremichael_adetomiwa?igsh=dml0MnB0MDQ3bzBm"><i class="fab fa-instagram"></i></a>
-                                        <a target="_blank" href="#"><i class="fa-solid fa-envelope"></i></a>
+                                        <a target="_blank" href="mailto:peter@uniqueradiancerealtorsgroup.com"><i class="fa-solid fa-envelope"></i></a>
                                     </div>
                                 </div>
                                 <button class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#modalPeter">View Profile</button>
@@ -623,7 +623,7 @@
     <div class="modal fade" id="modalMike" tabindex="-1" aria-labelledby="modalMikeLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content p-4">
-            <h5 class="modal-title" id="modalMikeLabel">Amb. Adejare Micheal Adetomiwa</h5>
+            <h5 class="modal-title" id="modalMikeLabel">Amb. Adejare Michael Adetomiwa</h5>
             <p>
 
                 AdeJare Michael Adetomiwa is a visionary entrepreneur and real estate strategist, dedicated to transforming Africa’s property landscape. <br>
