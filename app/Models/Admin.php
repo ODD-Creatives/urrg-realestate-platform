@@ -41,5 +41,5 @@ class Admin extends Authenticatable
     // { 
     //     return $this->hasOne(Admin::class, 'referral_code', 'referral_code');
     // }
-
+   
 }
