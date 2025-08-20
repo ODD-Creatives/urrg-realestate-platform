@@ -14,7 +14,7 @@
                     id="referral-link" readonly>
                 <button class="btn btn-sm btn-outline-primary copy-btn"
                     data-clipboard-target="#referral-link">
-                    <i class="fas fa-copy"></i> Copy
+                    <i class="fa fa-copy"></i> Copy
                 </button>
             </div>
         </div>

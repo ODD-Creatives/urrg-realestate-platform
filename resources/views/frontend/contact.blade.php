@@ -59,23 +59,22 @@
                         <div class="media-body">
                             <p class="contact-feature_label"> Address</p>
                             <a href="https://www.google.com/maps" class="contact-feature_link">
-                                123 Academic Way City, State, 1234, New York City.
+                                51 Oluwu Street off Awolowo Way, Ikeja Lagos, Nigeria.
                             </a>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-6 contact-feature-wrap">
+                <div class="col-xl-3 col-lg-6 contact-feature-wrap">
                     <div class="contact-feature">
                         <div class="contact-feature-icon"><i class="fas fa-phone"></i></div>
                         <div class="media-body">
                             <p class="contact-feature_label">Phone Number</p>
+                            <a href="tel:+2347075620563" class="contact-feature_link">+234 707 562 0563</a>
                             <a href="tel:+2347012894830" class="contact-feature_link">+234 701 289 4830</a> 
-                            <a href="tel:+2349077649378" class="contact-feature_link">+234 907 764 9378</a>
-                            <a href="tel:+2347011309844" class="contact-feature_link">+234 701 130 9844</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-6 contact-feature-wrap">
+                <div class="col-xl-5 col-lg-6 contact-feature-wrap">
                     <div class="contact-feature">
                         <div class="contact-feature-icon"><i class="fas fa-envelope"></i></div>
                         <div class="media-body">
@@ -92,7 +91,7 @@
     <div class="space-top">
         <div class="container-fluid p-0">
             <div class="contact-map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.998207725692!2d3.512199673975619!3d6.6471419217162655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103beeb42f4c7c49%3A0xc64264fa4a378607!2sFirst%20Gate!5e0!3m2!1sen!2sng!4v1751425110804!5m2!1sen!2sng" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m19!1m12!1m3!1d126838.30628938336!2d3.2505855999999995!3d6.5598705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m4!3e6!4m0!4m1!2s51%20Oluwu%20Street%20off%20Awolowo%20Way%2C%20Ikeja%C2%A0Lagos!5e0!3m2!1sen!2sng!4v1753528590971!5m2!1sen!2sng" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 <div class="contact-icon"><img src="{{asset('assets/img/icon/con-location-dot.svg')}}" alt="img"></div>
             </div>
         </div>

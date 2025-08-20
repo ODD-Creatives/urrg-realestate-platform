@@ -14,7 +14,7 @@
                                     </h1>
                                     <div class="btn-group justify-content-center" data-ani="slideinup"
                                         data-ani-delay="0.4s"><a href="property.html"
-                                            class="th-btn style2 pill">Join The Great Mind.</a>
+                                            class="th-btn style2 pill">Join The Great Minds.</a>
                                     </div>
                                     
                                 </div>
@@ -35,7 +35,7 @@
                                     </h2>
                                     <div class="btn-group justify-content-center" data-ani="slideinup"
                                         data-ani-delay="0.4s"><a href="property.html"
-                                            class="th-btn style2 pill">Join The Great Mind</a>
+                                            class="th-btn style2 pill">Join The Great Minds</a>
                                     </div>
                                     
                                 </div>
@@ -55,7 +55,7 @@
                                     </h1>
                                     <div class="btn-group justify-content-center" data-ani="slideinup"
                                         data-ani-delay="0.4s"><a href="property.html"
-                                            class="th-btn style2 pill">Join The Great Mind</a>
+                                            class="th-btn style2 pill">Join The Great Minds</a>
                                     </div>
                                     
                                 </div>
@@ -74,7 +74,7 @@
                                             <span class="title2 text-theme">Carrier With URRG</span></h1>
                                     <div class="btn-group justify-content-center" data-ani="slideinup"
                                         data-ani-delay="0.4s"><a href="property.html"
-                                            class="th-btn style2 pill">Join The Great Mind</a>
+                                            class="th-btn style2 pill">Join The Great Minds</a>
                                     </div>
                                     
                                 </div>

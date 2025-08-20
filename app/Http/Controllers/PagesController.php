@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 use App\Models\ReferralCode;
 use App\Models\User;
 use App\Models\Developer;
+use App\Models\TeamLead;
+use App\Models\Property;
+use App\Models\Project;
+use App\Models\Event;
+use App\Models\AccademyEvent;
 use App\Mail\DeveloperVerificationEmail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -24,26 +29,85 @@ class PagesController extends Controller
     /**
      * Display the specified page.
      */
-    public function index($slug)
+    
+    public function index(Request $request, $slug)
     {
         $pages = [
             'home' => 'home',
             'about-us' => 'frontend.about',
             'realtors' => 'frontend.realtors',
             'developers' => 'frontend.developers',
-            'property' => 'frontend.properties.property-list',
+            'building-projects' => 'frontend.properties.property-list',
             'properties' => 'frontend.properties.property-list',
             'property-details' => 'frontend.property-details',
-            'academy-event' => 'frontend.event.academy-event',
+            'land-projects' => 'frontend.project.project-list',
+            'project-details' => 'frontend.project-details',
+            'urrg-academy' => 'frontend.academyEvent.academy-event',
+            'event' => 'frontend.event.event-list',
             'contact' => 'frontend.contact',
+            'team-leads' => 'frontend.team-leads',
         ];
 
         if (array_key_exists($slug, $pages)) {
+            
+            // Team Leads page
+            if ($slug === 'team-leads') {
+                $teamLeads = \App\Models\TeamLead::get();
+                return view($pages[$slug], compact('teamLeads'));
+            }
+
+            if ($slug === 'land-projects') {
+                $projects = Project::latest()->paginate(9);
+                return view($pages[$slug], compact('projects'));
+            }
+
+            if ($slug === 'event') {
+                $events = Event::with('images') ->latest() ->paginate(9);
+                return view($pages[$slug], compact('events'));
+            }
+
+            if ($slug === 'urrg-academy') {
+                $accademyEvents = AccademyEvent::latest() ->paginate(9);
+                return view($pages[$slug], compact('accademyEvents'));
+            }
+            
+            // Property listing page (both 'property' and 'properties')
+            if (in_array($slug, ['building-projects', 'properties'])) {
+                $query = Property::where('status', 'approved');
+
+                // Sorting logic
+                switch ($request->orderby) {
+                    case 'date':
+                        $query->latest();
+                        break;
+                    case 'price':
+                        $query->orderBy('price', 'asc');
+                        break;
+                    case 'price-desc':
+                        $query->orderBy('price', 'desc');
+                        break;
+                    case 'popularity':
+                        $query->where('category', 'house');
+                        break;
+                    case 'rating':
+                        $query->where('category', 'land');
+                        break;
+                    default:
+                        $query->latest();
+                }
+
+                $properties = $query->paginate(9)->appends(['orderby' => $request->orderby]);
+
+                return view($pages[$slug], compact('properties'));
+            }
+
+            // Default pages without extra data
             return view($pages[$slug]);
         }
 
         abort(404);
     }
+
 
     public function referral($code)
     {
@@ -56,13 +120,32 @@ class PagesController extends Controller
         return view('auth.register', ['referralDetails' => $referralDetails]);
     }
 
-    public function propertyDetails(){
-        return view('frontend.properties.show');
+    public function propertyDetails($id){
+
+        // Fetch property and related developer
+        $property = Property::where('status', 'approved')
+            ->with('developer')
+            ->findOrFail($id);
+
+        return view('frontend.properties.show', compact('property'));
+    }
+
+    public function projectDetails($id)
+    {
+        //dd('Project Details');
+        $project = Project::findOrFail($id);
+        return view('frontend.project.show', compact('project'));
+    }
+    public function eventDetails($id)
+    {
+        $event = Event::with('images')->findOrFail($id);
+        return view('frontend.event.show', compact('event'));
     }
  
-    public function eventDetails()
+    public function academyEventDetails($id)
     {
-        return view('frontend.event.show');
+        $event = AccademyEvent::findOrFail($id);
+        return view('frontend.academyEvent.show', compact('event'));
     }
 
 
@@ -163,5 +246,5 @@ class PagesController extends Controller
         return redirect()->route('home')->with('success', 'Email verified successfully!');
     }
 
-
+    
 }

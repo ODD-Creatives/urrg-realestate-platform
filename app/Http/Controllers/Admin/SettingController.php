@@ -22,4 +22,8 @@ class SettingController extends Controller
     {
         return view('admin.pages.menu.create'); 
     }
+
+    public function profile(){
+        return view('admin.pages.settings');
+    }
 }

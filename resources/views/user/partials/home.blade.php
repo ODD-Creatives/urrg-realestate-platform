@@ -37,7 +37,7 @@
                 <!-- partial:partials/_footer.html -->
                 <footer class="footer">
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2025 <a href="#" target="_blank">Unique Reliance Realtors Group </a>. All rights reserved.</span>
+                    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2025 <a href="{{route('home')}}" target="_blank">Unique Reliance Realtors Group </a>. All rights reserved.</span>
                     <span class="float-none float-sm-end d-block mt-1 mt-sm-0 text-center">Developed by ODD.Creatives <i class="mdi mdi-heart text-danger"></i></span>
                     </div>
                 </footer>
@@ -72,5 +72,19 @@
     <script src="{{ asset('assets/user/assets/js/proBanner.js') }}"></script>
     <script src="{{ asset('assets/user/assets/js/dashboard.js') }}"></script>
     <!-- End custom js for this page -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          // Initialize clipboard on all elements with .copy-btn
+          new ClipboardJS('.copy-btn');
+
+          // Optional: show feedback after copy
+          document.querySelectorAll('.copy-btn').forEach(btn => {
+              btn.addEventListener('click', function () {
+                  alert('Copied: ' + document.querySelector(this.getAttribute('data-clipboard-target')).innerText);
+              });
+          });
+      });
+    </script>
   </body>
 </html>

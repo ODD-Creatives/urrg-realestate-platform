@@ -104,7 +104,7 @@
             </p>
             <p class="sec-text fadeinup wow" data-wow-duration="1.5s" data-wow-delay="0.3s">
             URRG only works with trusted, credible developers and service providers. <br>
-            Every project or brand we work with is vetted for integrity, delivery record, and professionalism — so our clients and team can sell with confidence.
+            Every project or brand we work with is vetted for integrity, delivery record, and professionalism, so our clients and team can sell with confidence.
             </p>
         </div>
     </div>
@@ -116,51 +116,51 @@
                     data-slider-options='{"breakpoints":{"0":{"slidesPerView":2},"576":{"slidesPerView":"2"},"768":{"slidesPerView":"3"},"992":{"slidesPerView":"4"},"1200":{"slidesPerView":"5"},"1400":{"slidesPerView":"6"}}}'>
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <div class="brand-box"><a href="about.html"><img src="{{ asset('assets/img/brand/brand_1_1.svg')}}"
+                            <div class="brand-box"><a href="about.html"><img src="{{ asset('assets/img/urrglogo1.png')}}"
                                         alt="Brand Logo"></a></div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="brand-box"><a href="about.html"><img src="{{ asset('assets/img/brand/brand_1_2.svg')}}"
+                            <div class="brand-box"><a href="about.html"><img src="{{ asset('assets/img/urrglogo1.png')}}"
                                         alt="Brand Logo"></a></div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="brand-box"><a href="about.html"><img src="{{ asset('assets/img/brand/brand_1_3.svg')}}"
+                            <div class="brand-box"><a href="about.html"><img src="{{ asset('assets/img/urrglogo1.png')}}"
                                         alt="Brand Logo"></a></div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="brand-box"><a href="about.html"><img src="{{ asset('assets/img/brand/brand_1_4.svg')}}"
+                            <div class="brand-box"><a href="about.html"><img src="{{ asset('assets/img/urrglogo1.png')}}"
                                         alt="Brand Logo"></a></div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="brand-box"><a href="about.html"><img src="{{ asset('assets/img/brand/brand_1_5.svg')}}"
+                            <div class="brand-box"><a href="about.html"><img src="{{ asset('assets/img/urrglogo1.png')}}"
                                         alt="Brand Logo"></a></div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="brand-box"><a href="about.html"><img src="{{ asset('assets/img/brand/brand_1_6.svg')}}"
+                            <div class="brand-box"><a href="about.html"><img src="{{ asset('assets/img/urrglogo1.png')}}"
                                         alt="Brand Logo"></a></div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="brand-box"><a href="about.html"><img src="{{ asset('assets/img/brand/brand_1_1.svg')}}"
+                            <div class="brand-box"><a href="about.html"><img src="{{ asset('assets/img/urrglogo1.png')}}"
                                         alt="Brand Logo"></a></div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="brand-box"><a href="about.html"><img src="{{ asset('assets/img/brand/brand_1_2.svg')}}"
+                            <div class="brand-box"><a href="about.html"><img src="{{ asset('assets/img/urrglogo1.png')}}"
                                         alt="Brand Logo"></a></div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="brand-box"><a href="about.html"><img src="{{ asset('assets/img/brand/brand_1_3.svg')}}"
+                            <div class="brand-box"><a href="about.html"><img src="{{ asset('assets/img/urrglogo1.png')}}"
                                         alt="Brand Logo"></a></div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="brand-box"><a href="about.html"><img src="{{ asset('assets/img/brand/brand_1_4.svg')}}"
+                            <div class="brand-box"><a href="about.html"><img src="{{ asset('assets/img/urrglogo1.png')}}"
                                         alt="Brand Logo"></a></div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="brand-box"><a href="about.html"><img src="{{ asset('assets/img/brand/brand_1_5.svg')}}"
+                            <div class="brand-box"><a href="about.html"><img src="{{ asset('assets/img/urrglogo1.png')}}"
                                         alt="Brand Logo"></a></div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="brand-box"><a href="about.html"><img src="{{ asset('assets/img/brand/brand_1_6.svg')}}"
+                            <div class="brand-box"><a href="about.html"><img src="{{ asset('assets/img/urrglogo1.png')}}"
                                         alt="Brand Logo"></a></div>
                         </div>
                     </div>
