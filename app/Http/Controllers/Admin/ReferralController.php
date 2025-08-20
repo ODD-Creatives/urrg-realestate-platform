@@ -67,8 +67,8 @@ class ReferralController extends Controller
     }
 
     public function generateReferralStore(Request $request){
-        
-        $validated = $request->validate([
+         
+        $validated = $request->validate([ 
             'user_id' => 'required|exists:admins,id',
             'expires_at' => 'nullable|date|after:now',
         ]); 
@@ -76,7 +76,7 @@ class ReferralController extends Controller
         $user = Admin::find($validated['user_id']);
         $referral = $this->referralService->generateReferralCode($user, [
             'expires_at' => $validated['expires_at'] ?? null,
-        ]);
+        ]); 
 
         return redirect()
             ->route('admin.referrals.code.index') 
@@ -90,7 +90,7 @@ class ReferralController extends Controller
     }
 
     public function generateReferralDestroy($id)
-    {
+    { 
         $referral = ReferralCode::findOrFail(decrypt($id));
 
         $referral->delete();

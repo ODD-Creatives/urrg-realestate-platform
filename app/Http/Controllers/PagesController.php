@@ -6,6 +6,8 @@ use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use App\Models\ReferralCode;
 use App\Models\User;
 use App\Models\Developer;
@@ -21,6 +23,7 @@ use Illuminate\Support\Str;
 use App\Models\DeveloperApplication;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+ use Illuminate\Database\QueryException;
 use Illuminate\View\View;
 
 class PagesController extends Controller
@@ -148,10 +151,9 @@ class PagesController extends Controller
         return view('frontend.academyEvent.show', compact('event'));
     }
 
-
     public function developerStore(Request $request)
     {
-        // Validate the request
+        // Validation (same as before)
         $validator = Validator::make($request->all(), [
             'company_name' => 'required|string|max:255',
             'contact_person' => 'required|string|max:255',
@@ -169,13 +171,12 @@ class PagesController extends Controller
                 ->withInput();
         }
 
-        // Create directory if it doesn't exist
+        // File Uploads (same as before)
         $publicPath = public_path('assets/uploads/developer_documents/');
         if (!file_exists($publicPath)) {
             mkdir($publicPath, 0777, true);
         }
 
-        // Process file uploads
         $filePaths = [];
         $fileFields = ['letter_of_intent', 'company_profile', 'property_details'];
 
@@ -185,52 +186,64 @@ class PagesController extends Controller
                 $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
                 $extension = $file->getClientOriginalExtension();
                 $fileName = Str::slug($originalName) . '_' . time() . '.' . $extension;
-                
-                // Move file to public/assets directory
+
                 $file->move($publicPath, $fileName);
                 $filePaths[$field] = 'assets/uploads/developer_documents/' . $fileName;
             }
         }
 
-        // Generate developer_id in format: URRDEVddmmyyNN
-        $datePart = now()->format('dmy'); // e.g., 040825
+        // Generate developer_id (safe version)
+        $datePart = now()->format('dmy'); // e.g., 200825
         $prefix = 'URRDEV' . $datePart;
-
-        // Get the last developer created today to determine next serial
-        $lastDeveloperToday = Developer::whereDate('created_at', now()->toDateString())
-            ->orderBy('id', 'desc')
-            ->first();
-
         $serial = 1;
-        if ($lastDeveloperToday && preg_match('/\d{8}(\d{2})$/', $lastDeveloperToday->developer_id, $matches)) {
-            $serial = (int)$matches[1] + 1;
-        }
+        do {
+            $developer_id = $prefix . str_pad($serial, 2, '0', STR_PAD_LEFT);
+            $exists = Developer::where('developer_id', $developer_id)->exists();
+            $serial++;
+        } while ($exists);
 
         $developer_id = $prefix . str_pad($serial, 2, '0', STR_PAD_LEFT);
 
-        // Store data in database (adjust according to your model)
-        $developer = new Developer();// Replace with your actual model
-        $developer->company_name = $request->company_name;
-        $developer->contact_person = $request->contact_person;
-        $developer->phone = $request->phone;
-        $developer->email = $request->email;
-        $developer->subject = $request->subject;
-        $developer->letter_of_intent_path = $filePaths['letter_of_intent'] ?? null;
-        $developer->company_profile_path = $filePaths['company_profile'] ?? null;
-        $developer->property_details_path = $filePaths['property_details'] ?? null;
-        $developer->logo = $request->hasFile('logo') ? $request->file('logo')->store('uploads/developer_logo', 'public') : 'assets/uploads/developer_logo/default-logo.png';
-        //$developer->logo = $request->hasFile('logo') ? $request->file('logo')->store('logos', 'public') : null;
-        $developer->company_description = $request->input('company'); // Optional company description
-        $developer->developer_id = $developer_id;
-        $developer->save();
+        // Save developer data with try-catch
+        try {
+            $developer = new Developer();
+            $developer->company_name = $request->company_name;
+            $developer->contact_person = $request->contact_person;
+            $developer->phone = $request->phone;
+            $developer->email = $request->email;
+            $developer->subject = $request->subject;
+            $developer->letter_of_intent_path = $filePaths['letter_of_intent'] ?? null;
+            $developer->company_profile_path = $filePaths['company_profile'] ?? null;
+            $developer->property_details_path = $filePaths['property_details'] ?? null;
+            $developer->logo = $request->hasFile('logo') 
+                ? $request->file('logo')->store('uploads/developer_logo', 'public') 
+                : 'assets/uploads/developer_logo/default-logo.png';
+            $developer->company_description = $request->input('company');
+            $developer->developer_id = $developer_id;
+            $developer->save();
 
+            // event(new Registered($developer));
+            \Mail::to($developer->email)->send(new DeveloperVerificationEmail($developer));
 
-        // Send email verification notification
-        event(new Registered($developer));
+            return redirect()->back()->with('success', 'Your application has been submitted successfully! Please check your email to verify your account.');
+        
+        } catch (QueryException $e) {
+            Log::info("message", $e->getMessage());
+            Log::info("code", $e->getCode());
+            if ($e->getCode() == 23000) {
+                // Duplicate entry
+                return redirect()->back()
+                    ->withErrors(['developer_id' => 'Your application was not submitted because of a system conflict. Please try again in a few seconds.'])
+                    ->withInput();
+            }
 
-        // Return success response
-        return redirect()->back()->with('success', 'Your application has been submitted successfully! Please check your email to verify your account.');
+            // Other DB errors
+            return redirect()->back()
+                ->withErrors(['database' => 'An unexpected error occurred while saving your application. Please try again later.'])
+                ->withInput();
+        }
     }
+
      
     public function verifyEmail($id)
     {

@@ -38,16 +38,25 @@
         <span class="menu-title">Projects</span>
         </a>
     </li>
-    {{--
+    
     @if(Auth::guard('admin')->user()->email == 'admin@gmail.com')
+       
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.referrals.code.generator') }}">
-            <i class="icon-grid menu-icon"></i>
-            <span class="menu-title">Referral Code Generator</span>
-            </a>
+            <a class="nav-link" data-bs-toggle="collapse" href="#adminOnly" aria-expanded="false" aria-controls="error">
+            <i class="mdi mdi-shape-plus menu-icon"></i>
+            <span class="menu-title">Admin Only</span>
+            <i class="menu-arrow"></i>
+            </a> 
+            <div class="collapse" id="adminOnly"> 
+            <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{ route('admin.referrals.code.generator') }}">Referral Code Generator</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('admin.create.admin') }}">Add admin </a></li>
+            </ul>
+            </div>
         </li>
+
     @endif
-    --}}
+   
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.referrals.index') }}">
         <i class="mdi mdi-account-multiple menu-icon"></i>

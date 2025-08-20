@@ -64,10 +64,14 @@
         </li>
         <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-            <img src="{{ asset('assets/admin/assets/images/faces/face28.jpg') }}" alt="profile" />
+            @if(auth('admin')->check() && auth('admin')->user()->profile_photo)
+                <img src="{{ asset('storage/' . auth('admin')->user()->profile_photo) }}" alt="profile" />
+            @else
+                <img src="{{ asset('assets/admin/assets/images/faces/face28.jpg') }}" alt="profile" />
+            @endif
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-            <a class="dropdown-item">
+            <a class="dropdown-item" href="{{ route('admin.profile') }}">
                 <i class="ti-settings text-primary"></i> Settings </a>
             <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
                 @csrf

@@ -18,14 +18,21 @@ class Admin extends Authenticatable
         'email',
         'password',
         'status',
-    ]; 
+        'name',
+        'phone',
+        'profile_photo',
+        'bank_name',
+        'account_name',
+        'account_number',
+    ];
+
 
     protected $hidden = [
         'password', 'remember_token',
     ];
 
     public function referralCode()
-    {
+    { 
         return $this->hasOne(ReferralCode::class, 'user_id');
     }
 

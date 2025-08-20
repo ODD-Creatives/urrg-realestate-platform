@@ -20,7 +20,7 @@ Route::get('/academyEvent/show{id}', [PagesController::class, 'academyEventDetai
 Route::get('/referral/{code}', [PagesController::class, 'referral']); 
 Route::get('/referral/register/{code}', [PagesController::class, 'referral']); 
 Route::post('/developer/applications/store', [PagesController::class, 'developerStore'])->name('developer.store'); 
-
+ 
 Route::get('/developer/verify/{id}', [PagesController::class, 'verifyDeveloperEmail'])
     ->name('developer.verify');
 

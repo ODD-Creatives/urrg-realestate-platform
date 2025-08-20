@@ -25,7 +25,12 @@ Route::post('/admin/login', [LoginController::class, 'login'])->name('admin.logi
  
 Route::middleware(['admin.auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard.index');
+    Route::get('/create/admin', [AdminController::class, 'createAdmin'])->name('create.admin');
+    Route::post('/admin/post', [AdminController::class, 'storeAdmin'])->name('post.admin');
+    
     Route::get('/profile', [SettingController::class, 'profile'])->name('profile');
+    Route::post('/profile', [SettingController::class, 'updateProfile'])->name('profile.update');
+
 
     Route::prefix('menu')->name('menu.')->controller(MenuController::class)->group(function () {
         Route::get('/', 'index')->name('index');
@@ -74,14 +79,14 @@ Route::middleware(['admin.auth'])->prefix('admin')->name('admin.')->group(functi
     });
 
     Route::prefix('developer')->name('developers.')->controller(DevelopersController::class)->group(function () {
-        Route::get('/', 'index')->name('index');
+        Route::get('/', 'index')->name('index'); 
         Route::get('/view{id}','show')->name('view');
         Route::get('/edit/{id}','edit')->name('edit');
         Route::put('/update/{id}','update')->name('update');
         Route::put('/{developer}/status','updateStatus')->name('update-status');
         Route::get('/{developer}/properties', 'developerProperties')->name('properties');
         Route::get('/{developer}/projects', 'developerProjects')->name('projects');
-        
+         
 
     });
 
