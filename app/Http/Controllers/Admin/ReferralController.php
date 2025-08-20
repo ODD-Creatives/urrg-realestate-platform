@@ -73,8 +73,8 @@ class ReferralController extends Controller
             'expires_at' => 'nullable|date|after:now',
         ]); 
 
-        $user = Admin::find($validated['user_id']);
-        $referral = $this->referralService->generateReferralCode($user, [
+        $admin = Admin::find($validated['user_id']);
+        $referral = $this->referralService->generateReferralCode($admin, [
             'expires_at' => $validated['expires_at'] ?? null,
             'referral_code' => $request->referral_code ?? null,
         ]);
