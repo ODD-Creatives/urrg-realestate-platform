@@ -5,7 +5,8 @@ use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\User\UserDashboardController;
 use Illuminate\Support\Facades\Route;
- 
+use App\Http\Controllers\ContactController;
+
 
 Auth::routes();
 
@@ -20,9 +21,11 @@ Route::get('/academyEvent/show{id}', [PagesController::class, 'academyEventDetai
 Route::get('/referral/{code}', [PagesController::class, 'referral']); 
 Route::get('/referral/register/{code}', [PagesController::class, 'referral']); 
 Route::post('/developer/applications/store', [PagesController::class, 'developerStore'])->name('developer.store'); 
- 
+
 Route::get('/developer/verify/{id}', [PagesController::class, 'verifyDeveloperEmail'])
     ->name('developer.verify');
+
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 
 
