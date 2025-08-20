@@ -14,9 +14,6 @@ class ReferralCode extends Model
         'user_id',
         'code', 
         'referral_code',
-        'uses', 
-        'max_uses',
-        'expires_at'
     ];
 
     protected $casts = [
