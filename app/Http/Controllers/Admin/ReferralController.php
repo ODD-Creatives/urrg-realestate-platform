@@ -76,7 +76,7 @@ class ReferralController extends Controller
         $user = Admin::find($validated['user_id']);
         $referral = $this->referralService->generateReferralCode($user, [
             'expires_at' => $validated['expires_at'] ?? null,
-        ]); 
+        ]);  
 
         return redirect()
             ->route('admin.referrals.code.index') 

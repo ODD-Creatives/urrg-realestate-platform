@@ -85,7 +85,8 @@ class AdminController extends Controller
                 'name' => $validated['name'],
                 'email' => $validated['email'],
                 'password' => Hash::make($validated['password']),
-                'username' => strtolower(str_replace(' ', '', $validated['name'])), // Optional: auto-generate username
+                'username' => strtolower(str_replace(' ', '', $validated['name'])), 
+                'referral_code' => $validated['referral_code'],
                 'status' => 1,
             ]);
 
@@ -93,7 +94,7 @@ class AdminController extends Controller
             if (!empty($validated['referral_code'])) {
                 $user = Admin::find($admin->id);
                 $referral = $this->referralService->generateReferralCode($user, [
-                    'expires_at' => $validated['expires_at'] ?? null,
+                    'referral_code' => $validated['referral_code'] ?? null,
                 ]); 
             }
         });

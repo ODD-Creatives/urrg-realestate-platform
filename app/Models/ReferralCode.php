@@ -13,6 +13,7 @@ class ReferralCode extends Model
     protected $fillable = [
         'user_id',
         'code', 
+        'referral_code',
         'uses', 
         'max_uses',
         'expires_at'
@@ -25,7 +26,9 @@ class ReferralCode extends Model
     public function admin()
     {
         return $this->belongsTo(Admin::class, 'user_id');
-    }
+    } 
+
+    
 
     public function referrals()
     {
@@ -35,7 +38,7 @@ class ReferralCode extends Model
     public function isExpired()
     {
         return $this->expires_at && now()->gte($this->expires_at);
-    }
+    } 
 
     public function hasAvailableUses()
     {
@@ -45,5 +48,10 @@ class ReferralCode extends Model
     public function isValid()
     {
         return !$this->isExpired() && $this->hasAvailableUses();
+    }
+
+    public function referredAdmins()
+    {
+        return $this->hasOne(Admin::class, 'referral_code', 'referral_code');
     }
 }

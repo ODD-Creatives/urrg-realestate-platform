@@ -15,6 +15,7 @@ class Admin extends Authenticatable
     
     protected $fillable = [
         'username',
+        'referral_code',
         'email',
         'password',
         'status',
@@ -34,6 +35,11 @@ class Admin extends Authenticatable
     public function referralCode()
     { 
         return $this->hasOne(ReferralCode::class, 'user_id');
+    }
+
+    public function referredAdmins()
+    { 
+        return $this->hasOne(Admin::class, 'referral_code', 'referral_code');
     }
 
 }

@@ -80,7 +80,10 @@
                                             @if($upline instanceof \App\Models\User)
                                                 {{ $upline->fullname }} ({{ $upline->realtor_id ?? 'User' }})
                                             @elseif($upline instanceof \App\Models\ReferralCode && $upline->admin)
-                                                {{ $upline->admin->username }} (Admin) <br>
+                                                {{ $upline->admin->referralCode->referredAdmins->username}} 
+                                                
+                                                <br> 
+                                                {{ $upline->admin->username }} (Admin) <br> 
                                             @else
                                                 <span class="text-muted">Upline Code: {{ $user->upline_referral }}</span>
                                             @endif
@@ -123,7 +126,7 @@
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div> 
                 
             </div>
          </div>
