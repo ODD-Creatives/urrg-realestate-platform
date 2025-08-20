@@ -18,8 +18,6 @@ class ReferralService
             'user_id' => $admin->id,
             'code' => $code,
             'referral_code' => $options['referral_code'] ?? '', 
-            'uses' => 0,
-            'max_uses' => $options['max_uses'] ?? 0,
         ]);
     }
 
