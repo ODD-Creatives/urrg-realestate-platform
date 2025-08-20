@@ -63,7 +63,7 @@ class AdminController extends Controller
     public function createAdmin(){
         $adminUser = Auth::guard('admin')->user();
         // dd($adminUser);
-        $referralCode = $adminUser->referralCode->code??'';
+        $referralCode = $adminUser->referralCode->code ?? Str::upper(Str::random(8)); // Generate a new code if not exists
         return view('admin.pages.admin.create', compact('referralCode'));
     }
 
