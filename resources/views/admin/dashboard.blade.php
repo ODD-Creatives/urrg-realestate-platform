@@ -90,28 +90,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    <td>1</td>
-                    <td>John Doe</td>
-                    <td>Admin</td>
-                    <td>Approved Property: Oak Residence</td>
-                    <td>2024-06-12 09:34 AM</td>
-                    </tr>
-                    <tr>
-                    <td>2</td>
-                    <td>Grace Smith</td>
-                    <td>Realtor</td>
-                    <td>Requested Withdrawal: ₦25,000</td>
-                    <td>2024-06-11 02:45 PM</td>
-                    </tr>
-                    <tr>
-                    <td>3</td>
-                    <td>URRG Dev</td>
-                    <td>Developer</td>
-                    <td>Submitted Property: Sunset Estate</td>
-                    <td>2024-06-10 08:15 AM</td>
-                    </tr>
-                    <!-- Add more rows as needed -->
+                    @forelse($recentActivities as $activity)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $activity->actor_name }}</td>
+                            <td><span class="badge bg-info">{{ $activity->actor_role }}</span></td>
+                            <td>{{ $activity->activity }}</td>
+                            <td>{{ $activity->created_at->diffForHumans() }}</td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="5" class="text-center text-muted">No recent activity.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
                 </table>
             </div>

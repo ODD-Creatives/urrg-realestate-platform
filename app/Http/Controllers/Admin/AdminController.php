@@ -13,6 +13,7 @@ use App\Models\Property;
 use App\Models\Project;
 use App\Models\Admin;
 use App\Models\User;
+use App\Models\ActivityLog;
 use App\Models\ReferralCode;
 use App\Services\ReferralService;
 
@@ -43,6 +44,9 @@ class AdminController extends Controller
 
         $totalApproved = $projectsCount + $propertiesCount;
 
+        // Fetch recent activities
+        $recentActivities = ActivityLog::latest()->take(5)->get();
+
 
         return view('admin.dashboard', compact(
             'adminUser', 
@@ -51,7 +55,8 @@ class AdminController extends Controller
             'commissionCount',
             'totalCommission',
             'formattedTotal',
-            'totalApproved'
+            'totalApproved',
+            'recentActivities'
         ));
     }
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Developer;
 use App\Models\Property;
+use App\Models\ActivityLog;
 use App\Models\Project;
 
 
@@ -90,6 +91,13 @@ class DevelopersController extends Controller
         }
 
         $developer->update($validated);
+
+        // Log this activity
+        ActivityLog::create([
+            'actor_name' => auth('admin')->user()->name,
+            'actor_role' => 'Admin',
+            'activity' => "Updated developer profile for: {$developer->company_name}",
+        ]);
 
         return redirect()->route('admin.developers.view',  encrypt($developer->id))->with('success', 'Developer updated successfully!');
 
