@@ -17,10 +17,10 @@ class ReferralService
         return ReferralCode::create([
             'user_id' => $admin->id,
             'code' => $code,
-            'referral_code' => $options['referral_code'] ?? null, 
+            'referral_code' => $options['referral_code'] ?? '', 
             'uses' => 0,
-            'max_uses' => $options['max_uses'] ?? null,
-            'expires_at' => $options['expires_at'] ?? null,
+            'max_uses' => $options['max_uses'] ?? 0,
+            'expires_at' => $options['expires_at'] ?? '',
         ]);
     }
 
