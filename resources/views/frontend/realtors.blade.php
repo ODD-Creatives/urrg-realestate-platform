@@ -131,7 +131,7 @@
                     </div>
                     <div class="content">
                         <p class="box-text">
-                            Be mentored into influence — we don’t just train agents, we raise leaders for the industry.
+                            Be mentored into influence we don’t just train agents, we raise leaders for the industry.
                         </p>
                     </div>
                 </div>
@@ -179,7 +179,7 @@
                                          <span style="font-size: 2rem;">👤</span> Realtor Benefits Overview
                                     </h5>
                                     <p class="sec-text fadeinup wow" data-wow-duration="1.5s" data-wow-delay="0.3s">
-                                       At Unique Radiance Realtors Group (URRG), we empower realtors to grow in sales, leadership, and wealth — not just close deals.
+                                       At Unique Radiance Realtors Group (URRG), we empower realtors to grow in sales, leadership, and wealth not just close deals.
 
                                     </p>
                                 </div>
@@ -211,7 +211,7 @@
                                         </li>
                                         <li>
                                             Leadership Development: <br>
-                                            Be mentored into influence — we don’t just train agents, we raise leaders.
+                                            Be mentored into influence we don’t just train agents, we raise leaders.
                                         </li>                                       
                                     </ul>
                                 </div>

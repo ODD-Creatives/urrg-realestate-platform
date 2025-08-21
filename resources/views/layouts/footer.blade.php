@@ -74,7 +74,7 @@
             <div class="col-lg-7">
                 <p class="copyright-text">
                     Copyright <i class="fal fa-copyright"></i> 2025 
-                    <a href="index.html">Unique Radiance Realtors Group </a>. All Rights Reserved.
+                    <a href="{{route('home')}}">Unique Radiance Realtors Group </a>. All Rights Reserved.
                 </p>
             </div>
             <div class="col-auto">

@@ -13,8 +13,8 @@
                                         <span class="title2 text-theme">Real Estate Empire </span>
                                     </h1>
                                     <div class="btn-group justify-content-center" data-ani="slideinup"
-                                        data-ani-delay="0.4s"><a href="property.html"
-                                            class="th-btn style2 pill">Join The Great Minds.</a>
+                                        data-ani-delay="0.4s"><a href="{{url('/realtors')}}"
+                                            class="th-btn style2 pill">Join The Great Minds</a>
                                     </div>
                                     
                                 </div>
@@ -34,7 +34,7 @@
                                             <span class="title2 text-theme">Impacting the World.</span>
                                     </h2>
                                     <div class="btn-group justify-content-center" data-ani="slideinup"
-                                        data-ani-delay="0.4s"><a href="property.html"
+                                        data-ani-delay="0.4s"><a href="{{url('/realtors')}}"
                                             class="th-btn style2 pill">Join The Great Minds</a>
                                     </div>
                                     
@@ -54,7 +54,7 @@
                                         Creating Wealth <span class="title2 text-theme">Transforming Live</span>
                                     </h1>
                                     <div class="btn-group justify-content-center" data-ani="slideinup"
-                                        data-ani-delay="0.4s"><a href="property.html"
+                                        data-ani-delay="0.4s"><a href="{{url('/realtors')}}"
                                             class="th-btn style2 pill">Join The Great Minds</a>
                                     </div>
                                     
@@ -73,7 +73,7 @@
                                     <h1 class="hero-title" data-ani="slideinup" data-ani-delay="0.2s">Discover Your Real Estate
                                             <span class="title2 text-theme">Carrier With URRG</span></h1>
                                     <div class="btn-group justify-content-center" data-ani="slideinup"
-                                        data-ani-delay="0.4s"><a href="property.html"
+                                        data-ani-delay="0.4s"><a href="{{url('/realtors')}}"
                                             class="th-btn style2 pill">Join The Great Minds</a>
                                     </div>
                                     

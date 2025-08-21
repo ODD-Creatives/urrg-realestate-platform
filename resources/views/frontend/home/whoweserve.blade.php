@@ -27,7 +27,7 @@
                             We provide a platform where realtors grow into world-class professionals and leaders. 
                             Through intensive training, mentorship, and a winning team culture, we equip our members 
                             with the knowledge, confidence, and support to close high-value deals, build wealth, and 
-                            transform lives — starting with their own.
+                            transform lives starting with their own.
                         </p>
                     </div>
                     
@@ -86,7 +86,7 @@
                         <p class="box-text">
                              URRG operates a structured, transparent commission system for all deals. <br>
                                     Realtors earn clearly defined percentages on sales, and bonuses on performance. 
-                                    There are no hidden terms — just real opportunities to earn and grow.
+                                    There are no hidden terms just real opportunities to earn and grow.
                         </p>
                     </div>
                     

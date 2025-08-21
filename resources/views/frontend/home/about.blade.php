@@ -40,7 +40,7 @@
                     </p>
                     <p class="sec-text fadeinup wow" data-wow-duration="2.0s" data-wow-delay="1.0s">
                         Joining URRG means stepping into a movement focused on leadership, growth, and lasting 
-                        success — where you’re equipped to build not just a career, but a legacy.
+                        success where you’re equipped to build not just a career, but a legacy.
                     </p>
                     <div class="col-lg-12 ">
                         <div class="about-bottom-wrap fadeinup wow" data-wow-duration="2.0s" data-wow-delay="1.0s">

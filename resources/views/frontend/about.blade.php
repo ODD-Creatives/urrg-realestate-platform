@@ -55,7 +55,7 @@
                         </p>
                         <p class="sec-text fadeinup wow" data-wow-duration="2.0s" data-wow-delay="1.0s">
                             Joining Unique Radiance Realtor Group (URRG) means stepping into a movement focused on leadership, growth, and lasting 
-                            success — where you’re equipped to build not just a career, but a legacy.
+                            success where you’re equipped to build not just a career, but a legacy.
                         </p>
                         
                     </div>
@@ -73,7 +73,7 @@
                                 </div>
                                 <div class="content">
                                     <p class="box-text">
-                                        We are Africa’s greatest real estate empire. <br> — Shaping global leaders, empowering realtors, and partnering with visionary developers to create wealth, transform lives, and impact the world with excellence and integrity.
+                                        We are Africa’s greatest real estate empire. Shaping global leaders, empowering realtors, and partnering with visionary developers to create wealth, transform lives, and impact the world with excellence and integrity.
                                     </p>
                                 </div>
                             </div>
@@ -92,7 +92,7 @@
                                 <div class="content">
                                     
                                     <p class="box-text">
-                                        We exist to raise a generation of exceptional real estate professionals, — Building wealth, leading with purpose, and setting the standard for leadership, excellence, and transformation in the real estate industry across Africa and beyond.
+                                        We exist to raise a generation of exceptional real estate professionals, Building wealth, leading with purpose, and setting the standard for leadership, excellence, and transformation in the real estate industry across Africa and beyond.
 
                                     </p>
                                 </div>
@@ -187,7 +187,7 @@
                         </div>
                         <h5 class="fw-bold">Value Creation</h5>
                         <p class="text-muted small">
-                            We ensure every deal benefits all parties — developers, agents, and clients.
+                            We ensure every deal benefits all parties developers, agents, and clients.
                         </p>
                     </div>
                 </div>
@@ -266,7 +266,7 @@
                                 <span>Raise Leaders of Influence<span>
                             </h3>
                             <p class="box-text">
-                                Build confident, purpose-driven realtors who stand out and lead in the real estate industry.
+                                Build confident, purpose driven realtors who stand out and lead in the real estate industry.
                             </p>
                         </div>
                         
@@ -336,7 +336,7 @@
                             <h3 class="box-title">Establish Strong Brand Influence</h3>
                             <p class="box-text">
                                 
-                                Strengthen URRG’s presence as a respected and influential force in the real estate space — locally and globally.
+                                Strengthen URRG’s presence as a respected and influential force in the real estate space locally and globally.
 
                             </p>
                         </div>
@@ -451,7 +451,7 @@
                                 We provide a platform where realtors grow into world-class professionals and leaders. 
                                 Through intensive training, mentorship, and a winning team culture, we equip our members 
                                 with the knowledge, confidence, and support to close high-value deals, build wealth, and 
-                                transform lives — starting with their own.
+                                transform lives starting with their own.
                             </p>
                         </div>
                         
@@ -510,7 +510,7 @@
                             <p class="box-text">
                                 Unique Radiance Realtors Group (URRG) operates a structured, transparent commission system for all deals. <br>
                                         Realtors earn clearly defined percentages on sales, and bonuses on performance. 
-                                        There are no hidden terms — just real opportunities to earn and grow.
+                                        There are no hidden terms just real opportunities to earn and grow.
                             </p>
                         </div>
                         
@@ -627,9 +627,9 @@
             <p>
 
                 AdeJare Michael Adetomiwa is a visionary entrepreneur and real estate strategist, dedicated to transforming Africa’s property landscape. <br>
-                As CEO of Mikeland Homes and founder of Unique Radiance Realtors Group (URRG), he leads with purpose—mentoring leaders, driving innovation, and creating generational wealth through real estate. <br>
+                As CEO of Mikeland Homes and founder of Unique Radiance Realtors Group (URRG), he leads with purpose mentoring leaders, driving innovation, and creating generational wealth through real estate. <br>
                 A graduate of Lagos State Polytechnic and a student at Lagos State University of Science and Technology, he balances academic growth with hands-on experience.<br> 
-                He also advances food sustainability through Amagreen Farms. Purpose-driven and resilient, AdeJare is not just building a brand—he’s building a legacy.<br>           
+                He also advances food sustainability through Amagreen Farms. Purpose-driven and resilient, AdeJare is not just building a brand he’s building a legacy.<br>           
             </p>
             </div>
         </div>
@@ -643,7 +643,7 @@
             <p>
                 Adega Adeleye Isaac is the MD/CEO of Adeh Homes and Head of Administration at Unique Radiance Realtors Group (URRG). <br>
                 Since beginning his real estate career in June 2022, he has earned recognition as an award-winning realtor, celebrated for his consistency, professionalism, and personalized service. <br>
-                A proud graduate of Lagos State Polytechnic (now LASUSTECH), Isaac is passionate about more than just property—he is committed to leaving a lasting legacy, creating meaningful impact, and empowering the next generation to aim higher. <br> 
+                A proud graduate of Lagos State Polytechnic (now LASUSTECH), Isaac is passionate about more than just property he is committed to leaving a lasting legacy, creating meaningful impact, and empowering the next generation to aim higher. <br> 
                 His leadership reflects a deep sense of vision, purpose, and excellence in the real estate industry. <br>
             </p>
             </div>
