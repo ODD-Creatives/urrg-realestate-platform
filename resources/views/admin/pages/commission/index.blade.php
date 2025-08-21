@@ -10,7 +10,7 @@
                             All systems are running smoothly! You have 
                             <span class="text-primary">{{ $unreadAlerts ?? 0 }} unread alerts!</span>
                         </h6>
-                    </div>
+                    </div> 
                     <div class="col-12 mt-4">
                         <form method="GET" action="{{ route('admin.commissions.index') }}" class="row g-3">
                             <div class="col-md-3">
@@ -76,13 +76,13 @@
                                                 {{ $commission->user->fullname }} 
                                             </a>
                                         @else
-                                            - 
+                                             {{ $commission->admin->name ?? 'Unknown' }} (Admin)
                                         @endif
-                                    </td>
+                                    </td> 
                                     <td>{{ $commission->user_email }}</td>
                                     <td>
                                         <span class="badge bg-info">
-                                            {{ $commission->user->realtor_id ?? '-' }}
+                                            {{ $commission->user->realtor_id ?? $commission->admin->referral_code??null }}
                                         </span>
                                     </td> 
                                     <td class="fw-bold">₦{{ number_format($commission->amount, 2) }}</td>

@@ -177,4 +177,20 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(BankDetail::class);
     }
+
+    // In User.php model
+    public function incrementSoldProperties()
+    {
+        return $this->increment('sold_properties');
+    }
+
+    public function getSoldPropertiesCountAttribute()
+    {
+        return $this->sold_properties;
+    }
+
+    public function resetSoldProperties()
+    {
+        return $this->update(['sold_properties' => 0]);
+    }
 }

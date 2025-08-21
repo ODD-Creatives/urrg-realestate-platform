@@ -196,7 +196,7 @@ class PagesController extends Controller
         $datePart = now()->format('dmy'); // e.g., 200825
         $prefix = 'URRDEV' . $datePart;
         $serial = 1;
-        do {
+        do { 
             $developer_id = $prefix . str_pad($serial, 2, '0', STR_PAD_LEFT);
             $exists = Developer::where('developer_id', $developer_id)->exists();
             $serial++;
@@ -245,7 +245,7 @@ class PagesController extends Controller
     }
 
      
-    public function verifyEmail($id)
+    public function verifyDeveloperEmail($id)
     {
         $developer = Developer::findOrFail($id);
         

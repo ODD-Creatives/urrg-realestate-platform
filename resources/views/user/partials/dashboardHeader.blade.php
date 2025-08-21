@@ -6,7 +6,7 @@
                     <div class="d-flex justify-content-between">
                         <div>
                             <h4 class="card-title mb-0 text-white">Property Sold</h4>
-                            <h3 class="fw-bold mb-0">1</h3>
+                            <h3 class="fw-bold mb-0">{{ $user->sold_properties_count }}</h3>
                         </div> 
                         <i class="mdi mdi-castle text-white icon-lg"></i>
                     </div>

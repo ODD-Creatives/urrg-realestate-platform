@@ -37,8 +37,9 @@ class CommissionService
                 ];
 
                 // Handle different entity types
-                if ($user instanceof \App\Models\Admin) {
-                    $commissionData['admin_id'] = $user->id; 
+                if ($user instanceof \App\Models\Admin) { 
+                    \Log::info('Processing commission for admin: ' . $user);
+                    $commissionData['user_id'] = $user->id; 
                     $commissionData['user_email'] = $user->email;
                     $commissionData['referral_code'] = $user->referral_code;
                 } else {
@@ -80,10 +81,10 @@ class CommissionService
      * @throws \Exception
      */
     public function processBulkPayments(
-        User $realtor,
-        float $realtorAmount,
-        array $uplineCommissions = [],
-        ?int $propertyId = null
+    User $realtor,
+    float $realtorAmount,
+    array $uplineCommissions = [],
+    ?int $propertyId = null
     ): array {
         $results = [];
         
@@ -129,6 +130,9 @@ class CommissionService
                     ]);
                 }
             }
+
+            // ✅ INCREMENT SOLD PROPERTIES COUNT FOR THE REALTOR
+            $realtor->increment('sold_properties');
 
             DB::commit();
 

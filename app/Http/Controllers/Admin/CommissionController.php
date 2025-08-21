@@ -138,7 +138,7 @@ class CommissionController extends Controller
 
 
     // In your controller method
-   public function processPayment(Request $request, CommissionService $commissionService)
+    public function processPayment(Request $request, CommissionService $commissionService)
     {
         try {
             $validated = $request->validate([
@@ -193,7 +193,8 @@ class CommissionController extends Controller
                 $realtor,
                 $validated['realtor_amount'],
                 $uplineCommissions,
-                $validated['property_id'] ?? null
+                $validated['property_id'] ?? null,
+                true
             );
 
             // Calculate total paid
