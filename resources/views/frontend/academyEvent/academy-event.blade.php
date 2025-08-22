@@ -20,7 +20,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="card shadow-sm border-0 h-100">
                         @if($event->banner)
-                            <img src="{{ asset('storage/'. $event->banner) }}" class="card-img-top" alt="{{ $event->title }}" style="height:220px; object-fit:cover;">
+                            <img src="{{ asset($event->banner) }}" class="card-img-top" alt="{{ $event->title }}" style="height:220px; object-fit:cover;">
                         
                         @else
                             <img src="{{ asset('assets/img/default-event.jpg') }}" class="card-img-top" alt="{{ $event->title }}" style="height:220px; object-fit:cover;">

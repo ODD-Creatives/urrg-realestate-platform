@@ -38,7 +38,15 @@ class AccademyEventController extends Controller
             'banner' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ]);
         //dd("Hello");
-        $bannerPath = $request->file('banner')->store('accademyEvents', 'public');
+        // $bannerPath = $request->file('banner')->store('accademyEvents', 'public');
+
+        if ($request->hasFile('banner')) {
+            $file = $request->file('banner');
+            $filename = time().'_'.$file->getClientOriginalName();
+            $file->move(public_path('accademyEvents'), $filename);
+            $bannerPath = 'accademyEvents/' . $filename; // save relative path
+        }
+
 
         AccademyEvent::create([
             'title' => $request->title,

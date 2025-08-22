@@ -22,7 +22,7 @@
 
             <div class="col-12 mb-3">
             <label>Current Banner</label><br>
-            <img src="{{ asset('storage/' . $event->banner) }}" alt="Banner" class="img-fluid mb-2" style="max-height: 150px;">
+            <img src="{{ asset($event->banner) }}" alt="Banner" class="img-fluid mb-2" style="max-height: 150px;">
             </div>
 
             <div class="col-12 mb-3">

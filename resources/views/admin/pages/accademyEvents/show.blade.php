@@ -28,7 +28,7 @@
                     <!-- Event Banner -->
                     <div class="col-md-6">
                         <div class="mb-4 text-center">
-                            <img src="{{ asset('storage/' . $event->banner) }}" class="img-fluid rounded shadow-sm" style="max-height: 350px;" alt="Event Banner">
+                            <img src="{{ asset($event->banner) }}" class="img-fluid rounded shadow-sm" style="max-height: 350px;" alt="Event Banner">
                         </div>
                     </div>
 

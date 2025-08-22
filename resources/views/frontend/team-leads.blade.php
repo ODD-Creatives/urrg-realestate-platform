@@ -84,10 +84,11 @@
                             <div class="card-body">
                                 <div class="mb-3">
                                     @if($lead->picture)
-                                        <img src="{{ asset('public/storage/'.$lead->picture) }}" 
+                                        <img src="{{ asset($lead->picture) }}" 
                                             alt="{{ $lead->fullname }}" 
                                             class="rounded-circle img-fluid" 
                                             style="width: 150px; height: 150px; object-fit: cover;">
+                                            <img src="{{ asset($teamLead->picture) }}" alt="Team Lead Photo">
                                     @else
                                         <img src="{{ asset('public/assets/img/default-profile.png') }}" 
                                             alt="No Image" 

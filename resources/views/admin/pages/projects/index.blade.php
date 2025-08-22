@@ -40,7 +40,7 @@
                                         <td>{{ $index + 1 }}</td>
                                         <td> 
                                             @if($project->cover_image)
-                                                <img src="{{ asset('storage/' . $project->cover_image) }}" alt="Cover" width="80" class="img-thumbnail">
+                                                <img src="{{ asset('$project->cover_image) }}" alt="Cover" width="80" class="img-thumbnail">
                                             @else
                                                 <span class="text-muted">No image</span>
                                             @endif

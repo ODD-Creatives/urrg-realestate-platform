@@ -35,13 +35,27 @@ class ProjectController extends Controller
             'price_per_unit' => 'nullable|numeric',
         ]);
 
+        // if ($request->hasFile('cover_image')) {
+        //     $validated['cover_image'] = $request->file('cover_image')->store('projects/images', 'public');
+        // }
+
+        // if ($request->hasFile('documents_path')) {
+        //     $validated['documents_path'] = $request->file('documents_path')->store('projects/docs', 'public');
+        // }
         if ($request->hasFile('cover_image')) {
-            $validated['cover_image'] = $request->file('cover_image')->store('projects/images', 'public');
+            $file = $request->file('cover_image');
+            $filename = time().'_'.$file->getClientOriginalName();
+            $file->move(public_path('projects/images'), $filename);
+            $validated['cover_image'] = 'projects/images/' . $filename;
         }
 
         if ($request->hasFile('documents_path')) {
-            $validated['documents_path'] = $request->file('documents_path')->store('projects/docs', 'public');
+            $file = $request->file('documents_path');
+            $filename = time().'_'.$file->getClientOriginalName();
+            $file->move(public_path('projects/docs'), $filename);
+            $validated['documents_path'] = 'projects/docs/' . $filename;
         }
+
 
         Project::create($validated);
 

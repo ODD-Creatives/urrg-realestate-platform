@@ -46,7 +46,7 @@
                             <td>{{ $event->title }}</td>
                             <td>{{ \Carbon\Carbon::parse($event->event_date)->format('Y-m-d') }}</td>
                             <td>
-                                <img src="{{ asset('storage/' . $event->banner) }}" width="80" class="rounded" />
+                                <img src="{{ asset($event->banner) }}" width="80" class="rounded" />
                             </td>
                             <td>
                                 <div class="btn-group">
