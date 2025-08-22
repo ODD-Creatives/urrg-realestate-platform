@@ -44,7 +44,7 @@
                     <div class="col-md-6 mb-3">
                         <label>Current Picture</label><br>
                         @if($teamLead->picture)
-                            <img src="{{ asset('storage/'.$teamLead->picture) }}" alt="Profile" style="height:80px;width:80px;object-fit:cover;" class="rounded mb-2">
+                            <img src="{{ asset($teamLead->picture) }}" alt="Profile" style="height:80px;width:80px;object-fit:cover;" class="rounded mb-2">
                         @else
                             <p class="text-muted">No Image Uploaded</p>
                         @endif

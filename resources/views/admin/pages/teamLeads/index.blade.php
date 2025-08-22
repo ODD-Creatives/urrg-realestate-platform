@@ -35,7 +35,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>
                                     @if($lead->picture)
-                                        <img src="{{ asset('public/storage/'.$lead->picture) }}" alt="Profile" style="height:50px;width:50px;object-fit:cover;" class="rounded-circle">
+                                        <img src="{{ asset($lead->picture) }}" alt="Profile" style="height:50px;width:50px;object-fit:cover;" class="rounded-circle">
                                     @else
                                         <span class="text-muted">No Image</span>
                                     @endif

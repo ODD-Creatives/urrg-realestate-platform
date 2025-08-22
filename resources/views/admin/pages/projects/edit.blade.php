@@ -83,7 +83,7 @@
                         <label for="cover_image">Cover Image</label>
                         <input type="file" name="cover_image" class="form-control">
                         @if ($project->cover_image)
-                            <img src="{{ asset('storage/' . $project->cover_image) }}" class="img-fluid rounded mt-2" style="height: 80px;">
+                            <img src="{{ asset($project->cover_image) }}" class="img-fluid rounded mt-2" style="height: 80px;">
                         @endif
                         @error('cover_image') <small class="text-danger">{{ $message }}</small> @enderror
                     </div>

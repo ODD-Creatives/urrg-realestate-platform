@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-lg-7">
                 @if($project->cover_image)
-                    <img src="{{ asset('storage/'.$project->cover_image) }}" class="img-fluid mb-3" alt="{{ $project->title }}">
+                    <img src="{{ asset($project->cover_image) }}" class="img-fluid mb-3" alt="{{ $project->title }}">
                 @endif
 
                 <h4>Description</h4>

@@ -21,7 +21,7 @@
                         <div class="blog-img">
 
                          @if($event->banner)
-                            <img src="{{ asset('storage/'. $event->banner) }}" class="card-img-top" alt="{{ $event->title }}" >
+                            <img src="{{ asset($event->banner) }}" class="card-img-top" alt="{{ $event->title }}" >
                         
                         @else
                             <img src="{{ asset('assets/img/default-event.jpg') }}" class="card-img-top" alt="{{ $event->title }}">

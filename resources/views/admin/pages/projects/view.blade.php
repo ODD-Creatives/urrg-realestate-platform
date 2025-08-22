@@ -19,7 +19,7 @@
                 <!-- Cover Image -->
                 <div class="col-md-4">
                     @if ($project->cover_image)
-                        <img src="{{ asset('storage/' . $project->cover_image) }}" class="img-fluid rounded shadow" alt="Project Cover Image">
+                        <img src="{{ asset($project->cover_image) }}" class="img-fluid rounded shadow" alt="Project Cover Image">
                     @else
                         <div class="alert alert-warning">No cover image available.</div>
                     @endif
