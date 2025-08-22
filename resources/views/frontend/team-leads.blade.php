@@ -88,7 +88,6 @@
                                             alt="{{ $lead->fullname }}" 
                                             class="rounded-circle img-fluid" 
                                             style="width: 150px; height: 150px; object-fit: cover;">
-                                            <img src="{{ asset($teamLead->picture) }}" alt="Team Lead Photo">
                                     @else
                                         <img src="{{ asset('public/assets/img/default-profile.png') }}" 
                                             alt="No Image" 
