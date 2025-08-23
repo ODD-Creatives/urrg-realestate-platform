@@ -138,7 +138,7 @@
                                 </span>
                             @enderror
                             <small class="form-text text-muted mt-1">
-                                Don't have a referral code? <a href="https://wa.me/23490339742526" target="_blank" style="color: #25D366; font-weight: 500;">Click here to message the admin on WhatsApp</a>.
+                                Don't have a referral code? <a href="https://wa.me/2349077649378" target="_blank" style="color: #25D366; font-weight: 500;">Click here to message the admin on WhatsApp</a>.
                             </small>
                         </div>
 

@@ -31,20 +31,24 @@
         <div class="menu-area">
             <div class="container">
                 <div class="row align-items-center justify-content-between">
-                    <div class="col-auto">
+                    <div class="col-4 col-sm-auto">
                         <div class="header-logo">
                             <a href="{{ route('home')}}">
-                                <img src="{{ asset('assets/img/urrglogo1.png')}}" class="img-fluid w-75" alt="Unique Radiance Realtors Group">
+                                <img src="{{ asset('assets/img/urrglogo1.png')}}" class="img-fluid w-xs-100 w-xs-75" alt="Unique Radiance Realtors Group">
                             </a>
                         </div> 
                     </div>
 
-                    <div class="col-auto d-flex align-items-center gap-3">
-                        <nav class="main-menu d-none d-lg-inline-block">
+                    <div class="col-8 col-sm-auto d-flex align-items-center justify-content-end gap-2">
+                        <nav class="main-menu d-none d-xl-inline-block">
                             <ul>
                                 @foreach($menuItems as $menu)
                                     <li class="{{ $menu->allDropdownItems->isNotEmpty() ? 'menu-item-has-children' : '' }}">
-                                        <a href="{{ url('/' . $menu->slug) }}">{{ $menu->name }}</a>
+                                        @if($menu->allDropdownItems->isNotEmpty())
+                                            <a href="javascript:void(0);">{{ $menu->name }}</a>
+                                        @else
+                                            <a href="{{ url('/' . $menu->slug) }}">{{ $menu->name }}</a>
+                                        @endif
 
                                         @if($menu->allDropdownItems->isNotEmpty())
                                             <ul class="sub-menu">
@@ -55,16 +59,17 @@
                                         @endif
                                     </li>
                                 @endforeach
+
                             </ul>
                         </nav>
  
                         @if(Auth::check())
-                            <button type="button" class="btn btn-sm btn-signin" style="margin-right: -27px;">
+                            <button type="button" class="btn btn-sm btn-signin">
                                 <a href="{{ route('user.dashboard') }}" class="text-white">Dashboard</a>
                             </button>
                         @else
-                            <div class="btn-group capsule-buttons" role="group">
-                                <button type="button" class="btn btn-sm btn-signin" style="margin-right: -27px;">
+                            <div class="btn-group capsule-buttons " role="group">
+                                <button type="button" class="btn btn-sm btn-signin" style="margin-right: -25px;">
                                     <a href="{{ route('signup') }}" class="text-white">Join Us</a>
                                 </button>
                                 <button type="button" class="btn btn-sm btn-signup">
@@ -72,9 +77,8 @@
                                 </button>
                             </div>
                         @endif 
-                        </div>
 
-                        <button type="button" class="th-menu-toggle d-block d-lg-none">
+                        <button type="button" class="th-menu-toggle d-block d-xl-none">
                             <i class="far fa-bars"></i>
                         </button>
                     </div>

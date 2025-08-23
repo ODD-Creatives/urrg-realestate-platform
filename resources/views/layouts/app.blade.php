@@ -79,6 +79,16 @@
             background-color: #e0a800; /* darker gray */
             color: #000;
         }
+        @media screen and (max-width: 576px) {
+            .w-xs-100 {
+                width: 100%;
+            }
+        }
+        @media screen and (min-width: 576px) {
+            .w-xs-75 {
+                width: 75%;
+            }
+        }
     </style>
 </head>
 <body class="home-2">
