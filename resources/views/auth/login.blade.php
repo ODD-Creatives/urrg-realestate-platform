@@ -4,29 +4,30 @@
 
 @section('content')
 <div class="container pt-5">
-    @if(session('whatsapp_link'))
+        @if(session('whatsapp_link'))
             <script>
                 window.onload = function() {
                     window.open('{{ session('whatsapp_link') }}', '_blank');
                 };
             </script>
-            @endif
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-            @if(session('whatsapp_link'))
-                <br>
-                <a href="{{ session('whatsapp_link') }}" target="_blank" class="btn btn-primary mt-2">
-                    Join our WhatsApp group
-                </a>
-            @endif
-        </div>
-    @endif
+        @endif
+    
      <br/> <br/>
     <div class="row justify-content-center">
         <div class="col-lg-5 col-md-6 mt-5">
             <div class="th-card shadow p-4 p-md-5">
                 <h4 class="text-center mb-4">Sign In to Your Account</h4>
+                @if(session('success'))
+                    <div class="alert alert-success pt-3">
+                        {{ session('success') }}
+                        @if(session('whatsapp_link'))
+                            <br>
+                            <a href="{{ session('whatsapp_link') }}" target="_blank" class="btn btn-primary mt-2">
+                                Join our WhatsApp group
+                            </a>
+                        @endif
+                    </div>
+                @endif
                 <form action="{{ route('signin') }}" method="POST">
                     @csrf
                     <div class="mb-3">
