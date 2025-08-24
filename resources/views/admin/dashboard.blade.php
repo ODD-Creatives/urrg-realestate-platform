@@ -93,7 +93,10 @@
                     @forelse($recentActivities as $activity)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $activity->user->fullname }}</td>
+                           <td>
+                                {{ $activity->user ? $activity->user->firstname . ' ' . $activity->user->lastname : 'N/A' }}
+                            </td>
+
                             <td>
                                 @php
                                     $role = 'Unknown';
