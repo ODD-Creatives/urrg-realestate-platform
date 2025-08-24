@@ -44,7 +44,7 @@
                     </p>
                     <div class="col-lg-12 ">
                         <div class="about-bottom-wrap fadeinup wow" data-wow-duration="2.0s" data-wow-delay="1.0s">
-                            <a href="about.html" class="th-btn bg-black pill">More About Us</a>
+                            <a href="{{url('/about-us')}}" class="th-btn bg-black pill">More About Us</a>
                         </div>
                     </div>
                 </div>

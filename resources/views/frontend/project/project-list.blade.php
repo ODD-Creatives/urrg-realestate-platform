@@ -21,7 +21,7 @@
                     <div class="popular-list-1 grid-style">
                         <div class="thumb-wrapper">
                             @if($project->cover_image)
-                                <img src="{{ asset('$project->cover_image) }}" class="img-fluid" alt="{{ $project->title }}">
+                                <img src="{{ asset('$project->cover_image') }}" class="img-fluid" alt="{{ $project->title }}">
                                 
 
                             @else
