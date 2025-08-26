@@ -20,8 +20,12 @@ class NewPasswordController extends Controller
      */
     public function create(Request $request): View
     {
-        dd($request->all());
-        return view('auth.reset-password', ['request' => $request]);
+        // dd($request->all());
+        return view('auth.reset-password',[
+            'token' =>  $request->route('token'),
+            'email' => $request->query('email'),
+        ]
+        );
     }
 
     /**
