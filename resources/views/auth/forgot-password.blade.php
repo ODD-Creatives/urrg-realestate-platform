@@ -4,12 +4,14 @@
 
 @section('content')
 <div class="container pt-5">
+    <br/>
     <div class="row justify-content-center">
+        <br/>
         <div class="col-lg-5 col-md-6 mt-5">
             <div class="th-card shadow p-4 p-md-5">
                 <h4 class="text-center mb-4">Forgot Your Password?</h4>
                 <p class="text-center text-muted mb-4">Enter your email and we’ll send you a reset link.</p>
-
+ 
                 @if (session('status'))
                     <div class="alert alert-success">{{ session('status') }}</div>
                 @endif
@@ -32,6 +34,8 @@
                 </p>
             </div>
         </div>
+        <br/>
     </div>
+    <br/>
 </div>
 @endsection
