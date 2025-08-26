@@ -20,6 +20,7 @@ class NewPasswordController extends Controller
      */
     public function create(Request $request): View
     {
+        dd($request->all());
         return view('auth.reset-password', ['request' => $request]);
     }
 
@@ -29,7 +30,7 @@ class NewPasswordController extends Controller
      * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request): RedirectResponse
-    {
+    { 
         $request->validate([
             'token' => ['required'],
             'email' => ['required', 'email'],
