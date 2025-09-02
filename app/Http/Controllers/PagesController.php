@@ -160,9 +160,9 @@ class PagesController extends Controller
             'phone' => 'required|string|max:20',
             'email' => 'required|email|max:255',
             'subject' => 'required|string|max:255',
-            'letter_of_intent' => 'required|file|mimes:pdf,doc,docx|max:2048',
-            'company_profile' => 'required|file|mimes:pdf,doc,docx|max:2048',
-            'property_details' => 'required|file|mimes:pdf,doc,docx|max:2048',
+            'letter_of_intent' => 'required|file|mimes:pdf,doc,docx|max:2048',   // still 2MB
+            'company_profile'  => 'required|file|mimes:pdf,doc,docx|max:20480',  // 10MB
+            'property_details' => 'required|file|mimes:pdf,doc,docx|max:51200',  // 50MB
         ]);
 
         if ($validator->fails()) {
