@@ -228,8 +228,9 @@ class PagesController extends Controller
             return redirect()->back()->with('success', 'Your application has been submitted successfully! Please check your email to verify your account.');
         
         } catch (QueryException $e) {
-            Log::info("message", $e->getMessage());
-            Log::info("code", $e->getCode());
+            Log::info("Exception message", ['message' => $e->getMessage()]);
+            Log::info("Exception code", ['code' => $e->getCode()]);
+
             if ($e->getCode() == 23000) {
                 // Duplicate entry
                 return redirect()->back()
