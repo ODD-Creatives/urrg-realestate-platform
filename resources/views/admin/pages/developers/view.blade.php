@@ -15,7 +15,7 @@
         <div class="row">
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h4 class="mb-0">URRG Properties Ltd</h4>
+                    <h4 class="mb-0">{{ $developer->company_name }}</h4>
                     <div>
                         <a href="{{ route('admin.developers.index') }}" class="btn btn-sm btn-outline-dark">Back</a>
                     </div>
@@ -26,22 +26,47 @@
                     <div class="col-md-4 ">
                         <img src="{{ asset($developer->logo) }}" alt="Developer Logo" class="img-fluid rounded mb-2" style="max-height: 120px;">
                         <p><strong>Company Name:</strong> {{ $developer->company_name }}</p>
-                        <p><strong>Contact Person:</strong> {{ $developer->contact_person }}</p>
-                        <p><strong>Joined:</strong> {{ $developer->updated_at->format('M d, Y')  }}</p>
+                        @if ($developer->letter_of_intent_path)
+                            <p>
+                                <strong> Letter of Intent:</strong> 
+                                <a href="{{ asset($developer->letter_of_intent_path) }}" target="_blank" class="btn btn-sm btn-outline-warning">
+                                  📎  View Document
+                                </a>
+                            </p>
+                        @endif
+                        @if ($developer->company_profile_path)
+                            <p>
+                                <strong> Company Profile:</strong> 
+                                <a href="{{ asset($developer->company_profile_path) }}" target="_blank" class="btn btn-sm btn-outline-warning">
+                                  📎  View Document
+                                </a>
+                            </p>
+                        @endif
+                        @if ($developer->property_details_path)
+                            <p>
+                                <strong> Property Details:</strong> 
+                                <a href="{{ asset($developer->property_details_path) }}" target="_blank" class="btn btn-sm btn-outline-warning">
+                                  📎  View Document
+                                </a>
+                            </p>
+                        @endif
 
                     </div>
                     <!-- Developer Info -->
                     <div class="col-md-8">
                         <div class="row">
                             <div class="col-md-5">
+                                <p><strong>Joined:</strong> {{ $developer->updated_at->format('M d, Y')  }}</p>
+                                <p><strong>Contact Person:</strong> {{ $developer->contact_person }}</p>
                                 <p><strong>Email:</strong> {{ $developer->email }}</p>
                                 <p><strong>Phone:</strong> {{ $developer->phone }}</p>
                                 <p><strong>Verified:</strong> <span class="badge bg-{{ $developer->email_verified_at ? 'success' : 'secondary' }}">
                                     {{ $developer->email_verified_at ? 'Yes' : 'No' }}
                                 </span></p>
-                                
+                                {{--
                                 <p><strong>Total Listings:</strong> 12</p>
                                 <p><strong>Featured Projects:</strong> 3</p>
+                                --}}
                                 <p><strong>Status:</strong> 
                                     @if($developer->status == 'approved')
                                         <span class="badge bg-success">Approved</span>
