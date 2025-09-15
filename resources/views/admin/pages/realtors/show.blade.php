@@ -61,8 +61,8 @@
                             <div class="card bg-light border mb-3">
                                 <div class="card-body text-center ">
                                     <h6>Total Earnings</h6>
-                                    <h3 class="text-success">₦ 325,640.00
-                                        
+                                    <h3 class="text-success">
+                                        ₦ 
                                     </h3>
                                 </div>
                             </div>

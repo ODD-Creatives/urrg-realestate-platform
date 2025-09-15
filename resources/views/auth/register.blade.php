@@ -118,7 +118,7 @@
                         </div>
 
                         <!-- State of Residence -->
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-6">
                             <input type="text" class="form-control @error('state_of_residence') is-invalid @enderror" name="state_of_residence" id="state_of_residence" placeholder="State of Residence *" value="{{ old('state_of_residence') }}" required>
                             @error('state_of_residence')
                                 <span class="invalid-feedback" role="alert">
@@ -126,6 +126,45 @@
                                 </span>
                             @enderror
                         </div>
+
+                        <!-- Account Name -->
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control @error('account_name') is-invalid @enderror" name="account_name" id="account_name" placeholder="Account Name *" value="{{ old('account_name') }}" required>
+                            @error('account_name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <!-- Account Number -->
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control @error('account_number') is-invalid @enderror" name="account_number" id="account_number" placeholder="Account Number *" value="{{ old('account_number') }}" required>
+                            @error('account_number')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <!-- Bank Name -->
+                        @php
+                            $banks = json_decode(file_get_contents(public_path('banks_full.json')), true);
+                        @endphp
+
+                        <div class="form-group col-md-6">
+                            <select name="bank_name" class="form-control" required>
+                                <option value="">-- Select Bank --</option>
+                                @if(!empty($banks) && is_array($banks))
+                                    @foreach($banks as $bank)
+                                        <option value="{{ $bank['name'] }}" {{ old('bank_name') == $bank['name'] ? 'selected' : '' }}>
+                                            {{ $bank['name'] }}
+                                        </option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+
+
 
                         <!-- Referral Code -->
                         <div class="form-group col-md-12">
