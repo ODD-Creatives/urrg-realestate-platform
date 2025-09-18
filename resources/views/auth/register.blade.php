@@ -64,7 +64,10 @@
                 <form action="{{ route('register')}}" method="POST" class="contact-form form-contact" enctype="multipart/form-data">
                     @csrf
                     <h3 class="form-title">Join URRG as a Realtor</h3>
-                    
+                    <div class="alert alert-warning">
+                        <small>You are been referred by Oladokun Damilola</small>
+
+                    </div>
                     <!-- Display general form errors -->
                     @if($errors->any())
                         <div class="alert alert-danger">
