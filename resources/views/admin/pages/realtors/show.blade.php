@@ -24,10 +24,13 @@
                     <div class="row">
                         <!-- Profile Photo -->
                         <div class="col-md-4 text-center2 mb-3">
-                            <img src="{{ $user->photo ? asset('storage/'.$user->photo) : asset('assets/user/assets/images/avatar.jpg') }}" 
-                                 alt="Realtor Photo"  
-                                 class="img-fluid rounded-circle"  
-                                 style="width: 100px; height: 100px; object-fit: cover;">
+                            <img 
+                                src="{{ auth()->user()->photo ? asset('storage/avatars/'.auth()->user()->photo) : asset('assets/user/assets/images/faces/face1.jpg') }}" 
+                                class="img-fluid rounded-circle mb-2" 
+                                alt="Profile Photo" 
+                                style="width: 100px; height: 100px; object-fit: cover;">
+
+                          
                             <p class="mt-2 fw-bold"> {{ $user->full_name }}</p>
                         
                             <p><strong>Email:</strong> {{ $user->email }}</p> 
@@ -55,14 +58,14 @@
                                     <button type="submit" class="btn btn-sm btn-outline-success">Activate</button>
                                 </form>
                             @endif
-                        </div>
+                        </div> 
                         <!-- Basic Info --> 
                         <div class="col-md-6">
                             <div class="card bg-light border mb-3">
                                 <div class="card-body text-center ">
                                     <h6>Total Earnings</h6>
                                     <h3 class="text-success">
-                                        ₦ 
+                                        ₦{{ number_format($user->commissions()->where('status', 'paid')->sum('amount'), 2) }}
                                     </h3>
                                 </div>
                             </div>
@@ -72,6 +75,10 @@
                                     {{ $user->bank_name ?? 'N/A' }}
                                 </p>
                                 <p>
+                                    <strong>Account Name:</strong>
+                                    {{ $user->account_name ?? 'N/A' }}
+                                </p>
+                                <p>
                                     <strong>Account Number:</strong>
                                     {{ $user->account_number ?? 'N/A' }}
                                 </p>
@@ -79,23 +86,72 @@
                                     <strong>Referral Code:</strong>
                                     {{ $user->referral_code ?? 'N/A' }}
                                 </p>
-                                <p>
-                                    <strong>Upline:</strong>
-                                     @if($user->upline_referral)
-                                        @if($upline = $user->relationLoaded('upline') ? $user->upline : null)
+                                <p> 
+                                    <li>
+                                    @if($user->upline_referral)
+                                        @php
+                                            $upline = $user->relationLoaded('upline') ? $user->upline : null;
+                                            
+                                             if (!$upline) {
+                                                $upline = \App\Models\User::where('referral_code', $user->upline_referral)->first();
+                                                
+                                                if (!$upline) {
+                                                    $upline = \App\Models\ReferralCode::where('code', $user->upline_referral)->with('admin')->first();
+                                                }
+                                            }
+                                        @endphp
+
+                                        @if($upline)
                                             @if($upline instanceof \App\Models\User)
-                                                {{ $upline->fullname }}
+                                                {{ $upline->fullname }} ({{ $upline->realtor_id ?? 'User' }})
                                             @elseif($upline instanceof \App\Models\ReferralCode && $upline->admin)
-                                                {{ $upline->admin->username }} (Admin)
+                                                <b>{{ $upline->admin->referralCode->referredAdmins->name}} </b>
+                                                
+                                                <br> 
+                                                {{ $upline->admin->username }} (Admin) <br> 
                                             @else
-                                                <span class="text-muted">Upline not found</span>
+                                                <span class="text-muted">Upline Code: {{ $user->upline_referral }}</span>
+                                                 <br> 
                                             @endif
                                         @else
-                                            <span class="text-muted">N/A</span>
-                                        @endif 
+                                            <span class="text-muted">Upline Code: {{ $user->upline_referral }}</span>
+                                            <br> 
+                                        @endif
                                     @else
-                                        <p class="text-muted">No Upline</p>
-                                    @endif
+                                        <span class="text-muted">No Upline</span>
+                                    @endif 
+                                    
+                                    <span class="caret caret-down">{{ $user->full_name }} (You)</span>
+                                    <ul class="nested active">
+                                        @foreach($referralTree['children'] as $childData)
+                                        <li>
+                                            <span class="caret {{ count($childData['grandchildren']) > 0 ? 'caret-down' : '' }}">
+                                                {{ $childData['child']->full_name }} 
+                                                {{-- <small class="text-muted">Earned: ₦{{ number_format($childData['child']->paidCommissions->sum('amount')) }}</small> --}}
+                                            </span>
+                                            <ul class="nested {{ count($childData['grandchildren']) > 0 ? 'active' : '' }}">
+                                                @foreach($childData['grandchildren'] as $grandchildData)
+                                                <li>
+                                                    <span class="caret {{ count($grandchildData['great_grandchildren']) > 0 ? 'caret-down' : '' }}">
+                                                        {{ $grandchildData['grandchild']->full_name }}
+                                                        {{-- <small class="text-muted">Earned: ₦{{ number_format($grandchildData['grandchild']->paidCommissions->sum('amount')) }}</small> --}}
+                                                    </span>
+                                                    <ul class="nested {{ count($grandchildData['great_grandchildren']) > 0 ? 'active' : '' }}">
+                                                        @foreach($grandchildData['great_grandchildren'] as $greatGrandchild)
+                                                        <li>
+                                                            {{ $greatGrandchild->full_name }}
+                                                            {{-- <small class="text-muted">Earned: ₦{{ number_format($greatGrandchild->paidCommissions->sum('amount')) }}</small> --}}
+                                                        </li>
+                                                        @endforeach
+                                                    </ul>
+                                                </li>
+                                                @endforeach
+                                            </ul>
+                                        </li>
+                                        @endforeach
+                                    </ul> 
+                                </li>
+                                
                                 </p>
                             </div> 
                             <div class="mt-4">

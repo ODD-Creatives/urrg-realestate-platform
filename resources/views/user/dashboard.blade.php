@@ -16,7 +16,7 @@
                     data-clipboard-target="#referral-link">
                     <i class="fa fa-copy"></i> Copy
                 </button>
-            </div> 
+            </div>  
         </div>
     </div>
 

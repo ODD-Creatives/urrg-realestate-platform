@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class RealtorController extends Controller
+class RealtorController extends Controller 
 {
     /**
      * Display a listing of the resource.
@@ -78,14 +78,41 @@ class RealtorController extends Controller
      */
     public function show( $realtor)
     {
-        $user = User::where('id', decrypt($realtor) )->firstOrFail();
-        // dd($realtor);
+        $user = User::where('id', decrypt($realtor))->firstOrFail();
+        $referralTree = $user->downlineTree();
+        
+        // Calculate total earnings for each user in the referral tree
+        $this->calculateEarningsForTree($referralTree);
+        
         return view('admin.pages.realtors.show', [
             'user' => $user,
-            // 'referrals' => $realtor->referrals()->latest()->paginate(5),
-            // 'commissions' => $realtor->commissions()->latest()->paginate(5)
+            'referralTree' => $referralTree,
         ]);
     } 
+
+    protected function calculateEarningsForTree(&$tree)
+{
+    // Calculate earnings for the current user
+    if (isset($tree['child'])) {
+        $tree['child']->total_earnings = $tree['child']->commissions()->where('status', 'paid')->sum('amount');
+    }
+    
+    // Calculate earnings for grandchildren
+    if (isset($tree['grandchildren']) && is_array($tree['grandchildren'])) {
+        foreach ($tree['grandchildren'] as &$grandchild) {
+            if (isset($grandchild['grandchild'])) {
+                $grandchild['grandchild']->total_earnings = $grandchild['grandchild']->commissions()->where('status', 'paid')->sum('amount');
+            }
+            
+            // Calculate earnings for great-grandchildren
+            if (isset($grandchild['great_grandchildren']) && is_array($grandchild['great_grandchildren'])) {
+                foreach ($grandchild['great_grandchildren'] as &$greatGrandchild) {
+                    $greatGrandchild->total_earnings = $greatGrandchild->commissions()->where('status', 'paid')->sum('amount');
+                }
+            }
+        }
+    }
+}
 
     public function referral(Realtor $realtor)
     {

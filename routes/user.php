@@ -16,7 +16,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/profile/ update-payment', [ProfileController::class, 'updatePayment'])->name('profile.update.payment');
     Route::post('/profile/ update-payment', [ProfileController::class, 'updatePayment'])->name('profile.update.payment');
     Route::post('/profile/update-avatar', [ProfileController::class, 'updateAvatar'])->name('profile.update.avatar');
-  
+   
     Route::get('/user/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
     Route::get('/user/referral', [UserDashboardController::class, 'referral'])->name('user.referral');
     Route::get('/user/commission', [UserDashboardController::class, 'commission'])->name('user.commission');

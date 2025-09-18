@@ -67,7 +67,7 @@ Route::middleware(['admin.auth'])->prefix('admin')->name('admin.')->group(functi
         Route::get('/', 'index')->name('index');
         Route::get('show/{id}', 'show')->name('show');
         Route::get('referral/show/{id}', 'referral')->name('referral');
-    });
+    }); 
 
     Route::prefix('realtor')->name('realtors.')->controller(RealtorController::class)->group(function () {
         Route::get('/', 'index')->name('index');

@@ -116,11 +116,23 @@ class PagesController extends Controller
     {
         $referralDetails = ReferralCode::where('code', $code)->first();
         if (!$referralDetails) {
-             $referralDetails = User::where('referral_code', $code)->first();
-            // return redirect()->route('home')->with('error', 'Invalid referral code.');
-        } 
-        // dd($referralDetails);
-        return view('auth.register', ['referralDetails' => $referralDetails]);
+            $referralDetails = User::where('referral_code', $code)->first();
+        }
+        
+        $referralName = null;
+        if ($referralDetails) {
+            if ($referralDetails instanceof \App\Models\User) {
+                $referralName = $referralDetails->firstname . ' ' . $referralDetails->lastname;
+            } elseif ($referralDetails instanceof \App\Models\ReferralCode && $referralDetails->admin) {
+                $referralName = $referralDetails->admin->username;
+            }
+        }
+        
+        return view('auth.register', [
+            'referralDetails' => $referralDetails,
+            'referralName' => $referralName,
+            'referralCode' => $code
+        ]);
     }
 
     public function propertyDetails($id){

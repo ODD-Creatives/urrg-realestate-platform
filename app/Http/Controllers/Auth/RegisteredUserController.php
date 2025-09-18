@@ -27,9 +27,35 @@ class RegisteredUserController extends Controller
     /** 
      * Display the registration view.
      */
-    public function create(): View
+    public function create(Request $request): View
     {
-        return view('auth.register');
+        $referralName = null;
+        
+        // Check if referral code is provided in the URL
+        if ($request->has('ref')) {
+            $referralCode = $request->query('ref');
+            
+            // Try to find the referrer in users table
+            $referrer = User::where('referral_code', $referralCode)->first();
+            
+            if ($referrer) {
+                $referralName = $referrer->firstname . ' ' . $referrer->lastname;
+            } else {
+                // Try to find in admin referral codes table
+                $adminReferral = ReferralCode::with('admin')
+                    ->where('code', $referralCode)
+                    ->first();
+                    
+                if ($adminReferral && $adminReferral->admin) {
+                    $referralName = $adminReferral->admin->name; // Adjust based on your admin model structure
+                }
+            }
+        }
+        
+        return view('auth.register', [
+            'referralName' => $referralName,
+            'referralCode' => $request->query('ref')
+        ]);
     }
 
     

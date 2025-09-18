@@ -17,7 +17,7 @@ class UserDashboardController extends Controller
             'wallet',
             'referrals' => fn($q) => $q->with(['wallet', 'paidCommissions']),
             'activeReferrals',
-            'inactiveReferrals',
+            'inactiveReferrals', 
             'earnedCommissions',
             'referrer'
         ]);
@@ -26,7 +26,7 @@ class UserDashboardController extends Controller
       
         // Flatten the referral tree for table display 
         $allReferrals = $this->flattenReferralTree($referralTree, $user);
-
+ 
         
         return view('user.dashboard', [
             'user' => $user,

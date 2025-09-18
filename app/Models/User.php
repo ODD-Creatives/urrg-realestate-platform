@@ -36,6 +36,19 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Commission::class, 'user_id');
     }
+
+    public function commissions()
+    {
+        return $this->hasMany(Commission::class, 'user_id');
+    }
+
+    /**
+     * Get only paid commissions.
+     */
+    // public function paidUserCommissions()
+    // {
+    //     return $this->hasMany(Commission::class, 'user_id')->where('status', 'paid');
+    // }
  
     public function paidCommissions()
     {

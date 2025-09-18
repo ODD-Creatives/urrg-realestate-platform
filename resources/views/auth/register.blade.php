@@ -64,10 +64,11 @@
                 <form action="{{ route('register')}}" method="POST" class="contact-form form-contact" enctype="multipart/form-data">
                     @csrf
                     <h3 class="form-title">Join URRG as a Realtor</h3>
+                    @if(isset($referralName) && $referralName)
                     <div class="alert alert-warning">
-                        <small>You are been referred by Oladokun Damilola</small>
-
+                        <small>You are being referred by {{ $referralName }}</small>
                     </div>
+                    @endif
                     <!-- Display general form errors -->
                     @if($errors->any())
                         <div class="alert alert-danger">
@@ -174,6 +175,7 @@
                             <input readonly type="text" class="form-control @error('referral_code') is-invalid @enderror" name="referral_code" id="referral_code" 
                             value="{{ isset($referralDetails) ? ($referralDetails->code ?? $referralDetails->referral_code) : old('referral_code') }}" 
                             placeholder="Referral Code *" required>
+                            
                             @error('referral_code')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
