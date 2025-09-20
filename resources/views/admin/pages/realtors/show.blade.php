@@ -25,10 +25,13 @@
                         <!-- Profile Photo -->
                         <div class="col-md-4 text-center2 mb-3">
                             <img 
-                                src="{{ auth()->user()->photo ? asset('storage/avatars/'.auth()->user()->photo) : asset('assets/user/assets/images/faces/face1.jpg') }}" 
-                                class="img-fluid rounded-circle mb-2" 
-                                alt="Profile Photo" 
-                                style="width: 100px; height: 100px; object-fit: cover;">
+                            src="{{ optional(auth()->user())->photo 
+                                    ? asset('storage/avatars/' . auth()->user()->photo) 
+                                    : asset('assets/user/assets/images/faces/face1.jpg') }}" 
+                            class="img-fluid rounded-circle mb-2" 
+                            alt="Profile Photo" 
+                            style="width: 100px; height: 100px; object-fit: cover;">
+
 
                           
                             <p class="mt-2 fw-bold"> {{ $user->full_name }}</p>
