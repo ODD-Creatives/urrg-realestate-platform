@@ -92,7 +92,7 @@
                                 <p> 
                                     <li>
                                     @if($user->upline_referral)
-                                        @php
+                                        {{-- @php
                                             $upline = $user->relationLoaded('upline') ? $user->upline : null;
                                             
                                              if (!$upline) {
@@ -102,7 +102,7 @@
                                                     $upline = \App\Models\ReferralCode::where('code', $user->upline_referral)->with('admin')->first();
                                                 }
                                             }
-                                        @endphp
+                                        @endphp --}}
 
                                         @if($upline)
                                             @if($upline instanceof \App\Models\User)
