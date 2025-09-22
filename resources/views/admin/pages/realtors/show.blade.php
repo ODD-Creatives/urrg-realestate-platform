@@ -110,7 +110,6 @@
                                             @elseif($upline instanceof \App\Models\ReferralCode && $upline->admin)
                                                 {{-- <b>{{ $upline->admin->referralCode->referredAdmins->name}} </b> --}}
                                                 
-                                                <br> 
                                                 {{ $upline->admin->username }} (Admin) <br> 
                                             @else
                                                 <span class="text-muted">Upline Code: {{ $user->upline_referral }}</span>
