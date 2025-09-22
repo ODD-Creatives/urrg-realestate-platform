@@ -38,9 +38,9 @@ class VerificationEmail extends Mailable
             now()->addMinutes(60),
             ['id' => $this->user->id, 'hash' => sha1($this->user->email)]
         ); 
-        return $this->from('emailNotification@dohmayn.com', 'Uniqueradiancerealtorsgroup')
+        return $this->from('info@uniqueradiancerealtorsgroup.com', 'Uniqueradiancerealtorsgroup')
         ->subject('Notification Email - URRG')
-        ->markdown('emails.verify-email')->with([
+        ->markdown('emails.verify-email')->with([ 
             'first_name' => $this->user->first_name, 
             'last_name' => $this->user->last_name, 
             'user_id' => $this->user->id, 
