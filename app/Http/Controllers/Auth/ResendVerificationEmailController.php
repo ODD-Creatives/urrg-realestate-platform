@@ -16,12 +16,21 @@ class ResendVerificationEmailController extends Controller
      */
     public function __invoke(Request $request): RedirectResponse
     {
-        \Log::info('Resend verification attempt', [
-            'user_id' => $request->user()?->id,
-            'has_csrf_token' => $request->has('_token'),
-            'session_id' => session()->getId(),
-        ]);
+        \Log::info('=== RESEND VERIFICATION DEBUG ===');
+        \Log::info('User ID: ' . ($request->user()?->id ?? 'null'));
+        \Log::info('Session ID: ' . session()->getId());
+        \Log::info('CSRF Token from request: ' . $request->input('_token'));
+        \Log::info('CSRF Token from session: ' . session()->token());
+        \Log::info('Request method: ' . $request->method());
+        \Log::info('Request URL: ' . $request->url());
+        \Log::info('=== END DEBUG ===');
+
         $user = $request->user();
+
+        if (!$user) {
+            \Log::error('No authenticated user found');
+            return redirect()->route('login');
+        }
 
         if ($user->hasVerifiedEmail()) {
             return redirect()->route('user.dashboard')->with('status', 'Email already verified!');
