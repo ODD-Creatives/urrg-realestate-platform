@@ -36,14 +36,14 @@ class VerificationController extends Controller
      * @return void
      */
     public function __construct()
-    {
+    { 
         // $this->middleware('auth');
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
-    }
+    }  
   
     public function verify($id, $hash)
-    {
+    { 
         $user = User::findOrFail($id);
         if (sha1($user->email) !== $hash) {
             return redirect('/')->with('error', 'Invalid verification link.');
@@ -64,8 +64,7 @@ class VerificationController extends Controller
 
     public function verifyOtp(Request $request)
     {
-        // dd($request->all());
-        // Validate input
+      
         $validated = $request->validate([
             'otp' => 'required|digits:6',
             'user_id' => 'required|exists:users,id'

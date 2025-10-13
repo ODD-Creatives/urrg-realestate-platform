@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
+use App\Http\Controllers\Auth\ResendVerificationEmailController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
@@ -40,8 +41,14 @@ Route::middleware('guest')->group(function () {
 
 
 
+Route::get('/email/verify', function () {
+    return view('auth.verify-email-notice'); // Use the new notice page
+})->middleware('auth')->name('verification.notice');
 
 Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
+Route::post('/email/verification-notification', ResendVerificationEmailController::class)
+// ->middleware(['auth', 'throttle:6,1'])
+->name('verification.send');
 
 Route::middleware('auth')->group(function () { 
     Route::get('verify-email', EmailVerificationPromptController::class)->name('verification.notice');
@@ -52,9 +59,10 @@ Route::middleware('auth')->group(function () {
         Route::post('/update-avatar', 'updateAvatar')->name('avatar');
     });
     
-    Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
-        ->middleware('throttle:6,1')
-        ->name('verification.send');
+    // Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
+    //     ->middleware('throttle:6,1')
+    //     ->name('verification.send');  
+
 
     Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])
         ->name('password.confirm');

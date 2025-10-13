@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\URL;
 
 class VerificationEmail extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable, SerializesModels; 
 
     public $user;
     public $referralLink;
@@ -37,7 +37,7 @@ class VerificationEmail extends Mailable
             'verification.verify',
             now()->addMinutes(60),
             ['id' => $this->user->id, 'hash' => sha1($this->user->email)]
-        ); 
+        );  
         return $this->from('info@uniqueradiancerealtorsgroup.com', 'Uniqueradiancerealtorsgroup')
         ->subject('Notification Email - URRG')
         ->markdown('emails.verify-email')->with([ 

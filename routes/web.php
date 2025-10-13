@@ -10,7 +10,12 @@ use App\Http\Controllers\ContactController;
 
 Auth::routes();
 
-
+Route::get('/test-csrf', function () {
+    return view('test-csrf');
+});
+Route::post('/test-csrf', function () {
+    return 'CSRF working!';
+});
 Route::get('/', [FrontendController::class, 'index'])->name('home');
 
 Route::get('/{page}', [PagesController::class, 'index'])->name('home.pages');
