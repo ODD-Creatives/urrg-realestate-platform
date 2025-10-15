@@ -173,18 +173,10 @@
             <div class="resend-section">
                 <h3 style="color: #856404; margin-top: 0;">Need a new verification email?</h3>
                 <p>If you didn't receive the verification email, or if the link has expired, you can request a new one by clicking the button below:</p>
+                <p>
+                    <a href="{{ route('verification.resend-form') }}" target="_blank">Request a new verification email</a>
+                </p>
                 
-                <form method="POST" action="{{ route('verification.send') }}" style="text-align: center;">
-                    @csrf <!-- THIS IS THE FIX - ADD CSRF TOKEN -->
-                    <!-- Debug info - remove after testing -->
-                    <div >
-                        <p>CSRF Token: {{ csrf_token() }}</p>
-                        <p>Session ID: {{ session()->getId() }}</p>
-                        <p>User: {{ $user_id }}</p>
-                        <p>User: {{ auth()->user()->id }}</p>
-                    </div>
-                    <button type="submit" class="button-secondary">Resend Verification Email</button>
-                </form>
                 
                 <p style="font-size: 14px; margin-top: 10px; color: #666;">
                     <strong>Note:</strong> Please check your spam folder before requesting a new verification email.

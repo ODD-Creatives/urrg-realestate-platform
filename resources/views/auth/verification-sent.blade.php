@@ -71,11 +71,7 @@
         </div> 
 
         <div class="content">
-            @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
+           
 
             <div class="alert alert-info">
                 <h3>📧 Verification Email Sent</h3>
@@ -87,13 +83,14 @@
                 <li>Check your spam or junk folder</li>
                 <li>Make sure you entered the correct email address</li>
                 <li>Wait a few minutes and try again</li>
+                <li><a href="{{ route('verification.resend-form') }}">Request a new verification email</a></li>
             </ul>
             @if(session('success'))
                 <div class="alert alert-success pt-3">
-                    {{ session('success') }}
+              
                     @if(session('whatsapp_link'))
                         <br>
-                        <a href="{{ session('whatsapp_link') }}" target="_blank" class="btn btn-primary mt-2">
+                        <a href="{{ session('whatsapp_link') }}" target="_blank" class="button mt-2">
                             Join our WhatsApp group
                         </a>
                     @endif
