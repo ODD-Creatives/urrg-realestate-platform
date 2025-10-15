@@ -50,9 +50,9 @@ Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'
     ->name('verification.verify');
 
 
-Route::get('/verification-sent', function () {
-    return view('auth.verification-sent');
-})->name('verification.sent');
+
+// Route::get('/verification-sent', [ResendVerificationByEmailController::class, 'showResendForm'])
+//     ->name('verification.sent');
 
 // Resend verification by email (no auth required)
 Route::get('/resend-verification', [ResendVerificationByEmailController::class, 'showResendForm'])

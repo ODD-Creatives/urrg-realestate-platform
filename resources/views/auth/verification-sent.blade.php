@@ -62,10 +62,10 @@
             border: 1px solid #bee5eb;
         }
     </style>
-</head>
+</head> 
 <body>
     <div class="email-container">
-        <div class="header">
+        <div class="header"> 
             <img src="{{ asset('assets/img/urrglogo1.png')}}" alt="URRG Logo">
             <h1>Verify Your Email Address</h1>
         </div>

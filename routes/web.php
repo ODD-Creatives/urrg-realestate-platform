@@ -18,6 +18,9 @@ Route::post('/test-csrf', function () {
     return 'CSRF working!';
 });
 
+Route::get('/verification-sent', function () {
+    return view('auth.verification-sent');
+})->name('verification.sent');
 
 Route::get('/', [FrontendController::class, 'index'])->name('home');
 
