@@ -9,7 +9,6 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
-use App\Http\Controllers\Auth\ResendVerificationByEmailController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -26,10 +25,7 @@ Route::middleware('guest')->group(function () {
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
     Route::post('account/login', [AuthenticatedSessionController::class, 'store']);
     
-    Route::get('/resend-verification', [ResendVerificationByEmailController::class, 'showResendForm'])
-    ->name('verification.resend-form');
-    Route::post('/resend-verification', [ResendVerificationByEmailController::class, 'resend'])
-        ->name('verification.resend-by-email');
+    
 
     Route::get('forgot/password', [PasswordResetLinkController::class, 'create'])
         ->name('password.request');
@@ -43,7 +39,6 @@ Route::middleware('guest')->group(function () {
     Route::post('reset-password', [NewPasswordController::class, 'store'])
         ->name('password.store');
 });
-
 
 
 Route::get('/email/verify', function () {

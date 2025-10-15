@@ -6,21 +6,20 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\User\UserDashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\Auth\ResendVerificationEmail;
+use App\Http\Controllers\Auth\ResendVerificationByEmailController;
 
 
 Auth::routes();
 
-Route::get('/test-csrf', function () {
-    return view('test-csrf');
-});
-Route::post('/test-csrf', function () {
-    return 'CSRF working!';
-});
 
 Route::get('/verification-sent', function () {
     return view('auth.verification-sent');
 })->name('verification.sent');
+
+Route::get('/resend-verification', [ResendVerificationByEmailController::class, 'showResendForm'])
+    ->name('verification.resend-form');
+Route::post('/resend-verification', [ResendVerificationByEmailController::class, 'resend'])
+    ->name('verification.resend-by-email');
 
 Route::get('/', [FrontendController::class, 'index'])->name('home');
 
