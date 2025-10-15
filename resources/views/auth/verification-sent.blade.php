@@ -68,7 +68,7 @@
         <div class="header"> 
             <img src="{{ asset('assets/img/urrglogo1.png')}}" alt="URRG Logo">
             <h1>Verify Your Email Address</h1>
-        </div>
+        </div> 
 
         <div class="content">
             @if (session('success'))
@@ -88,6 +88,17 @@
                 <li>Make sure you entered the correct email address</li>
                 <li>Wait a few minutes and try again</li>
             </ul>
+            @if(session('success'))
+                <div class="alert alert-success pt-3">
+                    {{ session('success') }}
+                    @if(session('whatsapp_link'))
+                        <br>
+                        <a href="{{ session('whatsapp_link') }}" target="_blank" class="btn btn-primary mt-2">
+                            Join our WhatsApp group
+                        </a>
+                    @endif
+                </div>
+            @endif
 
             <p style="text-align: center; margin-top: 30px;">
                 <a href="{{ route('signin') }}" class="button">Proceed to Login</a>
