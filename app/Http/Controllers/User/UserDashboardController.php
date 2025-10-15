@@ -20,7 +20,7 @@ class UserDashboardController extends Controller
             'inactiveReferrals', 
             'earnedCommissions',
             'referrer'
-        ]);
+        ]); 
         $referralTree = $user->downlineTree();
     
       

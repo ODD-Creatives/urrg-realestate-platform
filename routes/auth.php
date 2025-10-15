@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
-use App\Http\Controllers\Auth\ResendVerificationEmailController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
@@ -10,6 +9,7 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\ResendVerificationByEmailController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -49,11 +49,17 @@ Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'
     ->middleware(['auth', 'signed'])
     ->name('verification.verify');
 
-Route::post('/email/verification-notification', [ResendVerificationEmailController::class, 'index'])
-    ->middleware(['auth', 'throttle:6,1'])
-    ->name('verification.send');
 
+Route::get('/verification-sent', function () {
+    return view('auth.verification-sent');
+})->name('verification.sent');
 
+// Resend verification by email (no auth required)
+Route::get('/resend-verification', [ResendVerificationByEmailController::class, 'showResendForm'])
+    ->name('verification.resend-form');
+
+Route::post('/resend-verification', [ResendVerificationByEmailController::class, 'resend'])
+    ->name('verification.resend-by-email');
 
 Route::middleware('auth')->group(function () { 
     Route::get('verify-email', EmailVerificationPromptController::class)->name('verification.notice');
