@@ -71,23 +71,9 @@
         </div> 
 
         <div class="content">
-           
-
-            <div class="alert alert-info">
-                <h3>📧 Verification Email Sent</h3>
-                <p>We've sent a verification link to your email address. Please check your inbox and click the verification link to activate your account.</p>
-            </div>
-
-            <p><strong>Didn't receive the email?</strong></p>
-            <ul>
-                <li>Check your spam or junk folder</li>
-                <li>Make sure you entered the correct email address</li>
-                <li>Wait a few minutes and try again</li>
-                <li><a href="{{ route('verification.resend-form') }}">Request a new verification email</a></li>
-            </ul>
             @if(session('success'))
-                <div class="alert alert-success pt-3">
-              
+                <div class="alert alert-success">
+                    {{ session('success') }}
                     @if(session('whatsapp_link'))
                         <br>
                         <a href="{{ session('whatsapp_link') }}" target="_blank" class="button mt-2">
@@ -96,6 +82,25 @@
                     @endif
                 </div>
             @endif
+
+            <div class="alert alert-info">
+                <h3>📧 Verification Email Sent</h3>
+                <p>We've sent a verification link to <strong>{{ session('email') ?? 'your email address' }}</strong>. Please check your inbox and click the verification link to activate your account.</p>
+            </div>
+
+            <p><strong>Didn't receive the email?</strong></p>
+            <ul>
+                <li>Check your spam or junk folder</li>
+                <li>Make sure you entered the correct email address</li>
+                <li>Wait a few minutes and try again</li>
+                
+                <!-- Pass the email as a query parameter to pre-fill the form -->
+                <li>
+                    <a href="{{ route('verification.resend-form', ['email' => session('email')]) }}">
+                        Request a new verification email
+                    </a>
+                </li>
+            </ul>
 
             <p style="text-align: center; margin-top: 30px;">
                 <a href="{{ route('signin') }}" class="button">Proceed to Login</a>

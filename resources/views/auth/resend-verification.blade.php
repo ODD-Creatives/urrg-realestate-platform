@@ -103,7 +103,9 @@
                 
                 <div class="form-group">
                     <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" value="{{ old('email') }}" required>
+                    <input type="email" id="email" name="email" 
+                           value="{{ old('email', request('email') ?? session('email') ?? '') }}" 
+                           required>
                     @error('email')
                         <span style="color: red;">{{ $message }}</span>
                     @enderror

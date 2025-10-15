@@ -25,11 +25,24 @@ class ResendVerificationByEmailController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
-        if ($user->hasVerifiedEmail()) {
-            return back()->with('error', 'This email is already verified. You can log in.');
+        if (!$user) {
+            return back()->with('error', 'No account found with this email address.')
+                        ->withInput();
         }
 
-        // Generate new verification URL
+        if ($user->hasVerifiedEmail()) {
+            return back()->with('error', 'This email is already verified. You can log in.')
+                        ->withInput();
+        }
+
+        // Check if user has too many recent verification attempts (prevent spam)
+        $recentAttempts = \Illuminate\Support\Facades\Cache::get('verification_attempts:' . $user->id, 0);
+        if ($recentAttempts >= 5) {
+            return back()->with('error', 'Too many verification attempts. Please try again in 10 minutes.')
+                        ->withInput();
+        }
+
+        // Generate new verification URL (1 minute for testing)
         $verificationUrl = URL::temporarySignedRoute(
             'verification.verify',
             now()->addMinutes(60),
@@ -41,11 +54,20 @@ class ResendVerificationByEmailController extends Controller
             $referralLink = config('app.url') . '/register/referral/' . $user->referral_code;
             Mail::to($user->email)->send(new VerificationEmail($user, $referralLink));
             
-            return back()->with('success', 'A new verification link has been sent to your email address.');
-                    
+            // Track verification attempts
+            \Illuminate\Support\Facades\Cache::put(
+                'verification_attempts:' . $user->id, 
+                $recentAttempts + 1, 
+                now()->addMinutes(10) // Reset after 10 minutes
+            );
+            
+            return back()->with('success', 'A new verification link has been sent to your email address.')
+                        ->with('email', $user->email);
+                        
         } catch (\Exception $e) {
             \Log::error("Failed to resend verification email: " . $e->getMessage());
-            return back()->with('error', 'Failed to send verification email. Please try again.');
+            return back()->with('error', 'Failed to send verification email. Please try again.')
+                        ->withInput();
         }
     }
 }

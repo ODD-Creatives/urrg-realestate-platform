@@ -129,7 +129,8 @@ class RegisteredUserController extends Controller
         
             return redirect()->route('verification.sent')
                 ->with('success', 'Registration successful! Please check your email to verify your account.')
-                ->with('whatsapp_link', $whatsappLink);
+                ->with('whatsapp_link', $whatsappLink)
+                ->with('email', $user->email);
         });
     }
 
