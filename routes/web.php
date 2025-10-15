@@ -6,6 +6,7 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\User\UserDashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Auth\ResendVerificationEmail;
 
 
 Auth::routes();
@@ -16,6 +17,8 @@ Route::get('/test-csrf', function () {
 Route::post('/test-csrf', function () {
     return 'CSRF working!';
 });
+
+
 Route::get('/', [FrontendController::class, 'index'])->name('home');
 
 Route::get('/{page}', [PagesController::class, 'index'])->name('home.pages');

@@ -5,6 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use App\Http\Middleware\AdminMiddleware; 
+use App\Http\Middleware\EnsureEmailIsVerified; 
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -12,27 +13,13 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     ) 
-    ->withMiddleware(function (Middleware $middleware) {
-        $middleware->web(append: [
-            \App\Http\Middleware\VerifyCsrfToken::class,
-        ]);
-    }) 
-     ->withMiddleware(function (Middleware $middleware) {
-        // Make sure these are included
-        $middleware->web([
-            \Illuminate\Cookie\Middleware\EncryptCookies::class,
-            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-            \Illuminate\Session\Middleware\StartSession::class,
-            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \Illuminate\Foundation\Http\Middleware\ValidateCsrfToken::class,
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        ]);
-    })
+   
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             'admin.auth' => AdminMiddleware::class, // ✅ Register alias
+            'verified' => EnsureEmailIsVerified::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
+        // 
     })->create();

@@ -8,32 +8,23 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Log;
 
 class ResendVerificationEmailController extends Controller
 {
     /**
      * Resend the email verification notification.
      */
-    public function __invoke(Request $request): RedirectResponse
+    public function index(Request $request): RedirectResponse
     {
-        \Log::info('=== RESEND VERIFICATION DEBUG ===');
-        \Log::info('User ID: ' . ($request->user()?->id ?? 'null'));
-        \Log::info('Session ID: ' . session()->getId());
-        \Log::info('CSRF Token from request: ' . $request->input('_token'));
-        \Log::info('CSRF Token from session: ' . session()->token());
-        \Log::info('Request method: ' . $request->method());
-        \Log::info('Request URL: ' . $request->url());
-        \Log::info('=== END DEBUG ===');
-
         $user = $request->user();
 
         if (!$user) {
-            \Log::error('No authenticated user found');
-            return redirect()->route('login');
+            return redirect()->route('login')->with('error', 'Please log in first.');
         }
 
         if ($user->hasVerifiedEmail()) {
-            return redirect()->route('user.dashboard')->with('status', 'Email already verified!');
+            return redirect()->route('user.dashboard')->with('status', 'Your email is already verified!');
         }
         
         // Generate new verification URL
@@ -44,8 +35,16 @@ class ResendVerificationEmailController extends Controller
         ); 
 
         // Resend verification email
-        Mail::to($user->email)->send(new VerificationEmail($user, $user->referral_link ?? ''));
-
-        return back()->with('status', 'verification-link-sent');
+        try {
+            Mail::to($user->email)->send(new VerificationEmail($user, $user->referral_link ?? ''));
+            \Log::info("Verification email resent to {$user->email}");
+            
+            return back()->with('status', 'verification-link-sent')
+                        ->with('info', 'A new verification link has been sent to your email address. The link will expire in 60 minutes.');
+                        
+        } catch (\Exception $e) {
+            \Log::error("Failed to resend verification email: " . $e->getMessage());
+            return back()->with('error', 'Failed to send verification email. Please try again.');
+        }
     }
 }

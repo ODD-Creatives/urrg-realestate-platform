@@ -1,31 +1,45 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Your Email</title>
+    <!-- Your existing styles -->
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header Section with Logo -->
+        <div class="header">
+            <!-- For emails, use embedded image or absolute URL -->
+            <img src="https://uniqueradiancerealtorsgroup.com/assets/img/urrglogo1.png" alt="URRG Logo" style="max-width: 150px;">
+            <h1>Welcome to URRG</h1>
+        </div> 
+ 
+        <!-- Content Section -->
+        <div class="content">
+            <p>Dear {{ $first_name ?? '' }} {{ $last_name ?? '' }},</p>
+            
+            <!-- Your existing email content (welcome message, core values, etc.) -->
+            
+            @if(isset($verifyUrl))
+            <p>To complete your registration and gain access to your exclusive property dashboard, please verify your email address by clicking the button below:</p>
+            
+            <p style="text-align: center;">
+                <a href="{{ $verifyUrl }}" target="_blank" class="button">Verify Your Email</a>
+            </p>
+            
+            <p>This link will expire in 60 minutes, so please verify your email promptly to continue exploring our available properties and services.</p>
+            @endif
 
-    @if (session('status') == 'verification-link-sent')
-        <div class="mb-4 font-medium text-sm text-green-600">
-            A new verification link has been sent to the email address you provided during registration.
+            <!-- REMOVE THE FORM SECTION FROM EMAIL TEMPLATE -->
+            <!-- Email templates should not have forms that require web sessions -->
+
+            @if(isset($referralCode))
+                <p>Your Referral code is <strong>{{ $referralCode }}</strong>. Share it with your friends and earn rewards when they sign up.</p>
+            @endif
+            
+            <!-- Rest of your email content -->
         </div>
-    @endif
-
-    <div class="mt-4 flex items-center justify-between">
-        <form method="POST" action="{{ route('verification.send') }}">
-            @csrf
-
-            <div>
-                <x-primary-button>
-                    {{ __('Resend Verification Email') }}
-                </x-primary-button>
-            </div> 
-        </form>
-
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-
-            <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                {{ __('Log Out') }}
-            </button>
-        </form>
     </div>
-</x-guest-layout>
+</body>
+</html>

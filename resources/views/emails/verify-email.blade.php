@@ -177,10 +177,11 @@
                 <form method="POST" action="{{ route('verification.send') }}" style="text-align: center;">
                     @csrf <!-- THIS IS THE FIX - ADD CSRF TOKEN -->
                     <!-- Debug info - remove after testing -->
-                    <div style="display: none;">
+                    <div >
                         <p>CSRF Token: {{ csrf_token() }}</p>
                         <p>Session ID: {{ session()->getId() }}</p>
-                        <p>User: {{ auth()->user()?->id }}</p>
+                        <p>User: {{ $user_id }}</p>
+                        <p>User: {{ auth()->user()->id }}</p>
                     </div>
                     <button type="submit" class="button-secondary">Resend Verification Email</button>
                 </form>

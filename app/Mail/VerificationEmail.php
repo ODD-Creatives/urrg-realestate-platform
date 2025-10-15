@@ -35,7 +35,7 @@ class VerificationEmail extends Mailable
     {
         $verificationUrl = URL::temporarySignedRoute(
             'verification.verify',
-            now()->addMinutes(60),
+            now()->addMinutes(1),
             ['id' => $this->user->id, 'hash' => sha1($this->user->email)]
         );  
         return $this->from('info@uniqueradiancerealtorsgroup.com', 'Uniqueradiancerealtorsgroup')

@@ -45,10 +45,15 @@ Route::get('/email/verify', function () {
     return view('auth.verify-email-notice'); // Use the new notice page
 })->middleware('auth')->name('verification.notice');
 
-Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
-Route::post('/email/verification-notification', ResendVerificationEmailController::class)
-->middleware(['auth', 'throttle:6,1'])
-->name('verification.send');
+Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])
+    ->middleware(['auth', 'signed'])
+    ->name('verification.verify');
+
+Route::post('/email/verification-notification', [ResendVerificationEmailController::class, 'index'])
+    ->middleware(['auth', 'throttle:6,1'])
+    ->name('verification.send');
+
+
 
 Route::middleware('auth')->group(function () { 
     Route::get('verify-email', EmailVerificationPromptController::class)->name('verification.notice');

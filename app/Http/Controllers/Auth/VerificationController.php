@@ -10,17 +10,7 @@ use App\Models\OtpVerification;
 
 class VerificationController extends Controller
 { 
-    /*
-    |--------------------------------------------------------------------------
-    | Email Verification Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller is responsible for handling email verification for any
-    | user that recently registered with the application. Emails may also
-    | be re-sent if the user didn't receive the original email message.
-    |
-    */
-
+    
     use VerifiesEmails;
 
     /**
@@ -40,17 +30,27 @@ class VerificationController extends Controller
         // $this->middleware('auth');
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
-    }  
-  
+    }   
+   
     public function verify($id, $hash)
     { 
         $user = User::findOrFail($id);
-        if (sha1($user->email) !== $hash) {
-            return redirect('/')->with('error', 'Invalid verification link.');
+        
+        // Check if user is already verified
+        if ($user->hasVerifiedEmail()) {
+            return redirect()->route('login')->with('success', '🎉 Your email is already verified! You can now log in.');
         }
+        
+        // Check if hash matches
+        if (sha1($user->email) !== $hash) {
+            return redirect()->route('verification.notice')->with('error', 'Invalid verification link. Please request a new one.');
+        }
+        
+        // Mark email as verified
         $user->markEmailAsVerified();
-        return redirect()->route('login')->with('success', '🎉 Congratulations, ! You have successfully registered.');
-    } 
+        
+        return redirect()->route('login')->with('success', '🎉 Congratulations! You have successfully verified your email. You can now log in.');
+    }
 
     public function notice(Request $request, $user_id)
     {
