@@ -25,6 +25,11 @@ Route::middleware('guest')->group(function () {
 
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
     Route::post('account/login', [AuthenticatedSessionController::class, 'store']);
+    
+    Route::get('/resend-verification', [ResendVerificationByEmailController::class, 'showResendForm'])
+    ->name('verification.resend-form');
+    Route::post('/resend-verification', [ResendVerificationByEmailController::class, 'resend'])
+        ->name('verification.resend-by-email');
 
     Route::get('forgot/password', [PasswordResetLinkController::class, 'create'])
         ->name('password.request');
@@ -48,18 +53,6 @@ Route::get('/email/verify', function () {
 Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])
     ->middleware(['auth', 'signed'])
     ->name('verification.verify');
-
-
-
-// Route::get('/verification-sent', [ResendVerificationByEmailController::class, 'showResendForm'])
-//     ->name('verification.sent');
-
-// Resend verification by email (no auth required)
-Route::get('/resend-verification', [ResendVerificationByEmailController::class, 'showResendForm'])
-    ->name('verification.resend-form');
-
-Route::post('/resend-verification', [ResendVerificationByEmailController::class, 'resend'])
-    ->name('verification.resend-by-email');
 
 Route::middleware('auth')->group(function () { 
     Route::get('verify-email', EmailVerificationPromptController::class)->name('verification.notice');
