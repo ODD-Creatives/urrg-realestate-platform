@@ -74,6 +74,20 @@
             color: #721c24;
             border: 1px solid #f5c6cb;
         }
+        /* Your existing styles */
+        .help-text {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+        .warning {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
@@ -87,12 +101,20 @@
             @if (session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
+                    <div class="help-text">
+                        The verification link will expire in 2hrs minute. Please check your spam folder if you don't see it.
+                    </div>
                 </div>
             @endif
 
             @if (session('error'))
                 <div class="alert alert-error">
                     {{ session('error') }}
+                </div>
+            @endif
+            @if(!session('email') && !old('email') && !request('email'))
+                <div class="warning">
+                    <strong>Note:</strong> If you registered a while ago, you may need to enter your email address again.
                 </div>
             @endif
 
@@ -105,7 +127,11 @@
                     <label for="email">Email Address</label>
                     <input type="email" id="email" name="email" 
                            value="{{ old('email', request('email') ?? session('email') ?? '') }}" 
-                           required>
+                           required
+                           placeholder="Enter the email you used for registration">
+                    <div class="help-text">
+                        We'll send a new verification link to this email address.
+                    </div>
                     @error('email')
                         <span style="color: red;">{{ $message }}</span>
                     @enderror
@@ -113,6 +139,14 @@
 
                 <button type="submit" class="button">Resend Verification Email</button>
             </form>
+            <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 5px;">
+                <h4>Need help?</h4>
+                <ul>
+                    <li>Check your spam or junk folder</li>
+                    <li>Make sure you're using the correct email address</li>
+                    <li>Contact support if you continue having issues</li>
+                </ul>
+            </div>
 
             <p style="text-align: center; margin-top: 20px;">
                 <a href="{{ route('signin') }}">Back to Login</a>

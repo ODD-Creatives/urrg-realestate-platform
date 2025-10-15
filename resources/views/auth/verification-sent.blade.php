@@ -71,17 +71,17 @@
         </div> 
 
         <div class="content">
-            @if(session('success'))
+            {{-- @if(session('success')) --}}
                 <div class="alert alert-success">
                     {{ session('success') }}
-                    @if(session('whatsapp_link'))
+                    {{-- @if(session('whatsapp_link')) --}}
                         <br>
-                        <a href="{{ session('whatsapp_link') }}" target="_blank" class="button mt-2">
+                        <a href="https://chat.whatsapp.com/K8z72O68OL9IjpvXfKa5uN?mode=ac_t" target="_blank" class="button mt-2">
                             Join our WhatsApp group
                         </a>
-                    @endif
+                    {{-- @endif --}}
                 </div>
-            @endif
+            {{-- @endif --}}
 
             <div class="alert alert-info">
                 <h3>📧 Verification Email Sent</h3>
@@ -105,7 +105,7 @@
             <p style="text-align: center; margin-top: 30px;">
                 <a href="{{ route('signin') }}" class="button">Proceed to Login</a>
             </p>
-
+ 
             <p style="text-align: center;">
                 <small>Once you verify your email, you can log in to your account.</small>
             </p>

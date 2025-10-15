@@ -121,6 +121,17 @@
             color: #0c5460;
             border: 1px solid #bee5eb;
         }
+        .help-box {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            border-left: 4px solid #17a2b8;
+        }
+        .help-box h4 {
+            margin-top: 0;
+            color: #0c5460;
+        }
     </style>
 </head>
 <body>
@@ -172,14 +183,29 @@
             <!-- Resend Verification Section -->
             <div class="resend-section">
                 <h3 style="color: #856404; margin-top: 0;">Need a new verification email?</h3>
-                <p>If you didn't receive the verification email, or if the link has expired, you can request a new one by clicking the button below:</p>
-                <p>
-                    <a href="{{ route('verification.resend-form') }}" target="_blank">Request a new verification email</a>
+                <p>If you didn't receive the verification email, or if the link has expired, you can request a new one:</p>
+                
+                <p style="text-align: center; margin: 20px 0;">
+                    <a href="{{ route('verification.resend-form', ['email' => $user_email ?? '']) }}" 
+                       target="_blank" 
+                       class="button-secondary"
+                       style="text-decoration: none;">
+                        📧 Request New Verification Email
+                    </a>
                 </p>
+
+                <div class="help-box">
+                    <h4>📋 Troubleshooting Tips:</h4>
+                    <ul style="margin-bottom: 0;">
+                        <li><strong>Check spam folder</strong> - Sometimes emails get filtered</li>
+                        <li><strong>Wait a few minutes</strong> - Email delivery can take 2-5 minutes</li>
+                        <li><strong>Use the same email</strong> - Make sure to use: <strong>{{ $user_email ?? 'your registered email' }}</strong></li>
+                        <li><strong>Link expired?</strong> - Request a new one using the button above</li>
+                    </ul>
+                </div>
                 
-                
-                <p style="font-size: 14px; margin-top: 10px; color: #666;">
-                    <strong>Note:</strong> Please check your spam folder before requesting a new verification email.
+                <p style="font-size: 14px; margin-top: 15px; color: #666;">
+                    <strong>Note:</strong> You can request multiple verification emails if needed. Each new link will be valid for 60 minutes.
                 </p>
             </div>
 
