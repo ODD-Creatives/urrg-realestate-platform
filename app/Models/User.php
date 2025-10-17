@@ -58,7 +58,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getFormattedCreatedAtAttribute()
     {
         return $this->created_at->format('M d, Y'); 
-    } 
+    }  
 
     public function referrals()
     {
