@@ -39,7 +39,7 @@
                 <!-- Unverified User Alert -->
                 @if(session('unverified_user') || $errors->has('email') && str_contains($errors->first('email'), 'not been verified'))
                     <div class="alert alert-warning">
-                        <h5>📧 Email Verification Required</h5>
+                        <h5 style="font-size: 18px">📧 Email Verification Required</h5>
                         <p class="mb-2">Your account has not been verified yet. Please check your email for the verification link.</p>
                         
                         @if(session('unverified_email'))

@@ -255,8 +255,8 @@ class RegisteredUserController extends Controller
 
     protected function sendVerificationEmail(User $user)
     {
-        $referralLink = config('app.url') . '/register/referral/' . $user->referral_code;
-        
+        $referralLink = config('app.url') . 'register/referral/' . $user->referral_code;
+         
         try {
             Mail::to($user->email)->send(new VerificationEmail($user, $referralLink));
             \Log::info("Verification email sent to {$user->email}");

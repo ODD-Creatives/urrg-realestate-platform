@@ -95,7 +95,7 @@ class AuthenticatedSessionController extends Controller
 
         // Resend verification email
         try {
-            $referralLink = config('app.url') . '/register/referral/' . $user->referral_code;
+            $referralLink = config('app.url') . 'register/referral/' . $user->referral_code;
             Mail::to($user->email)->send(new VerificationEmail($user, $referralLink));
             
             return back()->with('success', 'A new verification link has been sent to your email address.')
