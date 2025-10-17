@@ -34,7 +34,13 @@ class LoginController extends Controller
 
             if ($request->user()->hasVerifiedEmail()) {
                 return redirect()->intended(route('user.dashboard'));
-            }
+            } 
+            // Log the user out and show verification error with resend link
+            Auth::logout();
+            return back()
+                ->with('error', 'Please verify your email address before logging in.')
+                ->with('unverified_email', $request->email) // Pass the email for resend
+                ->onlyInput('email');
 
             return redirect(route('verification.notice'));
         }

@@ -25,7 +25,9 @@ Route::middleware('guest')->group(function () {
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
     Route::post('account/login', [AuthenticatedSessionController::class, 'store']);
     
-    
+    // Add this new route for resending verification from login page
+    Route::post('/login/resend-verification', [AuthenticatedSessionController::class, 'resendVerification'])
+        ->name('login.resend-verification');
 
     Route::get('forgot/password', [PasswordResetLinkController::class, 'create'])
         ->name('password.request');
