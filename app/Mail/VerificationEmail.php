@@ -41,8 +41,8 @@ class VerificationEmail extends Mailable
         return $this->from('info@uniqueradiancerealtorsgroup.com', 'Uniqueradiancerealtorsgroup')
         ->subject('Notification Email - URRG')
         ->markdown('emails.verify-email')->with([ 
-            'first_name' => $this->user->first_name, 
-            'last_name' => $this->user->last_name, 
+            'first_name' => $this->user->firstname, 
+            'last_name' => $this->user->lastname, 
             'user_id' => $this->user->id, 
             'user_email' => $this->user->email,
             'realtorId' => $this->user->realtor_id,  

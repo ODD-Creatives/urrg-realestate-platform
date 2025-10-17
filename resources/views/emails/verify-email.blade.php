@@ -172,7 +172,7 @@
             
             @if(isset($verifyUrl))
             <p>To complete your registration and gain access to your exclusive property dashboard, please verify your email address by clicking the button below:</p>
-            
+             
             <p style="text-align: center;">
                 <a href="{{ $verifyUrl }}" target="_blank" class="button">Verify Your Email</a>
             </p>
