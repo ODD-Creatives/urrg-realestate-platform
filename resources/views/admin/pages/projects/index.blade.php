@@ -7,7 +7,7 @@
             <h3 class="font-weight-bold">🏗️ Developer Projects</h3>
             <a href="{{ route('admin.projects.create') }}" class="btn btn-outline-primary mt-2">➕ Add New Project</a>
         </div>
-    </div>
+    </div> 
 
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
@@ -40,7 +40,7 @@
                                         <td>{{ $index + 1 }}</td>
                                         <td> 
                                             @if($project->cover_image)
-                                                <img src="{{ asset('$project->cover_image) }}" alt="Cover" width="80" class="img-thumbnail">
+                                                <img src="{{ asset($project->cover_image) }}" alt="Cover" width="80" class="img-thumbnail"/>
                                             @else
                                                 <span class="text-muted">No image</span>
                                             @endif

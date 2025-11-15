@@ -73,9 +73,9 @@
         <div class="row gy-3 justify-content-lg-between justify-content-center align-items-center">
             <div class="col-lg-7">
                 <p class="copyright-text">
-                    Copyright <i class="fal fa-copyright"></i> 2025 
-                    <a href="{{route('home')}}">Unique Radiance Realtors Group </a>. All Rights Reserved.
-                </p>
+                    Copyright <i class="fal fa-copyright"></i> {{ date('Y') }} 
+                    <a href="{{route('home')}}">Unique Radiance Realtors Group. </a> All Rights Reserved.
+                </p> 
             </div>
             <div class="col-auto">
                 <div class="footer-default-copy-right">

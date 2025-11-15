@@ -1,14 +1,17 @@
  <footer class="footer">
     <div class="d-sm-flex justify-content-center justify-content-sm-between">
-        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2023. Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
-        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ms-1"></i></span>
+        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">
+            Copyright © {{ date('Y') }} <a href="{{route('home')}}" target="_blank">
+                Unique Radiance Realtors Group.</a> All rights reserved.
+        </span>
+        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> <i class="ti-heart text-danger ms-1"></i></span>
     </div>
 </footer>
 
  <!-- plugins:js -->
 <script src="{{ asset('assets/admin/assets/vendors/js/vendor.bundle.base.js') }}"></script>
 <!-- endinject -->
-<!-- Plugin js for this page -->
+<!-- Plugin js for this page --> 
 <script src="{{ asset('assets/admin/assets/vendors/chart.js/chart.umd.js') }}"></script>
 <script src="{{ asset('assets/admin/assets/vendors/datatables.net/jquery.dataTables.js') }}"></script>
 <!-- <script src="assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script> -->

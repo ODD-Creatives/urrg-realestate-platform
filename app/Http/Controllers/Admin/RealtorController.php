@@ -13,11 +13,23 @@ class RealtorController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     { 
-        $users = User::latest()->paginate(10);
+        $users = User::when($request->search, function($query) use ($request) {
+                $query->where(function($q) use ($request) {
+                    $q->where('firstname', 'like', '%' . $request->search . '%')
+                    ->orWhere('lastname', 'like', '%' . $request->search . '%')
+                    ->orWhere('email', 'like', '%' . $request->search . '%')
+                    ->orWhere('realtor_id', 'like', '%' . $request->search . '%')
+                    ->orWhere('phone', 'like', '%' . $request->search . '%');
+                });
+            })
+            ->orderBy('firstname', 'asc') // Alphabetical order by first name
+            ->orderBy('lastname', 'asc')  // Then by last name
+            ->paginate(15);
+        
         return view('admin.pages.realtors.index', compact('users'));
-    } 
+    }
 
     public function activate(User $user)
     {
