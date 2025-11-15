@@ -146,8 +146,8 @@ class CommissionController extends Controller
                 'realtor_amount' => 'required|numeric|min:0',
                 'upline_commissions' => 'sometimes|array',
                 'upline_commissions.*.user_id' => 'required',
-                'upline_commissions.*.amount' => 'required|numeric|min:0',
-                'upline_commissions.*.level' => 'required|numeric|min:1',
+                'upline_commissions.*.amount' => 'nullable|numeric|min:0',
+                'upline_commissions.*.level' => 'nullable|numeric|min:1',
                 'upline_commissions.*.is_admin' => 'sometimes|boolean',
                 'property_id' => 'nullable|exists:properties,id'
             ], [
