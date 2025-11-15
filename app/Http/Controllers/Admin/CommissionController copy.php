@@ -189,7 +189,7 @@ class CommissionController extends Controller
             }
 
             // Process all payments
-            $results = $commissionService->processBulkPaymentsNewRecords(
+            $results = $commissionService->processBulkPayments(
                 $realtor,
                 $validated['realtor_amount'],
                 $uplineCommissions,

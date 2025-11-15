@@ -106,7 +106,7 @@ Route::middleware(['admin.auth'])->prefix('admin')->name('admin.')->group(functi
 
 
     Route::prefix('commissions')->name('commissions.')->controller(CommissionController::class)->group(function () {
-        Route::get('/','index')->name('index');
+        Route::get('/','index')->name('index');  
         Route::get('/commission-pay','commissionPay')->name('pay'); 
         Route::post('/process-payment','processPayment')->name('process-payment');
     }); 
